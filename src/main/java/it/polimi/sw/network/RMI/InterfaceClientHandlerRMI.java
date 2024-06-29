@@ -4,14 +4,8 @@ import it.polimi.sw.model.Card;
 import it.polimi.sw.model.Objective;
 import it.polimi.sw.model.Pion;
 import it.polimi.sw.model.Player;
-import it.polimi.sw.network.Client;
-import it.polimi.sw.network.Messages.GameMessage;
-import it.polimi.sw.network.QueueHandler;
-import it.polimi.sw.network.QueueHandlerClient;
-
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.List;
 /**
  * This interface defines methods for a client-side object to interact with the server remotely.
  */
@@ -115,15 +109,6 @@ public interface InterfaceClientHandlerRMI extends Remote {
      * @throws RemoteException This exception is thrown if there is a problem communicating with the server remotely.
      */
     void sendNumPlayersAndPion(int lobby, String nickname,Pion pion, int numOfPlayers) throws RemoteException;
-
-    /**
-     * This method retrieves a list of chat messages for a specific lobby from the server.
-     *
-     * @param lobby The lobby where the chat messages are requested.
-     * @return A list of GameMessage objects representing the chat history in the lobby.
-     * @throws RemoteException This exception is thrown if there is a problem communicating with the server remotely.
-     */
-    List<GameMessage> showGameChat(int lobby) throws RemoteException;
     /**
      * This method sends a request to the server to get the player's game board data in a lobby.
      *

@@ -4,22 +4,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import it.polimi.sw.controller.GameControllerServer;
 import it.polimi.sw.model.*;
 import it.polimi.sw.network.Message.ClientMessage.SampleClientMessage;
-import it.polimi.sw.network.Message.ClientMessage.TypeMessageClient;
-import it.polimi.sw.network.Message.serverMessage.SampleServerMessage;
-import it.polimi.sw.network.Message.serverMessage.TurnReply;
-import it.polimi.sw.network.Message.serverMessage.TypeMessageServer;
-import it.polimi.sw.network.Messages.GameMessage;
 import it.polimi.sw.network.RMI.ClientHandlerRMI;
 
 import it.polimi.sw.network.Socket.ClientHandlerSOCKET;
 
 import java.io.*;
-import java.lang.Object;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.rmi.RemoteException;
 import java.util.*;
-import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * This class, likely named `CommonGameLogicServer`, implements the `Runnable` interface and likely represents the core logic server for a game.
  * It handles client connections, processes messages, and manages game state.
@@ -192,7 +185,7 @@ public class CommonGameLogicServer implements Runnable{
             return;
         }
         System.out.println("Server ready: ");
-        QueueHandler queueHandler = QueueHandler.getInstance();
+        QueueHandlerServer queueHandler = QueueHandlerServer.getInstance();
         ProcessQueue queueProcessor = new ProcessQueue(queueHandler, this);
         Thread queueThread = new Thread(queueProcessor, "QueueProcessorThread");
         queueThread.start();
@@ -201,7 +194,7 @@ public class CommonGameLogicServer implements Runnable{
                 Socket client = serverSocket.accept();
                 System.out.println("Another socket accepted!");
                 client.setSoTimeout(0);
-                ClientHandlerSOCKET clientHandlerSOCKET = new ClientHandlerSOCKET(client,this,QueueHandler.getInstance());
+                ClientHandlerSOCKET clientHandlerSOCKET = new ClientHandlerSOCKET(client,this, QueueHandlerServer.getInstance());
 
                 System.out.println("Client connected from address: "+client.getInetAddress());
                 Thread thread = new Thread(clientHandlerSOCKET, "handler" +client.getInetAddress());

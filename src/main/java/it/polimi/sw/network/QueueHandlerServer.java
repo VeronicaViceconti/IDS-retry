@@ -8,9 +8,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * It uses a ConcurrentLinkedQueue for thread-safe access.
  */
 
-public class QueueHandler {
+public class QueueHandlerServer {
 
-    private static QueueHandler instance;
+    private static QueueHandlerServer instance;
     private ConcurrentLinkedQueue<SampleClientMessage> queue = new ConcurrentLinkedQueue<>();
     /**
      * This method retrieves the singleton instance of QueueHandler.
@@ -18,9 +18,9 @@ public class QueueHandler {
      *
      * @return The singleton instance of QueueHandler.
      */
-    public static synchronized QueueHandler getInstance(){
+    public static synchronized QueueHandlerServer getInstance(){
         if(instance == null)
-            instance = new QueueHandler();
+            instance = new QueueHandlerServer();
         return instance;
     }
 

@@ -1,7 +1,7 @@
 package it.polimi.sw;
 
 import it.polimi.sw.network.CommonGameLogicServer;
-import it.polimi.sw.network.QueueHandler;
+import it.polimi.sw.network.QueueHandlerServer;
 import it.polimi.sw.network.RMI.ClientHandlerRMI;
 import it.polimi.sw.network.RMI.InterfaceClientHandlerRMI;
 
@@ -9,8 +9,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
+
 /**
  * This class likely represents the entry point for the server-side of the game "Codex Naturalis".
  * It's responsible for the following tasks:
@@ -48,7 +47,7 @@ public class CodexNaturalis_Server {
 
             // Set up server socket port
             CommonGameLogicServer server = new CommonGameLogicServer(PORT_NUMBER);
-            QueueHandler serverQueue = QueueHandler.getInstance();
+            QueueHandlerServer serverQueue = QueueHandlerServer.getInstance();
             //2 righe da togliere
             if(serverQueue == null)
                 System.out.println("QUEUE SERVER NULL");

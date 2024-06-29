@@ -29,6 +29,6 @@ public class PingClient extends SampleClientMessage {
      */
     @Override
     public void execute(GameControllerServer gcs) {
-        //non so che deve fare
+
     }
 }

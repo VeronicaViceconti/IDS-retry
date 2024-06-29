@@ -36,9 +36,7 @@ public class SendPrivateObjective extends SampleClientMessage{
      */
     @Override
     public void execute(GameControllerServer gcs) {
-        System.out.println("ID DEL PLAYER A CUI SETTO OBIETTIVO->"+getId_player());
         gcs.currgame.getTotPlayers().get(getId_player()).setObjective(ob);
-
         gcs.addSecretObjective(); //if everyone has chosen, then this method starts the game loop
     }
 }

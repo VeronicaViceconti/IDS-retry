@@ -10,19 +10,17 @@ import it.polimi.sw.network.Message.ClientMessage.SampleClientMessage;
 import it.polimi.sw.network.Message.serverMessage.GameCreated;
 import it.polimi.sw.network.Message.serverMessage.NicknameReply;
 import it.polimi.sw.network.Message.serverMessage.WaitingPlayerReply;
-import it.polimi.sw.network.RMI.ClientHandlerRMI;
-import it.polimi.sw.network.Socket.ClientHandlerSOCKET;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Map;
+
 /**
  * This class likely implements a thread that processes messages received from clients through the provided QueueHandler.
  * It interacts with a CommonGameLogicServer object to handle the game logic based on the messages.
  */
 public class ProcessQueue implements Runnable {
-    private final QueueHandler queueHandler;
+    private final QueueHandlerServer queueHandler;
     private final CommonGameLogicServer server;
     /**
      * Constructor for ProcessQueue.
@@ -30,7 +28,7 @@ public class ProcessQueue implements Runnable {
      * @param queueHandler The QueueHandler object for accessing client messages.
      * @param server The CommonGameLogicServer object for game logic handling.
      */
-    public ProcessQueue(QueueHandler queueHandler, CommonGameLogicServer server) {
+    public ProcessQueue(QueueHandlerServer queueHandler, CommonGameLogicServer server) {
         this.queueHandler = queueHandler;
         this.server = server;
     }

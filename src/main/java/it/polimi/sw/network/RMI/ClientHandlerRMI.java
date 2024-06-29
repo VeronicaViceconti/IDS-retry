@@ -7,12 +7,8 @@ import it.polimi.sw.model.Pion;
 import it.polimi.sw.model.Player;
 import it.polimi.sw.network.Message.ClientMessage.*;
 import it.polimi.sw.network.Message.ViewMessage.SampleViewMessage;
-import it.polimi.sw.network.Message.ViewMessage.SendingNumPlayersAndPion;
-import it.polimi.sw.network.Message.serverMessage.NicknameReply;
 import it.polimi.sw.network.Message.serverMessage.SampleServerMessage;
-import it.polimi.sw.network.Messages.GameMessage;
-import it.polimi.sw.network.QueueHandler;
-import it.polimi.sw.network.QueueHandlerClient;
+import it.polimi.sw.network.QueueHandlerServer;
 
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
@@ -32,7 +28,7 @@ public class ClientHandlerRMI extends UnicastRemoteObject implements InterfaceCl
      * A reference to the `QueueHandler` object on the server-side.
      * This object is likely responsible for managing the message queue.
      */
-    private QueueHandler queueServer;
+    private QueueHandlerServer queueServer;
     /**
      * The name of the client associated with this `ClientHandlerRMI` object.
      */
@@ -48,7 +44,7 @@ public class ClientHandlerRMI extends UnicastRemoteObject implements InterfaceCl
      * @param queue A reference to the `QueueHandler` object on the server-side.
      * @throws RemoteException This exception is thrown if there is a problem exporting the object remotely.
      */
-    public ClientHandlerRMI(QueueHandler queue) throws RemoteException {
+    public ClientHandlerRMI(QueueHandlerServer queue) throws RemoteException {
         this.queueServer = queue;
     }
 
@@ -79,7 +75,7 @@ public class ClientHandlerRMI extends UnicastRemoteObject implements InterfaceCl
 
         InterfaceClientHandlerRMI clientHandlerRMI = null;
         try {
-            clientHandlerRMI = new ClientHandlerRMI(QueueHandler.getInstance());
+            clientHandlerRMI = new ClientHandlerRMI(QueueHandlerServer.getInstance());
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
@@ -208,20 +204,6 @@ public class ClientHandlerRMI extends UnicastRemoteObject implements InterfaceCl
         queueServer.appendMessage(new PlayerNumberAndPionRequest(lobby,nickname,numOfPlayers,pion));
     }
 
-
-    /**
-     * This method retrieves a list of chat messages for a specific lobby from the server.
-     * (Override from InterfaceClientHandlerRMI)
-     *
-     * @param lobby The lobby where the chat messages are requested.
-     * @return A list of GameMessage objects representing the chat history in the lobby.
-     * @throws RemoteException This exception is thrown if there is a problem communicating with the server remotely.
-     */
-
-    @Override
-    public List<GameMessage> showGameChat(int lobby)throws RemoteException  {
-        return null;
-    }
     /**
      * This method sends a request to the server to get the player's game board data in a lobby.
      * (Override from InterfaceClientHandlerRMI)

@@ -8,7 +8,7 @@ import it.polimi.sw.network.Message.ClientMessage.SampleClientMessage;
 import it.polimi.sw.network.Message.ClientMessage.TypeMessageClient;
 import it.polimi.sw.network.Message.ViewMessage.SampleViewMessage;
 import it.polimi.sw.network.Message.serverMessage.SampleServerMessage;
-import it.polimi.sw.network.QueueHandler;
+import it.polimi.sw.network.QueueHandlerServer;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -27,7 +27,7 @@ public class ClientHandlerSOCKET implements Runnable, Serializable, Observer {
     private final Socket client;
     private boolean online;
     private final CommonGameLogicServer socketServer;
-    private QueueHandler queueHandler;
+    private QueueHandlerServer queueHandler;
     private ObjectOutputStream output;
     private ObjectInputStream input;
     /**
@@ -37,7 +37,7 @@ public class ClientHandlerSOCKET implements Runnable, Serializable, Observer {
      * @param socketServer A reference to the CommonGameLogicServer object.
      * @param queueHandler A reference to the QueueHandler object.
      */
-    public ClientHandlerSOCKET(Socket client, CommonGameLogicServer socketServer, QueueHandler queueHandler) {
+    public ClientHandlerSOCKET(Socket client, CommonGameLogicServer socketServer, QueueHandlerServer queueHandler) {
         this.client = client;
         this.socketServer = socketServer;
         this.queueHandler = queueHandler;
