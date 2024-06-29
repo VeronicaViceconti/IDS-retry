@@ -30,6 +30,22 @@ public class Player extends Observable implements Serializable {
     /** Available positions for plays card. */
     private ArrayList<Point2D> availablePositions;
 
+    private ArrayList<Card> timeline;
+
+
+
+    public void setTimeline(ArrayList<Card> timeline) {
+        this.timeline = timeline;
+    }
+
+    public ArrayList<Card> getTimeline() {
+        return timeline;
+    }
+
+    public void addToTimeline(Card c){
+        this.timeline.add(c);
+    }
+
     /**
      * Retrieves the player's unique identifier.
      *
@@ -60,6 +76,7 @@ public class Player extends Observable implements Serializable {
         this.numOfResourceAndObject.put("INKWELL",0);
         this.numOfResourceAndObject.put("QUILL",0);
         this.numOfResourceAndObject.put("MANUSCRIPT",0);
+        this.timeline = new ArrayList<Card>();
 
         this.objective = null;
         this.pion = pion;

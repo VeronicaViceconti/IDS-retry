@@ -163,10 +163,12 @@ public class GameControllerServer  {
     public void placeCard(Player p, Card card, int x, int y) {
         //controllo parametri esistenti
         if (p == null || card == null) {
-            System.out.println("Player is not found in the player list. p is null");
+            System.out.println("Test. GCS.Player is not found in the player list. p is null");
         }else{
             boolean thereIsPlayer = currgame.getTotPlayers().stream().anyMatch(player -> player.getNickName().equals(p.getNickName()));
             if (!thereIsPlayer) { //player is not in the list of all games
+                System.out.println("Test. GCS.Player is not found in the list of players");
+
                 return;
             }
             if(card instanceof InitialCard) {
@@ -177,11 +179,12 @@ public class GameControllerServer  {
                 }
                 //update map
                 p.addCardToMap(card, x, y);
+                p.addToTimeline(card);
                 //remove from hand
                 p.getHand().remove(p.getHand().get(index));
                 p.getHandBack().remove(p.getHandBack().get(index));
 
-                System.out.println("Elementi nella mappa manuscript: ");
+                System.out.println("Test.GCS.Elementi nella mappa manuscript: ");
                 for (Card c:p.getMap().keySet()) {
                     System.out.println("Card-->"+c.toString());
                 }
@@ -203,7 +206,7 @@ public class GameControllerServer  {
                 currgame.getFacedownResource().removeFirst();
 
                 ArrayList<Objective> ob12 = currgame.pickupSecretObjective();
-
+                System.out.println("Test.GCS");
                 System.out.println(ob12.getFirst().toString());
                 System.out.println(ob12.get(1).toString());
 
@@ -220,9 +223,9 @@ public class GameControllerServer  {
                 currgame.notify(new ErrorReply(ErrorType.NOT_THE_RIGHT_MOMENT_TO_DRAW_CARD, p));
             } else {
                 //by this line we are sure that it is the right moment to place a card. we have to control if the placement is correct
-                System.out.println("PRIIIIIIIIIIIIIIIMAAAAAAAAAAAAAA");
+                System.out.println("Test.GCS.PRIIIIIIIIIIIIIIIMAAAAAAAAAAAAAA");
                 boolean canPlay = mayPlayThisCard(p, card, x, y);
-                System.out.println("DOOOOOOOPOOOOOOOOOOOOOOO");
+                System.out.println("Test.gcs. dopo mayPlaythis card");
                 if (canPlay) {   //now we have to place the card, remove it from the hand,
                     // add points, resources, objects, change the state of the game
                     int index = p.findCardInHand(card);
@@ -232,6 +235,7 @@ public class GameControllerServer  {
                     }
                     //update map
                     p.addCardToMap(card, x, y);
+                    p.addToTimeline(card);
                     //remove from hand
                     p.getHand().remove(p.getHand().get(index));
                     p.getHandBack().remove(p.getHandBack().get(index));
@@ -242,9 +246,15 @@ public class GameControllerServer  {
                     p.setPoints(p.getPoints() + calculatePointsForCard(card, p));
                     addResourcesOrObjects(card, p);
                     updateCoveredCard(card, p, x, y); //updates the corner "covered" and removes resource or object.
-                    System.out.println("ha fatto update coveredCard");
+                    System.out.println("Test.GCS. ha fatto update coveredCard");
                     currgame.setGameState(DRAWCARD);
-                    currgame.notify(new UpdatePlayersReply(p, p.getPoints(), card, x,y, p.getNumOfResourceAndObject(), p.getHand(),p.getHandBack()));
+                    if(!endGame) {
+                        currgame.notify(new UpdatePlayersReply(p, p.getPoints(), card, x, y, p.getNumOfResourceAndObject(), p.getHand(), p.getHandBack(), false));
+                    }else{
+                        currgame.notify(new UpdatePlayersReply(p, p.getPoints(), card, x, y, p.getNumOfResourceAndObject(), p.getHand(), p.getHandBack(), true));
+                        currgame.setGameState(NOT_MY_TURN); //nobody can do anything
+                        nextTurn(); // includes notify turn
+                    }
                     currgame.notify(new BoardDataReply(currgame.getFacedownGold().getFirst(), currgame.getFacedownResource().getFirst(),
                                 currgame.getFaceupGold(), currgame.getFaceupResource(),currgame.currPlayer));
                 }
@@ -270,13 +280,13 @@ public class GameControllerServer  {
      */
 
     private boolean mayPlayThisCard(Player p, Card card, int x, int y) {
-        System.out.println("DUUUUUUURAAAAAANTEEEEEEEEE");
+        System.out.println("Test.GCS. in mayPlaythis card");
         System.out.println("Mano del player: ");
         for (Card c:p.getHand()) {
-            System.out.println("Fronte: "+c.toString());
+            System.out.println("Test.Fronte: "+c.toString());
         }
         for (Card c:p.getHandBack()) {
-            System.out.println("Retro: "+c.toString());
+            System.out.println("Test.Retro: "+c.toString());
         }
         // if you have this card
         if (!p.getHand().contains(card) && !p.getHandBack().contains(card)) {
@@ -365,9 +375,10 @@ public class GameControllerServer  {
      * returns a card in the position (x,y). if the card is not present, then return null
      */
     private Card cardInPosition(Player pl, Integer x, Integer y) {
-        System.out.println("Card position :" + x + " " + y);
+        System.out.println("Test.gcs. Card position :" + x + " " + y);
         for(Map.Entry<Card,Integer[]> entry: pl.getMap().entrySet()){
             if(entry.getValue()[0].equals(x)&&entry.getValue()[1].equals(y)){
+                System.out.println("test.gcs.provato carta in posizione x,y in p.map");
                 return entry.getKey();
             }
         }
@@ -381,22 +392,6 @@ public class GameControllerServer  {
      * @param y The coordinates y.
      */
     private void updateAvailablePositions(Player p, int x, int y){
-        //no cards may stay in Plus position. remove the position of the inserted card itself
-/*        for (Point2D point : p.getAvailablePositions()) { //redundant
-            //generaly these positions are impossible
-            if((x+y)%2 == 1){
-                Point2D toRemove = new Point2D.Double(x, y);
-                p.removeAvPos(toRemove);
-            } else
-                if ((point.getX() == x && point.getY() == y + 1) ||
-                    (point.getX() == x && point.getY() == y - 1) ||
-                    (point.getX() == x + 1 && point.getY() == y) ||
-                    (point.getX() == x - 1 && point.getY() == y)) {
-                    //iterator.remove();
-                    Point2D toRemove = new Point2D.Double(x, y);
-                    p.removeAvPos(toRemove);
-                }
-        }*/
 
         ArrayList<Point2D> newAvailable = new ArrayList<>();
         //candidates to be available spots
@@ -616,6 +611,7 @@ public class GameControllerServer  {
      * @param whichDeck Parameter taken from input that tells me which deck the player wants to draw
      */
     public void drawCardFromDeck(Player pWantsToDraw, String whichDeck) {
+
         if(pWantsToDraw == null){
             return;
         }
@@ -650,9 +646,12 @@ public class GameControllerServer  {
 
                     currgame.getFacedownResource().removeFirst();
 
-                    currgame.notify(new DrawCardReply(currgame.flipCard(drawCard),drawCard, currgame.getPlayerCurrentTurn(),currgame.getFacedownGold().get(0), currgame.getFacedownResource().get(0),
-                            currgame.getFaceupGold(), currgame.getFaceupResource()));
-                    currgame.setGameState(PLACECARD);
+                    currgame.notify(new DrawCardReply(currgame.flipCard(drawCard),drawCard, currgame.getPlayerCurrentTurn(),
+                            currgame.getFacedownGold()==null? null: currgame.getFacedownGold().getFirst(),
+                            currgame.getFacedownResource()==null? null: currgame.getFacedownResource().getFirst(),
+                            currgame.getFaceupGold()==null? null: currgame.getFaceupGold(),
+                            currgame.getFaceupResource()==null? null: currgame.getFaceupResource()));
+                    currgame.setGameState(NOT_MY_TURN);
                     nextTurn(); // includes notify
                 }
             } else if (whichDeck.equals("Gold")) {
@@ -665,10 +664,12 @@ public class GameControllerServer  {
                     currgame.getFacedownGold().removeFirst();
 
                     currgame.notify(new DrawCardReply(currgame.flipCard(drawCard),drawCard, currgame.getPlayerCurrentTurn(),
-                            currgame.getFacedownGold().getFirst(), currgame.getFacedownResource().getFirst(),
-                            currgame.getFaceupGold(), currgame.getFaceupResource()));
+                            currgame.getFacedownGold()==null? null: currgame.getFacedownGold().getFirst(),
+                            currgame.getFacedownResource()==null? null: currgame.getFacedownResource().getFirst(),
+                            currgame.getFaceupGold()==null? null: currgame.getFaceupGold(),
+                            currgame.getFaceupResource()==null? null: currgame.getFaceupResource()));
 
-                    currgame.setGameState(PLACECARD);
+                    currgame.setGameState(NOT_MY_TURN);
                     nextTurn(); //includes notify
                 }
             }
@@ -722,10 +723,12 @@ public class GameControllerServer  {
                     addCardToTable("Resource",whichCard);
 
                     currgame.notify(new DrawCardReply(drawCard,currgame.flipCard(drawCard), currgame.currPlayer,
-                            currgame.getFacedownGold().getFirst(), currgame.getFacedownResource().getFirst(),
-                            currgame.getFaceupGold(), currgame.getFaceupResource()));
+                            currgame.getFacedownGold()==null? null: currgame.getFacedownGold().getFirst(),
+                            currgame.getFacedownResource()==null? null: currgame.getFacedownResource().getFirst(),
+                            currgame.getFaceupGold()==null? null: currgame.getFaceupGold(),
+                            currgame.getFaceupResource()==null? null: currgame.getFaceupResource()));
 
-                    currgame.setGameState(PLACECARD); //nobody can do anything
+                    currgame.setGameState(NOT_MY_TURN); //nobody can do anything
                     nextTurn(); // includes notify turn
                 }
 
@@ -737,14 +740,17 @@ public class GameControllerServer  {
 
                     drawCard = currgame.getFaceupGold().get(whichCard );
                     currgame.getCurrPlayer().addCardBack(currgame.flipCard(drawCard));
-                    System.out.println("Carte presenti DENTRO CONTROLLER:");
+                    System.out.println("test .gcs.Carte presenti DENTRO CONTROLLER:");
                     currgame.getCurrPlayer().addCard(drawCard);
                     currgame.getCurrPlayer().getHand().forEach(System.out::println);
                     currgame.getFaceupGold().remove(whichCard );
                     addCardToTable("Gold",whichCard);
 
-                    currgame.notify(new DrawCardReply(drawCard,currgame.flipCard(drawCard), currgame.getPlayerCurrentTurn(),currgame.getFacedownGold().get(0), currgame.getFacedownResource().get(0),
-                            currgame.getFaceupGold(), currgame.getFaceupResource()));
+                    currgame.notify(new DrawCardReply(drawCard,currgame.flipCard(drawCard), currgame.getPlayerCurrentTurn(),
+                            currgame.getFacedownGold()==null? null: currgame.getFacedownGold().getFirst(),
+                            currgame.getFacedownResource()==null? null: currgame.getFacedownResource().getFirst(),
+                            currgame.getFaceupGold()==null? null: currgame.getFaceupGold(),
+                            currgame.getFaceupResource()==null? null: currgame.getFaceupResource()));
 
                     currgame.setGameState(NOT_MY_TURN); //nobody can do anything
                     nextTurn();
@@ -762,13 +768,17 @@ public class GameControllerServer  {
         Card addCard;
 
         if (type.equals("Resource")) {
-            addCard = currgame.getFacedownResource().getFirst();
-            currgame.getFacedownResource().removeFirst();
-            currgame.getFaceupResource().add(index, currgame.flipCard(addCard));
+            if(currgame.getFacedownResource() != null){
+                addCard = currgame.getFacedownResource().getFirst();
+                currgame.getFacedownResource().removeFirst();
+                currgame.getFaceupResource().add(index, currgame.flipCard(addCard));
+            }
         } else {
-            addCard = currgame.getFacedownGold().getFirst();
-            currgame.getFacedownGold().removeFirst();
-            currgame.getFaceupGold().add(index, currgame.flipCard(addCard));
+            if(currgame.getFacedownGold() != null){
+                addCard = currgame.getFacedownGold().getFirst();
+                currgame.getFacedownGold().removeFirst();
+                currgame.getFaceupGold().add(index, currgame.flipCard(addCard));
+            }
         }
     }
 
@@ -809,18 +819,15 @@ public class GameControllerServer  {
      * @param player the player object containing information about their resources and objects
      * @param comObj the objective object for which to calculate points
      * @return the number of objectives reached for the given objective
-     * @throws NullPointerException if either the player or the objective object is null
      */
 
-    private int calculatePointsObj(Player player, Objective comObj) throws NullPointerException { //returns the num of objectives reached per objective
+    private int calculatePointsObj(Player player, Objective comObj){ //returns the num of objectives reached per objective
         int numObjectives = 0;
         switch (comObj.getCondition().getTypeOfObjective()) { // let's see the type of the objective
             case ResourceFilling:
                 String requiredKeys = comObj.getCondition().getResourcesRequiredToObtainPoints().getFirst().toString();
 
-                long count = player.getNumOfResourceAndObject().keySet().stream()
-                        .filter(requiredKeys::contains)
-                        .count();
+                int count = player.getNumOfResourceAndObject().get(requiredKeys);
 
                 numObjectives += (int) (count / 3);
 
@@ -831,21 +838,18 @@ public class GameControllerServer  {
             case ObjectFilling:
                 if (comObj.getCondition().getQuantityRequiredToObtainPoints().equals(1)) {
                     // requires to find the object with the minimum amount (might be zero) and multiply it by the points
-                    numObjectives += (player.getNumOfResourceAndObject().keySet().stream()
-                            .filter(key -> key.equals("QUILL")
-                                    || key.equals("INKWELL")
-                                    || key.equals("MANUSCRIPT"))
-                            .mapToInt(key -> player.getNumOfResourceAndObject().getOrDefault(key, 0))
-                            .min().orElse(0));
+
+                    numObjectives += player.getNumOfResourceAndObject().entrySet().stream()
+                            .filter(entry -> entry.getKey().equals("QUILL") || entry.getKey().equals("INKWELL") || entry.getKey().equals("MANUSCRIPT"))
+                            .mapToInt(Map.Entry::getValue)
+                            .min().orElse(0);
 
                     player.addPoints(comObj.getPoints() * numObjectives);
                 } else { // triplets of objects
 
                     String requiredKeys2 = comObj.getCondition().getObjectsRequiredToObtainPoints().getFirst().toString();
 
-                    long count2 = player.getNumOfResourceAndObject().keySet().stream()
-                            .filter(requiredKeys2::contains)
-                            .count();
+                    long count2 = player.getNumOfResourceAndObject().get(requiredKeys2);
 
                     numObjectives += (int) (count2 / 3);
 

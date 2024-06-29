@@ -26,6 +26,7 @@ public class DrawCardReply extends SampleServerMessage {
     private final Card faceDownResource;
     private final ArrayList<Card> faceUpGold;
     private final ArrayList<Card> faceupResource;
+
     /**
      * Constructor for a DrawCardReply message responding to a draw card request.
      *
@@ -77,25 +78,25 @@ public class DrawCardReply extends SampleServerMessage {
      */
     @Override
     public void execute(Client client ){
-        if(destination.equals(client.getMatch().getMe())){
-            //se non è null, allora non sto inviando la carta iniziale,
-            //aggiorno tavolo comune e hand del giocatore
+            if (destination.equals(client.getMatch().getMe())) {
+                //se non è null, allora non sto inviando la carta iniziale,
+                //aggiorno tavolo comune e hand del giocatore
 
-            client.getView().chatWait(); // chat starts storing and not printing
+                client.getView().chatWait(); // chat starts storing and not printing
 
-            client.getMatch().getMe().getHand().add(wantedCard);
-            client.getMatch().getMe().getHandBack().add(wantedCardBack);
-            client.getView().savePlayerHandBack(client.getMatch().getMe().getHandBack());
-            client.getView().showPlayerHand(client.getMatch().getMe().getHand()); //salva anche frontCards
+                client.getMatch().getMe().getHand().add(wantedCard);
+                client.getMatch().getMe().getHandBack().add(wantedCardBack);
+                client.getView().savePlayerHandBack(client.getMatch().getMe().getHandBack());
+                client.getView().showPlayerHand(client.getMatch().getMe().getHand()); //salva anche frontCards
 
-            client.getView().chatUnblockWait(); //chat restarts printing
-        }else{
-            client.getView().notYourTurn();
-        }
-        //sia che non sono io il giocatore sia che sono io, devo togliere dalla view la carta pescata.
+                client.getView().chatUnblockWait(); //chat restarts printing
+            } else {
+                client.getView().notYourTurn();
+            }
+            //sia che non sono io il giocatore sia che sono io, devo togliere dalla view la carta pescata.
 
-        if(faceDownGold != null && client.getView() instanceof GUI){ //se null non faccio niente, siamo all'inizio, è stato inviato BOARDDATAREPLY
-            client.getView().showCommonTable(faceDownGold,faceDownResource,faceUpGold,faceupResource);
+            if(faceDownGold != null && client.getView() instanceof GUI){ //se null non faccio niente, siamo all'inizio, è stato inviato BOARDDATAREPLY
+                client.getView().showCommonTable(faceDownGold,faceDownResource,faceUpGold,faceupResource);
+            }
         }
     }
-}

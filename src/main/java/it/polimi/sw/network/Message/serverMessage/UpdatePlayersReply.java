@@ -26,6 +26,8 @@ public class UpdatePlayersReply extends SampleServerMessage {
 
     private final ArrayList<Card> phand;
     private final ArrayList<Card> handBack;
+
+    private final boolean lastTurn;
     /**
      * Constructor for an UpdatePlayersReply message.
      *
@@ -39,7 +41,7 @@ public class UpdatePlayersReply extends SampleServerMessage {
      * @param handBack The updated player's hand (back view).
      */
     public UpdatePlayersReply(Player player1, int point, Card placedCard, Integer x, Integer y,
-                              HashMap<String, Integer> numOfResourceAndObject, ArrayList<Card> hand,ArrayList<Card> handBack){
+                              HashMap<String, Integer> numOfResourceAndObject, ArrayList<Card> hand,ArrayList<Card> handBack, boolean endGame){
         super(TypeMessageServer.UPDATE_PLAYERS_REPLY);
         this.player = player1;
         this.points = point;
@@ -49,6 +51,7 @@ public class UpdatePlayersReply extends SampleServerMessage {
         this.numOfResourceAndObject = new HashMap<>(numOfResourceAndObject);
         this.phand = new ArrayList<>(hand);
         this.handBack = new ArrayList<>(handBack);
+        this.lastTurn = endGame;
     }
 
     /**
@@ -71,6 +74,7 @@ public class UpdatePlayersReply extends SampleServerMessage {
             client.getMatch().getMe().setHand(phand);
             client.getMatch().getMe().setHandBack(handBack);
             client.getMatch().getMe().addCardToMap(playedCard, x, y);
+            client.getMatch().getMe().addToTimeline(playedCard);
 
             client.getView().chatWait(); //chat stores
             client.getView().updatePlayerPlayCard(player,playedCard, x, y, numOfResourceAndObject,phand,handBack ,points);
@@ -79,12 +83,15 @@ public class UpdatePlayersReply extends SampleServerMessage {
                                                 client.getMatch().getFaceupGold(),
                                                 client.getMatch().getFaceupResource());
             client.getView().showPlayerHand(client.getMatch().getMe().getHand());
-            client.getView().drawCard(); // here chat unlocks
+            if(lastTurn) {
+                client.getView().drawCard(); // here chat unlocks
+            }
         }else{ //se non è il mio turno, aggiungo il nuovo manoscritto anche nel mio model, se mai volessi vederlo
             for(Player p: client.getMatch().getTotPlayers()){
                 if(p.equals(player)){
                     p.addCardToMap(playedCard,x,y);
                     p.setPoints(points);
+                    p.addToTimeline(playedCard);
                 }
             }
         }
