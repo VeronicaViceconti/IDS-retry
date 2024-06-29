@@ -1,0 +1,3202 @@
+[
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": false,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 1,
+    "colour": "red",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 41,
+    "colour": "red",
+    "permanentResource": "FUNGI",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 2,
+    "colour": "red",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 42,
+    "colour": "red",
+    "permanentResource": "FUNGI",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 3,
+    "colour": "red",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },{
+  "corner":[
+    {
+      "object": null,
+      "resource": null,
+      "number": 1,
+      "visible": true,
+      "covered": null
+    },
+    {
+      "object": null,
+      "resource": null,
+      "number": 2,
+      "visible": true,
+      "covered": null
+    },
+    {
+      "object": null,
+      "resource": null,
+      "number": 3,
+      "visible": true,
+      "covered": null
+    },
+    {
+      "object": null,
+      "resource": null,
+      "number": 4,
+      "visible": true,
+      "covered": null
+    }
+  ],
+  "points": 0,
+  "id": 43,
+  "colour": "red",
+  "permanentResource": "FUNGI",
+  "used": false,
+  "drawn": false,
+  "calculatedObjective":  false,
+  "side": 2
+},
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 4,
+    "colour": "red",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 44,
+    "colour": "red",
+    "permanentResource": "FUNGI",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": "QUILL",
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 5,
+    "colour": "red",
+    "permanentResource":"FUNGI",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 45,
+    "colour": "red",
+    "permanentResource": "FUNGI",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": "INKWELL",
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 6,
+    "colour": "red",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 46,
+    "colour": "red",
+    "permanentResource": "FUNGI",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null ,
+        "resource": "INSECT",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": "MANUSCRIPT",
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 7,
+    "colour": "red",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 47,
+    "colour": "red",
+    "permanentResource": "FUNGI",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": false,
+        "covered": null
+      }
+    ],
+    "points": 1,
+    "id": 8,
+    "colour": "red",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 48,
+    "colour": "red",
+    "permanentResource": "FUNGI",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 1,
+    "id": 9,
+    "colour": "red",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 49,
+    "colour": "red",
+    "permanentResource": "FUNGI",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object":null,
+        "resource": "FUNGI",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 1,
+    "id": 10,
+    "colour": "red",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 50,
+    "colour": "red",
+    "permanentResource": "FUNGI",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": false,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 11,
+    "colour": "green",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 51,
+    "colour": "green",
+    "permanentResource": "PLANT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 12,
+    "colour": "green",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 52,
+    "colour": "green",
+    "permanentResource": "PLANT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 13,
+    "colour": "green",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 53,
+    "colour": "green",
+    "permanentResource": "PLANT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 14,
+    "colour": "green",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 54,
+    "colour": "green",
+    "permanentResource": "PLANT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": "QUILL",
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 15,
+    "colour": "green",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 55,
+    "colour": "green",
+    "permanentResource": "PLANT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": "INKWELL",
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 16,
+    "colour": "green",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 56,
+    "colour": "green",
+    "permanentResource": "PLANT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": "MANUSCRIPT",
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 17,
+    "colour": "green",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 57,
+    "colour": "green",
+    "permanentResource": "PLANT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": false,
+        "covered": null
+      }
+    ],
+    "points": 1,
+    "id": 18,
+    "colour": "green",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 58,
+    "colour": "green",
+    "permanentResource": "PLANT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 1,
+    "id": 19,
+    "colour": "green",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 59,
+    "colour": "green",
+    "permanentResource": "PLANT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 1,
+    "id": 20,
+    "colour": "green",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 60,
+    "colour": "green",
+    "permanentResource": "PLANT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": false,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 21,
+    "colour": "blue",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 61,
+    "colour": "blue",
+    "permanentResource": "ANIMAL",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 22,
+    "colour": "blue",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 62,
+    "colour": "blue",
+    "permanentResource": "ANIMAL",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 23,
+    "colour": "blue",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 63,
+    "colour": "blue",
+    "permanentResource": "ANIMAL",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 24,
+    "colour": "blue",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 64,
+    "colour": "blue",
+    "permanentResource": "ANIMAL",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": "INKWELL",
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 25,
+    "colour": "blue",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 65,
+    "colour": "blue",
+    "permanentResource": "ANIMAL",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": "MANUSCRIPT",
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 26,
+    "colour": "blue",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 66,
+    "colour": "blue",
+    "permanentResource": "ANIMAL",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": "QUILL",
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 27,
+    "colour": "blue",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 67,
+    "colour": "blue",
+    "permanentResource": "ANIMAL",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 1,
+    "id": 28,
+    "colour": "blue",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 68,
+    "colour": "blue",
+    "permanentResource": "ANIMAL",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 1,
+    "id": 29,
+    "colour": "blue",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 69,
+    "colour": "blue",
+    "permanentResource": "ANIMAL",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": false,
+        "covered": null
+      }
+    ],
+    "points": 1,
+    "id": 30,
+    "colour": "blue",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 70,
+    "colour": "blue",
+    "permanentResource": "ANIMAL",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": false,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 31,
+    "colour": "purple",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 71,
+    "colour": "purple",
+    "permanentResource": "INSECT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 32,
+    "colour": "purple",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 72,
+    "colour": "purple",
+    "permanentResource": "INSECT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 33,
+    "colour": "purple",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 73,
+    "colour": "purple",
+    "permanentResource": "INSECT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 34,
+    "colour": "purple",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 74,
+    "colour": "purple",
+    "permanentResource": "INSECT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": "QUILL",
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 35,
+    "colour": "purple",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 75,
+    "colour": "purple",
+    "permanentResource": "INSECT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": "MANUSCRIPT",
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 36,
+    "colour": "purple",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 76,
+    "colour": "purple",
+    "permanentResource": "INSECT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": "INKWELL",
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": false,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 37,
+    "colour": "purple",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 77,
+    "colour": "purple",
+    "permanentResource": "INSECT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 1,
+    "id": 38,
+    "colour": "purple",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 78,
+    "colour": "purple",
+    "permanentResource": "INSECT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 1,
+    "id": 39,
+    "colour": "purple",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 79,
+    "colour": "purple",
+    "permanentResource": "INSECT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 1,
+    "id": 40,
+    "colour": "purple",
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "points": 0,
+    "id": 80,
+    "colour": "purple",
+    "permanentResource": "INSECT",
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  }
+]

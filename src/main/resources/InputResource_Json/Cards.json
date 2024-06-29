@@ -1,0 +1,52 @@
+[
+  {
+    "corner":[
+      {
+        "object": "INKWELL",
+        "resource": "FUNGI",
+        "number": 1,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": "INKWELL",
+        "resource": "FUNGI",
+        "number": 2,
+        "visible": false,
+        "covered": null
+      }
+    ],
+    "points": 1,
+    "id": 1,
+    "typeCard": "initial",
+    "used": false,
+    "drawn": true,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": "INKWELL",
+        "resource": "FUNGI",
+        "number": 1,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": "INKWELL",
+        "resource": "FUNGI",
+        "number": 2,
+        "visible": false,
+        "covered": null
+      }
+    ],
+    "points": 1,
+    "id": 2,
+    "typeCard": "gold",
+    "used": false,
+    "drawn": true,
+    "calculatedObjective":  false,
+    "side": 1
+  }
+]

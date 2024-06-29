@@ -1,0 +1,457 @@
+[
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "id": 1,
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "id": 2,
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "id": 3,
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "id": 4,
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "id": 5, "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "ANIMAL",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "id": 6,
+    "permanentResource": null,
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 1
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "PLANT",
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "INSECT",
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "id": 7,
+    "permanentResource": ["INSECT"],
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource":"ANIMAL",
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": "FUNGI",
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "id": 8,
+    "permanentResource": ["FUNGI"],
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "id": 9,
+    "permanentResource": ["PLANT", "FUNGI"],
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": true,
+        "covered": null
+      }
+    ],
+    "id": 10,
+    "permanentResource": ["ANIMAL", "INSECT"],
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": false,
+        "covered": null
+      }
+    ],
+    "id": 11,
+    "permanentResource": ["ANIMAL", "INSECT", "PLANT"],
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  },
+  {
+    "corner":[
+      {
+        "object": null,
+        "resource": null,
+        "number": 1,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 2,
+        "visible": true,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 3,
+        "visible": false,
+        "covered": null
+      },
+      {
+        "object": null,
+        "resource": null,
+        "number": 4,
+        "visible": false,
+        "covered": null
+      }
+    ],
+    "id": 12,
+    "permanentResource": ["ANIMAL", "PLANT","FUNGI"],
+    "used": false,
+    "drawn": false,
+    "calculatedObjective":  false,
+    "side": 2
+  }
+]

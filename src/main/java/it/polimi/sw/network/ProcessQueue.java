@@ -1,0 +1,228 @@
+package it.polimi.sw.network;
+
+import it.polimi.sw.controller.GameControllerServer;
+import it.polimi.sw.model.Pion;
+import it.polimi.sw.model.Player;
+import it.polimi.sw.network.Message.ClientMessage.ConnectionRequest;
+import it.polimi.sw.network.Message.ClientMessage.NicknameRequest;
+import it.polimi.sw.network.Message.ClientMessage.PlayerNumberAndPionRequest;
+import it.polimi.sw.network.Message.ClientMessage.SampleClientMessage;
+import it.polimi.sw.network.Message.serverMessage.GameCreated;
+import it.polimi.sw.network.Message.serverMessage.NicknameReply;
+import it.polimi.sw.network.Message.serverMessage.WaitingPlayerReply;
+import it.polimi.sw.network.RMI.ClientHandlerRMI;
+import it.polimi.sw.network.Socket.ClientHandlerSOCKET;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
+/**
+ * This class likely implements a thread that processes messages received from clients through the provided QueueHandler.
+ * It interacts with a CommonGameLogicServer object to handle the game logic based on the messages.
+ */
+public class ProcessQueue implements Runnable {
+    private final QueueHandler queueHandler;
+    private final CommonGameLogicServer server;
+    /**
+     * Constructor for ProcessQueue.
+     *
+     * @param queueHandler The QueueHandler object for accessing client messages.
+     * @param server The CommonGameLogicServer object for game logic handling.
+     */
+    public ProcessQueue(QueueHandler queueHandler, CommonGameLogicServer server) {
+        this.queueHandler = queueHandler;
+        this.server = server;
+    }
+    /**
+     * This method is called when the thread starts.
+     * It likely retrieves messages from the queueHandler in a loop and calls appropriate methods on the server object to process the game logic based on the message content.
+     */
+    @Override
+    public void run() {
+
+        while (!Thread.currentThread().isInterrupted()) {
+            SampleClientMessage message = queueHandler.getNextMessage();
+            if (message != null) {
+                processMessage(message);
+            } else {
+                try {
+                    Thread.sleep(700); // to avoid busy-waiting
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt(); // Preserve the interrupt status
+                }
+            }
+        }
+    }
+    /**
+     * Processes the received message from the client and takes appropriate action
+     * based on the message type.
+     * <p>
+     * For a {@code CONNECTION_REQUEST} message, it checks the type of connection
+     * (RMI or SOCKET) and adds the appropriate handler for the client. It also manages
+     * the player pion selection and game creation.
+     * </p>
+     * <p>
+     * For a {@code NICKNAME_REQUEST} message, it checks if the nickname already exists
+     * and notifies the client of the result.
+     * </p>
+     *
+     * @param message the message received from the client
+     */
+    private void processMessage(SampleClientMessage message) {
+        // Check message content
+        switch(message.getType()){
+            case CONNECTION_REQUEST -> {
+                if(((ConnectionRequest)message).getClientHandlerRMI() == null){ //socket
+                    if(server.getHandlerForClient_Map().containsKey(((ConnectionRequest)message).getNickname()) ||
+                            server.getHandlerForClient_Map_RMI().containsKey(((ConnectionRequest)message).getNickname())){
+                            //if we want to do disconnection, here is where to implement it
+                        try {
+                            ((ConnectionRequest)message).getClientHandlerSOCKET().update(new NicknameReply(false));
+                            System.out.println("NICKNAME ALREADY EXISTS SOCKET");
+                            return;
+                        } catch (RemoteException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }else{
+                        server.addSocketHandler(((ConnectionRequest)message).getNickname(),((ConnectionRequest)message).getClientHandlerSOCKET());
+                        System.out.println("Totale handler socket attivi: "+server.getHandlerForClient_Map().size());
+                    }
+                }else { //rmi
+                    if(server.getHandlerForClient_Map_RMI().containsKey(((ConnectionRequest)message).getNickname()) ||
+                            server.getHandlerForClient_Map().containsKey(((ConnectionRequest)message).getNickname())){
+                        //if we want to do disconnection, here is where to implement it
+                        try {
+                            ((ConnectionRequest)message).getClientHandlerRMI().update(new NicknameReply(false));
+                            System.out.println("NICKNAME ALREADY EXISTS RMI");
+                            return;
+                        } catch (RemoteException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }else{
+                        server.addRMIHandler(((ConnectionRequest)message).getNickname(),((ConnectionRequest)message).getClientHandlerRMI());
+                    }
+                }
+                Pion []allPions = new Pion[]{Pion.pion_blue,Pion.pion_yellow,Pion.pion_red,Pion.pion_green};
+                ArrayList<Pion> pions = new ArrayList<>(Arrays.asList(allPions));
+                System.out.println("numero di controller: "+server.getLobbyReference().size());
+                for (GameControllerServer lobby : server.getLobbyReference()) {
+                    System.out.println("prima di !lobby.isfull " +lobby.toString());
+                    if(!lobby.isItFull()){
+                        //notify to client to get the pion selection
+                        for (Player p : lobby.getPlayersList()) {
+                            //if(pions.get().equals(p.getPion()))
+                            pions.remove(p.getPion()); //if pion isn't in the list, it won't be removed
+                        }
+                        //add observer handler to currgame
+                        if(((ConnectionRequest)message).getClientHandlerRMI() == null) {//socket
+                            lobby.currgame.addObservers(((ConnectionRequest) message).getClientHandlerSOCKET());
+                            ((ConnectionRequest) message).getClientHandlerSOCKET().sendMessageToClient(new GameCreated(pions,0,lobby.lobbyreference));
+                        }else { //rmi
+                            lobby.currgame.addObservers(((ConnectionRequest) message).getClientHandlerRMI());
+                            try {
+                                ((ConnectionRequest) message).getClientHandlerRMI().update(new GameCreated(pions,0,lobby.lobbyreference));
+                            } catch (RemoteException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                            return;
+                    }
+                }//no game was avaliable, ask client pion + maxnumber of player in the game
+                GameControllerServer gameControllerServer = new GameControllerServer(server.getLobbyReference().size(), server);
+                gameControllerServer.currgame.setMaxPlayersNumbers(0);
+                //add observer handler to currgame
+                if(((ConnectionRequest)message).getClientHandlerRMI() == null) { //socket
+                    gameControllerServer.currgame.addObservers(((ConnectionRequest) message).getClientHandlerSOCKET());
+                }else {
+                    gameControllerServer.currgame.addObservers(((ConnectionRequest) message).getClientHandlerRMI());
+                }
+                server.getLobbyReference().add(gameControllerServer);
+                gameControllerServer.getCurrgame().notify(new GameCreated(pions,1, gameControllerServer.lobbyreference));
+
+            }
+            case NICKNAME_REQUEST -> {
+                String name = ((NicknameRequest)message).getName();
+                if((server.getHandlerForClient_Map().containsKey(name) || server.getHandlerForClient_Map_RMI().containsKey(name))){
+                    //name exists
+                    try {
+                        if(((NicknameRequest)message).getClientHandlerRMI() == null){
+                            ((NicknameRequest)message).getClientHandlerSOCKET().update(new NicknameReply(false));
+                        }else{
+                            ((NicknameRequest)message).getClientHandlerRMI().update(new NicknameReply(false));
+                        }
+                        System.out.println("NICKNAME ALREADY EXISTS MORE TIMES RMI");
+
+                    } catch (RemoteException e) {
+                        throw new RuntimeException(e);
+                    }
+                }else{ //nickname is new
+                    Pion []allPions = new Pion[]{Pion.pion_blue,Pion.pion_yellow,Pion.pion_red,Pion.pion_green};
+                    ArrayList<Pion> pions = new ArrayList<>(Arrays.asList(allPions));
+                    for (GameControllerServer lobby : server.getLobbyReference()) {
+                        if(!lobby.isItFull()){
+                            //notify to client to get the pion selection
+                            for (Player p : lobby.getPlayersList()) {
+                                pions.remove(p.getPion()); //if pion isn't in the list, it won't be removed
+                            }
+                            //add observer handler to currgame
+                            if(((NicknameRequest)message).getClientHandlerRMI() == null) {//socket
+                                lobby.currgame.addObservers(((NicknameRequest) message).getClientHandlerSOCKET());
+                                try {
+                                    ((NicknameRequest) message).getClientHandlerSOCKET().update(new GameCreated(pions,0,lobby.lobbyreference));
+                                } catch (RemoteException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }else {
+                                lobby.currgame.addObservers(((NicknameRequest) message).getClientHandlerRMI());
+                                try {
+                                    ((NicknameRequest) message).getClientHandlerRMI().update(new GameCreated(pions,0,lobby.lobbyreference));
+                                } catch (RemoteException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                            return;
+                        }
+                    }//no game was avaliable, ask client pion + maxnumber of player in the game
+                    GameControllerServer gameControllerServer = new GameControllerServer(server.getLobbyReference().size(), server);
+                    gameControllerServer.currgame.setMaxPlayersNumbers(0);
+                    //add observer handler to currgame
+                    if(((NicknameRequest)message).getClientHandlerRMI() == null) //socket
+                        gameControllerServer.currgame.addObservers(((NicknameRequest)message).getClientHandlerSOCKET());
+                    else
+                        gameControllerServer.currgame.addObservers(((NicknameRequest)message).getClientHandlerRMI());
+
+                    server.getLobbyReference().add(gameControllerServer);
+                    gameControllerServer.getCurrgame().notify(new GameCreated(pions,1, gameControllerServer.lobbyreference));
+
+                }
+            }
+            case PLAYER_NUMBER_REQUEST -> {
+                int lobbyid = (message).getClientLobbyReference();
+                Pion pion = ((PlayerNumberAndPionRequest)message).getPion();
+                int numberofPlayer = ((PlayerNumberAndPionRequest)message).getNum();
+                Player player = new Player(((PlayerNumberAndPionRequest)message).getNickname(), pion);
+                player.setId(server.getLobbyReference().get(lobbyid).getPlayersList().size());
+                if(numberofPlayer == 0)
+                {
+                    //handle login, add lobby
+                    server.getLobbyReference().get(lobbyid).addPlayertoGame(player);
+                    if(!server.getLobbyReference().get(lobbyid).isItFull())
+                    {
+                        server.getLobbyReference().get(lobbyid).getCurrgame().notify(new WaitingPlayerReply());
+                    }
+                }else{
+                    server.getLobbyReference().get(lobbyid).getCurrgame().setMaxPlayersNumbers(numberofPlayer);
+                    server.getLobbyReference().get(lobbyid).addPlayertoGame(player);
+                    server.getLobbyReference().get(lobbyid).getCurrgame().notify(new WaitingPlayerReply());
+                }
+
+            }
+            case DRAW_DECK_REQUEST, PLACE_REQUEST, PRIVATE_OBJECTIVE_REQUEST, DRAW_TABLE_REQUEST -> message.execute(server.getLobbyReference().get((message).getClientLobbyReference()));
+            case PING -> {}
+            case PRIVATE_MESSAGE_REQUEST -> {message.execute(server.getLobbyReference().get((message).getClientLobbyReference()));}
+            case PUBLIC_MESSAGE_REQUEST -> {message.execute(server.getLobbyReference().get((message).getClientLobbyReference()));}
+        }
+    }
+
+}
