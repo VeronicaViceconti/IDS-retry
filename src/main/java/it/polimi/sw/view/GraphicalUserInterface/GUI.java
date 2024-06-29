@@ -103,7 +103,7 @@ public class GUI extends View {
      * @return the x,y coordinates of where to play the card
      */
     private Integer[] selectCardCoordinatesWhereToPut() {
-        return frame.chooseCoordinates(availablePositions);
+        return frame.chooseCoordinates(availablePositions,nickname);
     }
 
     /**
@@ -228,11 +228,13 @@ public class GUI extends View {
         }
 
         //aggiornamento carta nel manoscritto -> ishmeet
+        this.frame.updateManuscript(nickname,x,y);
 
         //updates points and resources
         this.frame.updatePlayerResAndObj(numOfResourceAndObject);
         this.frame.updatePoints(p.getPion(),points);
     }
+
 
     /**
      * Used to add the points at the end of the game
@@ -278,7 +280,7 @@ public class GUI extends View {
 
     @Override
     public void showPlayerTable(HashMap<Card, Integer[]> map) {
-
+            //da fare, viene usato quando il giocatore richiede di vedere il manoscritto degli altri
     }
 
     /**
@@ -320,12 +322,12 @@ public class GUI extends View {
 
     @Override
     public void showGameStart() {
-
+        //done during framework constructor
     }
 
     @Override
     public void showPlayerState(Player p) {
-
+        //mostra punti e risorse degli altri in tui, in gui i punti hanno già update sempre e risorse non le vedranno lol
     }
 
     /**
@@ -362,7 +364,12 @@ public class GUI extends View {
 
     }
 
-    //NON CREDO SERVA PERCHE' LO FACCIO GIA' ALL'INIZIO DELLA PARTITA E RIMARRA' VISUALIZZATO SEMPRE
+    @Override
+    public void createTabbedManuscripts(ArrayList<String> names) {
+        this.frame.createTabbedManuscripts(names);
+    }
+
+    //not used in gui
     @Override
     public void showCommonObjectives(ArrayList<Objective> obj) {
 
@@ -370,7 +377,7 @@ public class GUI extends View {
 
     @Override
     public void showAvailablePositions() {
-
+        //not used in gui
     }
 
     /**

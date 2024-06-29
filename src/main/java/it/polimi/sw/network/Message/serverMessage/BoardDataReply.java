@@ -85,10 +85,8 @@ public class BoardDataReply extends SampleServerMessage {
      */
     @Override
     public void execute(Client client) throws RemoteException {
-        if(commonObj != null) {
+        if(commonObj != null)
             client.startMatch(allPlayers);
-            client.getView().showGameStart(); //welcome
-        }
         client.getMatch().setFacedownGold(facedownGold);
         client.getMatch().setFacedownResource(facedownRes);
         client.getMatch().setFaceupGold(faceupGold);
@@ -96,10 +94,18 @@ public class BoardDataReply extends SampleServerMessage {
 
 
         if(commonObj != null){
+
+            client.getView().showGameStart(); //welcome
             client.getView().initGame();
             client.getMatch().setCommonObjective(commonObj);
             client.getView().setBoardData(facedownGold, facedownRes, faceupGold,faceupRes,commonObj);
             client.getView().initializePions(pions);
+            //pass all the player's name
+            ArrayList<String> names = new ArrayList<>();
+            for (Player p: allPlayers) {
+                names.add(p.getNickName());
+            }
+            client.getView().createTabbedManuscripts(names);
         }else {
             //if it's me, it's time to re-show the manuscript
             if (client.getMatch().getMe().equals(p))

@@ -35,7 +35,7 @@ public class PlateauAndChat extends JPanel {
         //setVisible(true);
 
 
-        chatPanel=new ChatPanel(gui);
+        chatPanel=new ChatPanel(gui,screenSize);
 
 
         add(chatPanel,BorderLayout.CENTER);

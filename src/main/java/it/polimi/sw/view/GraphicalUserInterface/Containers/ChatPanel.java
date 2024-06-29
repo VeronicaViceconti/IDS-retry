@@ -32,7 +32,7 @@ public class ChatPanel extends JPanel{
      */
 
 
-    public ChatPanel(GUI gui){
+    public ChatPanel(GUI gui,Dimension screenSize){
 
         chat=new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -53,7 +53,7 @@ public class ChatPanel extends JPanel{
 
 
         outputMessage = new JScrollPane(receiveMessage);
-        outputMessage.setPreferredSize(new Dimension(600, 696));
+        outputMessage.setPreferredSize(new Dimension(580, 520));
         add(outputMessage, c);
 
         c.gridx = 0;
@@ -79,7 +79,7 @@ public class ChatPanel extends JPanel{
 
         inputMessage = new JScrollPane(sendMessage);
         c.insets = new Insets(10, 10, 0, 10);
-        inputMessage.setPreferredSize(new Dimension(600, 100));
+        inputMessage.setPreferredSize(new Dimension(580, 100));
         add(inputMessage, c);
 
         send=new JButton("send");
@@ -98,7 +98,7 @@ public class ChatPanel extends JPanel{
         menuConstraints.gridy = 1;
         String[] opzioniSend={"All","Player1","Player2","Player3","Player4"};
         menuSendTo=new JComboBox(opzioniSend);
-        menuSendTo.setPreferredSize(new Dimension(100,50));
+        menuSendTo.setPreferredSize(new Dimension(50,20));
         add(menuSendTo,menuConstraints);
 
         send.addActionListener(e -> {

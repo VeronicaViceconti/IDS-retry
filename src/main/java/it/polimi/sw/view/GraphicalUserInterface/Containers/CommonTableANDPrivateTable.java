@@ -16,6 +16,8 @@ public class CommonTableANDPrivateTable extends JPanel {
      * Contans hand, objectives and common table
      */
     private HandObjectivesAndCommonTable myHandAndObjectivesAndCommonTable;
+
+    private ManuscriptsMainPanel manuscript;
     //manca il manoscritto sulla dx
 
     /**
@@ -32,8 +34,10 @@ public class CommonTableANDPrivateTable extends JPanel {
         setLayout(new BorderLayout());
         //oggetto che contiene tutta la parte sx della finestra fissa
         myHandAndObjectivesAndCommonTable = new HandObjectivesAndCommonTable(fdG,fdR,fuG,fuR,commonObj);
+        manuscript = new ManuscriptsMainPanel();
 
         add(myHandAndObjectivesAndCommonTable,BorderLayout.WEST);
+        add(manuscript, BorderLayout.CENTER);
         setVisible(true);
     }
     /**
@@ -43,5 +47,9 @@ public class CommonTableANDPrivateTable extends JPanel {
      */
     public HandObjectivesAndCommonTable getMyHandAndObjectivesAndCommonTable() {
         return myHandAndObjectivesAndCommonTable;
+    }
+
+    public ManuscriptsMainPanel getManuscript() {
+        return manuscript;
     }
 }

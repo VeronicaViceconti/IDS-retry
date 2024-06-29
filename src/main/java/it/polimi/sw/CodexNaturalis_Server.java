@@ -54,14 +54,14 @@ public class CodexNaturalis_Server {
             InterfaceClientHandlerRMI ClientHandlerRMI = new ClientHandlerRMI(serverQueue);
             registry.rebind("ClientHandlerRMI", ClientHandlerRMI);
 
-            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            /*Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 try {
                     registry.unbind("ClientHandlerRMI");
                     UnicastRemoteObject.unexportObject(ClientHandlerRMI, true);
                 } catch (Exception e) {
                     System.err.println("Errore durante l'arresto del server RMI: " + e.getMessage());
                 }
-            }));
+            })); */
 
             // Start the server in a separate thread
             Thread serverThread = new Thread(server, "server");

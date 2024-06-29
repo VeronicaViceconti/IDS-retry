@@ -98,6 +98,11 @@ public class TUI extends  View {
         mayShowChat = true;
     }
 
+    @Override
+    public void createTabbedManuscripts(ArrayList<String> names) {
+        //not used in tui
+    }
+
 
     /**
      * done
@@ -1818,24 +1823,6 @@ public class TUI extends  View {
 
     }
 
-
-/*//implementation of the private message in chat. called by readers
-   public void sendPrivateChat(){
-
-
-       Scanner scanner = new Scanner(System.in);
-
-
-       System.out.print("Enter the name of the recipient: ");
-       String destination = scanner.nextLine();
-
-
-       System.out.print("Please enter your message: ");
-       String mex = scanner.nextLine();
-
-
-       notify(new SendingChatMessage(mex, destination));
-   }*/
 
 
     /**

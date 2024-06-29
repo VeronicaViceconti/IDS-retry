@@ -74,10 +74,6 @@ public class GameControllerServer  {
 
     /****************************Initialisation. PreGame phase ***************************************/
 
-/*    public GameControllerServer(Game currgame) {
-        this.currgame = currgame;
-    }*/
-
 /*    public GameControllerServer(int numberOfPlayers, CommonGameLogicServer server, String creator, Pion pion) {
     }
     /**
@@ -98,7 +94,6 @@ public class GameControllerServer  {
         this.server = server;
         this.currgame = new Game(0, numberOfPlayers, new ArrayList<>(Arrays.asList(
                 new Player(creator, pion))));
-
     }
 
     /**

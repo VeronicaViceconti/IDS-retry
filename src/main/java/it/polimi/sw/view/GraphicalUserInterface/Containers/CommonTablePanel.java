@@ -95,6 +95,7 @@ public class CommonTablePanel extends JPanel {
 
         //creo label con l'immagine appena creata e la aggiungo nel gridBagLayout di output
         fdGLabel = new JLabel(fdGImage);
+        fdGLabel.setPreferredSize(new Dimension(120,100));
         gbc.insets = new Insets(0, 10, 10, 40);
         gbc.gridwidth = 1;
         gbc.gridx = 0;
@@ -111,8 +112,8 @@ public class CommonTablePanel extends JPanel {
             ImageIcon fuGImage = new ImageIcon(path + String.format("%03d", c.getId())+".png");
             img = fuGImage.getImage().getScaledInstance(widthImage,heightImage,Image.SCALE_SMOOTH);
             fuGImage.setImage(img);
-
-            fuGLabel.add(new JLabel(fuGImage));
+            JLabel label = new JLabel(fuGImage);
+            fuGLabel.add(label);
         }
 
         //ho l'array delle carte up del deck gold, le metto nel grid pane
@@ -131,6 +132,7 @@ public class CommonTablePanel extends JPanel {
         fdRImage.setImage(img);
 
         fdRLabel = new JLabel(fdRImage);
+        fdRLabel.setPreferredSize(new Dimension(120,100));
         gbc.insets = new Insets(10, 10, 10, 40);
         gbc.gridy = 3;
         gbc.gridx = 0;
@@ -145,8 +147,9 @@ public class CommonTablePanel extends JPanel {
             ImageIcon fuRImage = new ImageIcon(path + String.format("%03d", c.getId())+".png");
             img = fuRImage.getImage().getScaledInstance(widthImage,heightImage,Image.SCALE_SMOOTH);
             fuRImage.setImage(img);
-
-            fuRLabel.add(new JLabel(fuRImage));
+            JLabel label = new JLabel(fuRImage);
+            label.setPreferredSize(new Dimension(120,100));
+            fuRLabel.add(label);
         }
         //ho l'array delle carte up del deck resource, le metto nel grid pane
         for(int i=0;i<fuRLabel.size();i++){

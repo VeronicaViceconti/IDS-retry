@@ -113,6 +113,7 @@ public class HandAndObjectivesPanel extends JPanel {
                 img = handImage.getImage().getScaledInstance(widthImage, heightImage, Image.SCALE_SMOOTH);
                 handImage.setImage(img);
                 JLabel jl = new JLabel(handImage);
+                jl.setPreferredSize(new Dimension(120,100));
                 jl.setName(side);
                 hand.add(jl);
             }

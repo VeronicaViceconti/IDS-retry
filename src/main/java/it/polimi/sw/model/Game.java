@@ -233,7 +233,6 @@ public class Game extends Observable {
             pions.add(p.getPion());
         }
         notify(new BoardDataReply(facedownGold.getFirst(), facedownResource.getFirst(), faceupGold, faceupResource,commonObjective, playersList,currPlayer,pions));
-        //randomFirstPlayer(); nope! the players have their ids, next turn sees the player with the highest id as the last one
         this.currPlayer = playersList.getFirst();//fino qua ok
         distributeInitialCards(); //notify inside
     }

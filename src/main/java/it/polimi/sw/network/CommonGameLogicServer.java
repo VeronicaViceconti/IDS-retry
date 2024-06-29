@@ -69,7 +69,6 @@ public class CommonGameLogicServer implements Runnable{
     public CommonGameLogicServer(int serverPort) {
         super();
         this.serverPort = serverPort;
-        //this.handlerForClient_Map = Collections.synchronizedMap(new HashMap<>());
         this.handlerForClient_Map = new HashMap<>();
         this.handlerForClient_Map_RMI = new HashMap<>();
         this.lobbyReference = new ArrayList<>();
@@ -252,35 +251,5 @@ public class CommonGameLogicServer implements Runnable{
             corrInit.put(newInitialCard.get(i),newInitialCard.get(i+6));
         }
     }
-
-    /**
-     * This method adds a message to the `lobbyAllMessage` list, which likely represents a collection of messages for all players in the lobby.
-     *
-     * @param message The `SampleClientMessage` object to be added.
-     */
-    public void addMessageToLobby(SampleClientMessage message) {
-        lobbyAllMessage.add(message);
-    }
-
-    /**
-     * Placeholder method for determining winners in a lobby. It currently returns null.
-     *
-     * @param lobby The lobby number (implementation for finding winners not provided).
-     * @return Null (likely needs to be implemented to identify winners based on game logic).
-     */
-    public List<Player> getWinner(int lobby){
-        return null;
-    }
-
-    /**
-     * Placeholder method for sending a response to the client. It currently logs the response to the server console.
-     *
-     * @param response The response string to be sent to the client.
-     */
-    public void sendResponse(String response) {
-        // Implement the logic to send the response back to the client or handle it appropriately
-        System.out.println("Server responds: " + response);
-    }
-
 
 }

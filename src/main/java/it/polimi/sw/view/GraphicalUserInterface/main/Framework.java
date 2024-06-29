@@ -6,6 +6,7 @@ import it.polimi.sw.model.Pion;
 import it.polimi.sw.network.Message.serverMessage.ErrorType;
 import it.polimi.sw.view.GraphicalUserInterface.Containers.CommonTableANDPrivateTable;
 import it.polimi.sw.view.GraphicalUserInterface.Containers.ImageSelectionDialog;
+import it.polimi.sw.view.GraphicalUserInterface.Containers.Manuscript;
 import it.polimi.sw.view.GraphicalUserInterface.Containers.PlateauAndChat;
 import it.polimi.sw.view.GraphicalUserInterface.GUI;
 
@@ -16,15 +17,17 @@ import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TimerTask;
+import java.util.concurrent.CountDownLatch;
 
 public class Framework extends JFrame {
     private PlateauAndChat ps;
     private CommonTableANDPrivateTable ctpt;
-    //private OverlappingCardGrid map;
     private JTabbedPane tp;
 
     private int chosen;
     private Integer[] coord;
+    private JLabel cardChosen;
 
     /**
      * Constructs a new Framework.
@@ -49,10 +52,18 @@ public class Framework extends JFrame {
 
         tp = new JTabbedPane(JTabbedPane.TOP);
 
-        //map =  new OverlappingCardGrid(4);
+        /*// Crea un CountDownLatch con conteggio iniziale di 1
+        CountDownLatch latch = new CountDownLatch(1);
+
+        // Crea la finestra per il splash screen
+        JWindow splashScreen = new JWindow();
+        // Carica l'immagine
+        ImageIcon codex = new ImageIcon("src\\main\\resources\\graphicalResources\\mainView\\Slider-Codex-2-1920x1080.jpg");
+        Image img = codex.getImage().getScaledInstance(550,550, Image.SCALE_SMOOTH);
+        codex.setImage(img);
+        splashScreen.getContentPane().add(new JLabel(codex),BorderLayout.CENTER);*/
 
         add(new JScrollPane(tp));
-
         setVisible(true);
     }
 
@@ -67,7 +78,6 @@ public class Framework extends JFrame {
         ctpt = new CommonTableANDPrivateTable(fdG,fdR,fuG,fuR,commonObj);
         tp.add("Main Game",ctpt);
         tp.add("Plateau&Chat",new JScrollPane(ps));
-        //tp.add("Manuscripts",map);
     }
 
     /**
@@ -131,11 +141,12 @@ public class Framework extends JFrame {
      *
      * @return the x and y coordinates of the card to play
      */
-    public Integer[] chooseCoordinates(ArrayList<Point2D> avaiableCoords){
+    public Integer[] chooseCoordinates(ArrayList<Point2D> avaiableCoords,String nickname){
         tp.setSelectedIndex(0);
         coord = new Integer[2];
         ImageSelectionDialog selection = new ImageSelectionDialog(this, ctpt.getMyHandAndObjectivesAndCommonTable().getHo().cloneJLabelArray(),"Coordinates",avaiableCoords,false);
         selection.setVisible(true);
+        cardChosen = selection.getCardChosen();
         return selection.getCoord();
     }
 
@@ -283,6 +294,19 @@ public class Framework extends JFrame {
 
         ps.getChatPanel().showGameChat(message);
 
+    }
+
+    public void updateManuscript(String nickname, Integer x, Integer y) {
+        for (Manuscript ms: this.ctpt.getManuscript().getAllManuscripts()) {
+            if(ms.getNickname().equals(nickname))
+                ms.updateManuscript(cardChosen,x,y);
+        }
+
+    }
+
+
+    public void createTabbedManuscripts(ArrayList<String> names) {
+        ctpt.getManuscript().createTabbedManuscripts(names);
     }
 
     /**

@@ -25,6 +25,7 @@ public class ImageSelectionDialog extends JDialog {
      * The side of the card, 1 = front, 2 = back
      */
     private String side;
+    private JLabel cardChosen;
     private static GridBagConstraints gbc;
 
     /**
@@ -186,6 +187,10 @@ public class ImageSelectionDialog extends JDialog {
         return chosen;
     }
 
+    public JLabel getCardChosen() {
+        return cardChosen;
+    }
+
     /**
      * Getter method to access the chosen coordinates (if applicable).
      *
@@ -249,8 +254,21 @@ public class ImageSelectionDialog extends JDialog {
                     if (choice >= 1 && choice <= cards) {
                         // Gestione scelta dell'utente
                         chosen = choice;
-                        if(hand != null)
-                            side = hand.get(chosen-1).getName();
+                        if(hand != null) {
+                            side = hand.get(chosen - 1).getName();
+
+                            Icon icon = hand.get(chosen - 1).getIcon();
+
+                            // new JLabel with same ImageIcon
+                            cardChosen = new JLabel(icon);
+
+                            // Opzionalmente, copia altre proprietà del JLabel originale
+                            cardChosen.setText(hand.get(chosen - 1).getText());
+                            cardChosen.setHorizontalAlignment(hand.get(chosen - 1).getHorizontalAlignment());
+                            cardChosen.setVerticalAlignment(hand.get(chosen - 1).getVerticalAlignment());
+                            cardChosen.setBorder(hand.get(chosen - 1).getBorder());
+
+                        }
                         JOptionPane.showMessageDialog(MF, "You have chosen: " + choice);
                         dispose(); // Chiudi la finestra secondaria
                     } else {

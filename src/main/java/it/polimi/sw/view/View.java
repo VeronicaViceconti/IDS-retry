@@ -24,6 +24,7 @@ import java.util.regex.Pattern;
 public abstract class View extends Observable {
     private int numOfPlayers;
     protected ArrayList<Point2D> availablePositions;
+    protected String nickname;
 
     private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -33,11 +34,21 @@ public abstract class View extends Observable {
         availablePositions.add(new Point2D.Double());
     }
 
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
     /**
      * Shows the player's hand
      * @param hand cards of the player
      */
     abstract public void showPlayerHand(ArrayList<Card> hand);
+
+
 
 
     /**
@@ -279,7 +290,6 @@ public abstract class View extends Observable {
         }else{
             notify(new SendingNumPlayersAndPion(numOfPlayers,availablePions.get(selection-1)));
         }
-        System.out.println("Sending num of p and pion from client!");
     }
 
     /**
@@ -300,4 +310,7 @@ public abstract class View extends Observable {
             }
         } while (numOfPlayers <= 1 || numOfPlayers > 4);
     }
+
+
+    abstract public void createTabbedManuscripts(ArrayList<String> names) ; //used in gui to set up the tab panes
 }

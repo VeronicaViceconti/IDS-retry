@@ -10,7 +10,6 @@ import it.polimi.sw.network.Message.ClientMessage.SampleClientMessage;
 import it.polimi.sw.network.Message.ClientMessage.SendPrivateObjective;
 import it.polimi.sw.network.Message.ViewMessage.*;
 import it.polimi.sw.network.Message.serverMessage.SampleServerMessage;
-import it.polimi.sw.network.Messages.GameMessage;
 import it.polimi.sw.network.QueueHandlerClient;
 import it.polimi.sw.view.View;
 
@@ -193,11 +192,6 @@ public class ClientRMI extends Client implements Serializable,Runnable {
         }
     }
 
-    @Override
-    public void getCommonObjective() throws RemoteException {
-
-    }
-
     /**
      * This method sends a request to the server to get the player's game board data in the current lobby.
      *
@@ -293,6 +287,7 @@ public class ClientRMI extends Client implements Serializable,Runnable {
                 break;
             case RESEND_NICKNAME:
                 nickName = ((ResendingNickname)message).getNicknname();
+                view.setNickname(nickName);
                 resendNickname();
                 break;
         }

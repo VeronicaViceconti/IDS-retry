@@ -13,7 +13,6 @@ import it.polimi.sw.network.Message.ClientMessage.*;
 import it.polimi.sw.model.*;
 import it.polimi.sw.network.Message.ViewMessage.*;
 import it.polimi.sw.network.Message.serverMessage.SampleServerMessage;
-import it.polimi.sw.network.Messages.GameMessage;
 import it.polimi.sw.network.QueueHandlerClient;
 import it.polimi.sw.view.View;
 import java.io.*;
@@ -166,13 +165,6 @@ public class ClientSocket extends Client implements Observer, Runnable, Serializ
     @Override
     public void publicChatMessage(SendingChatMessage message) {
         sendMessage(new PublicChatRequest(getIdlobby(),message.getPlayerMessage(), getMatch().getMe().getId()));
-
-    }
-    /**
-     * Client send a message asking for his common objective.
-     */
-    @Override
-    public void getCommonObjective(){
 
     }
 
