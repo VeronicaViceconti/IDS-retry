@@ -451,7 +451,7 @@ public class Game extends Observable {
     public void setPlayerCurrentTurn(Player playerX) {
         //controller passa un giocatore playerX dopo il controllo che quello sia connesso
         this.currPlayer = playerX;
-        notify(new TurnReply(playerX, playerX.getAvailablePositions()));
+        notify(new TurnReply(playerX, playerX.getAvailablePositions(), playerX.getTimeline()));
         setGameState(PLACECARD);
 
     }

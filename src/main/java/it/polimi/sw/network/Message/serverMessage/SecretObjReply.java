@@ -61,6 +61,7 @@ public class SecretObjReply extends SampleServerMessage {
             client.getMatch().getMe().setHand(myHand);
             client.getMatch().getMe().setHandBack(myHandBack);
             client.getMatch().getMe().setMap(manuscript);
+            //client.getView().addToTimeLine(player.getTimeline().getLast());
 
             client.getView().showPlayerHand(myHand);
             client.getView().savePlayerHandBack(myHandBack);

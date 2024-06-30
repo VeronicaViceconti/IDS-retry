@@ -76,7 +76,7 @@ public class Player extends Observable implements Serializable {
         this.numOfResourceAndObject.put("INKWELL",0);
         this.numOfResourceAndObject.put("QUILL",0);
         this.numOfResourceAndObject.put("MANUSCRIPT",0);
-        this.timeline = new ArrayList<Card>();
+        this.timeline = new ArrayList<>();
 
         this.objective = null;
         this.pion = pion;

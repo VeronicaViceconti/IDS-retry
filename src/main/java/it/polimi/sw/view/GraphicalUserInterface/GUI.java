@@ -128,6 +128,12 @@ public class GUI extends View {
         frame.initializeCommonTable(fdG,fdR,fuG,fuR,commonObj);
     }
 
+    @Override
+    public void addToTimeLine(Card timeLine) {
+
+    }
+
+
     /**
      * Show the new player's hand
      * @param c player's hand

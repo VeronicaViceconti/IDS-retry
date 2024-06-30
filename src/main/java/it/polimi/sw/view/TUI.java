@@ -41,12 +41,14 @@ public class TUI extends  View {
     private boolean mayShowChat;
     private ArrayList<Objective> allObjectives;
 
+    private ArrayList<Card> timeline;
+
 
     String BLUE = "\033[0;34m";
+
     String RESET = "\033[0m"; // Reset to default color
+
     String RED = "\u001B[31m";
-
-
     /**
      * Default constructor for the TUI class.
      * This constructor likely initializes the scanner for user input and internal data structures.
@@ -67,19 +69,25 @@ public class TUI extends  View {
 
         availablePositions = new ArrayList<>();
         availablePositions.add(new Point2D.Double()); // 0,0
-
+        timeline = new ArrayList<>();
 
         allObjectives = new ArrayList<>();
     }
 
+    @Override
+    public void addToTimeLine(Card timeline) {
+        this.timeline.add(timeline);
+    }
+
+    public ArrayList<Card> getTimeline() {
+        return timeline;
+    }
 
     /**
      * Disables chat display or processing in the TUI.
      * This method is likely called when the TUI needs to prevent displaying or processing chat messages,
      *  perhaps due to another ongoing operation.
-     *
-     * @Override
-     */
+     **/
     @Override
     public void chatWait() {
         mayShowChat = false;
@@ -164,19 +172,19 @@ public class TUI extends  View {
                 .max(Comparator.comparingInt(entry -> entry.getValue()[1]))
                 .map(entry -> entry.getValue()[1])
                 .orElse(-80);
-        System.out.println("A");
+        //System.out.println("A");
         int mostBottom = map.entrySet()
                 .stream()
                 .min(Comparator.comparingInt(entry -> entry.getValue()[1]))
                 .map(entry -> entry.getValue()[1])
                 .orElse(80);
-        System.out.println("B");
+        //System.out.println("B");
         int mostLeft = map.entrySet()
                 .stream()
                 .min(Comparator.comparingInt(entry -> entry.getValue()[0]))
                 .map(entry -> entry.getValue()[0])
                 .orElse(-80);
-        System.out.println("C");
+        //System.out.println("C");
         //ad the first line topSingle of the top line
         System.out.print("   "); // to adjust according to i
         firstLine(mostUp, mostLeft, map);
@@ -371,7 +379,7 @@ public class TUI extends  View {
 
 
     /**
-     * done
+     *
      * @param alt altitude
      * @param mostLeft smallest x coordinate in the grid
      * @param map map
@@ -392,33 +400,47 @@ public class TUI extends  View {
 
         searchedUpperCard = nextCardToPrint(map, alt, -80);
         searchedLowerCard = nextCardToPrint(map, alt - 1, -80);
-
+        if(searchedUpperCard == null){
+            nextCard = false;
+        }else if(searchedLowerCard == null){
+            nextCard = true;
+        }else{
+        nextCard = map.get(searchedUpperCard)[0] < map.get(searchedLowerCard)[0];}
 
         int minDist; //dist till next card
 
+        if(nextCard) {
+            currXUp = map.get(searchedUpperCard)[0]; //cannot be null in the beginning
+            minDist = currXUp - mostLeft;
+            currXDown = (searchedLowerCard != null) ? map.get(searchedLowerCard)[0] : null; //will be null in the last row and might be null in the middle
+        }else{
+            currXDown = map.get(searchedLowerCard)[0];
+            minDist = currXDown-mostLeft;
+            currXUp = (searchedUpperCard != null) ? map.get(searchedUpperCard)[0] : null;
+        }
 
-        currXUp = map.get(searchedUpperCard)[0]; //cannot be null in the beginning
-        minDist = currXUp - mostLeft;
-        currXDown = (searchedLowerCard != null) ? map.get(searchedLowerCard)[0] : null; //will be null in the last row
-
-
-        if (currXDown != null) {
+/*        if (currXDown != null) {
             minDist = currXUp > currXDown ? currXDown : currXUp;
             minDist = minDist - mostLeft;
             //System.out.print(" ");
-        }
-        printSpaceOneCard(6 * (minDist));
+        }*/
+        printSpaceOneCard(6 * (minDist)); //non ricordo perche
 
 
         for(int h = minDist; h>minDist/2; h--){
             System.out.print(" ");
         }
 
+/*
+        Integer[] coordinates = map.get(searchedUpperCard);
+        boolean leftPresent = positionOccupied(map,coordinates[0]-1,coordinates[1]-1);
+        boolean rightPresent = positionOccupied(map, coordinates[0]+1,coordinates[1]-1);
+*/
 
         //they cannot be both null, since in each row there is at least one card
         while (searchedUpperCard != null || searchedLowerCard != null) { // make enough space between cards
             //if both null, then it would not enter in while loop
-
+/*
 
             if (currXDown == null) {
                 minDist = currXUp - prev;
@@ -434,36 +456,115 @@ public class TUI extends  View {
                 next = Math.min(currXUp, currXDown);
                 nextCard = currXUp <= currXDown;
                 minDist = next - prev;
-            }
+            }*/ //portarlo alla fine
 
-
-
-
+            boolean L = true;
+            boolean R = true;
             //we arrived to the card we have to print
             if (nextCard) { //next one is from the row above
-                bottomSingleCard(searchedUpperCard, !(searchedUpperCard.getCorner().get(2).getCovered()),
-                        !(searchedUpperCard.getCorner().get(3).getCovered() ));
+
+                Integer[] coordinates = map.get(searchedUpperCard);
+                boolean leftPresent = positionOccupied(map,coordinates[0]-1,coordinates[1]-1);
+                boolean rightPresent = positionOccupied(map, coordinates[0]+1,coordinates[1]-1); // occupied = present = to control
+                Card controlledCard = null;
+
+
+                if(leftPresent){
+                    for(Map.Entry<Card,Integer[]> entry: map.entrySet()){
+                        if(entry.getValue()[0].equals(coordinates[0]-1) && entry.getValue()[1].equals(coordinates[1]-1)){
+                            controlledCard = entry.getKey();
+                            break;
+                        }
+                    }
+                    if(this.findIndexOf(searchedUpperCard) < this.findIndexOf(controlledCard)){
+                        L = false;
+                    }
+                }
+                if(rightPresent){
+                    for(Map.Entry<Card,Integer[]> entry: map.entrySet()){
+                        if(entry.getValue()[0].equals(coordinates[0]+1) && entry.getValue()[1].equals(coordinates[1]-1)){
+                            controlledCard = entry.getKey();
+                            break;
+                        }
+                    }
+                    if(findIndexOf(searchedUpperCard) < findIndexOf(controlledCard)){ //if the printed one was added later
+                        R = false;
+                    }
+                }
+
+                bottomSingleCard(searchedUpperCard,  L, R);
+                currXUp = map.get(searchedUpperCard)[0];
+
                 prev = currXUp;
+/*
                 searchedUpperCard = nextCardToPrint(map, alt, currXUp);
+                if(currXDown!= null) {
+                    searchedLowerCard = nextCardToPrint(map, alt - 1, currXDown);
+                }
                 currXUp = (searchedUpperCard != null) ? map.get(searchedUpperCard)[0] : null;
+*/
 
 
             } else { //from the row under
-                topSingleCard(searchedLowerCard, !(searchedLowerCard.getCorner().get(0).getCovered() ),
-                        !(searchedLowerCard.getCorner().get(1).getCovered() ));
 
+                Integer[] coordinates = map.get(searchedLowerCard);
+                boolean leftPresentD = positionOccupied(map,coordinates[0]-1,coordinates[1]+1);
+                boolean rightPresentD = positionOccupied(map, coordinates[0]+1,coordinates[1]+1); // occupied = present = to control
+                Card controlledCardD = null;
+
+                if(leftPresentD){
+                    for(Map.Entry<Card,Integer[]> entry: map.entrySet()){
+                        if(entry.getValue()[0].equals(coordinates[0]-1) && entry.getValue()[1].equals(coordinates[1]+1)){
+                            controlledCardD = entry.getKey();
+                            break;
+                        }
+                    }
+                    if(findIndexOf(searchedLowerCard) < findIndexOf(controlledCardD)){
+                        L = false;
+                    }
+                }
+                if(rightPresentD){
+                    for(Map.Entry<Card,Integer[]> entry: map.entrySet()){
+                        if(entry.getValue()[0].equals(coordinates[0]+1) && entry.getValue()[1].equals(coordinates[1]+1)){
+                            controlledCardD = entry.getKey();
+                            break;
+                        }
+                    }
+                    if(findIndexOf(searchedLowerCard) < findIndexOf(controlledCardD)){ //if the printed one was added later
+                        R = false;
+                    }
+                }
+
+                topSingleCard(searchedLowerCard, L, R);
+                currXDown = map.get(searchedLowerCard)[0]; //will be null in the last row and might be null in the middle
 
                 prev = currXDown;
+/*
+                if(currXUp != null) {
+                    searchedUpperCard = nextCardToPrint(map, alt, currXUp);
+                }else{
+                    currXDown = 100;//test se funziona
+                }
                 searchedLowerCard = nextCardToPrint(map, alt - 1, currXDown);
                 currXDown = (searchedLowerCard != null) ? map.get(searchedLowerCard)[0] : null;
 
+*/
 
             }
 
+            searchedUpperCard = nextCardToPrint(map, alt, prev);
+            searchedLowerCard = nextCardToPrint(map, alt - 1, prev);
 
+            //to understand which one is the next one
+            if(searchedUpperCard == null){
+                nextCard = false; //next one is lower one
+            }else if(searchedLowerCard == null){
+                nextCard = true;
+            }else {
+                nextCard = map.get(searchedUpperCard)[0] < map.get(searchedLowerCard)[0];
+            }
 
-
-            if(currXDown != null && currXUp!= null){
+/*            if(currXDown != null && currXUp!= null){
                 next = Math.min(currXUp, currXDown);
                 minDist = next - prev;
             }else if (currXDown != null) {
@@ -471,10 +572,15 @@ public class TUI extends  View {
             }
             else if (currXUp != null) {
                 minDist = currXUp - prev;
+            }*/
+
+            if(nextCard){
+                minDist = map.get(searchedUpperCard)[0] - prev;
+            }else if (searchedLowerCard != null) {
+                minDist = map.get(searchedLowerCard)[0] - prev;
+            }else{ //mp mpre cards
+                minDist = 0;
             }
-
-
-
 
             if(minDist > 1) { //it is not the most left card of the game
                 printSpaceOneCard(5);
@@ -488,6 +594,8 @@ public class TUI extends  View {
 
         System.out.println();
     }
+
+
     /**
      * @param map map
      * @param altitude y
@@ -537,17 +645,6 @@ public class TUI extends  View {
 
     private void topSingleCard(Card c, boolean L, boolean R){
         int i;
-/*        String[] emojiPoints=new String[10];
-       emojiPoints[0]=":zero:";
-       emojiPoints[1]=":one:";
-       emojiPoints[2]=":two:";
-       emojiPoints[3]=":three:";
-       emojiPoints[4]=":four:";
-       emojiPoints[5]=":five:";
-       emojiPoints[6]=":six:";
-       emojiPoints[7]=":seven:";
-       emojiPoints[8]=":eight:";
-       emojiPoints[9]=":nine:";*/
         String[] emojiColour= new String[5];
         emojiColour[0]=":broken_heart:";
         emojiColour[1]=":orange_heart:";
@@ -563,7 +660,6 @@ public class TUI extends  View {
         emojiCornerFront[4]=":scroll:"; //manuscript
         emojiCornerFront[5]=":lower_left_fountain_pen:";//piuma
         emojiCornerFront[6]=":test_tube:";//provetta
-
 
 
 
@@ -602,7 +698,7 @@ public class TUI extends  View {
                                 break;
                             case "blue": System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
                                 break;
-                            case "purple": System.out.print(EmojiParser.parseToUnicode(emojiColour[3])); break;
+                            case "purple": System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
                         }
                     }
 
@@ -618,7 +714,10 @@ public class TUI extends  View {
                     break;
                 case "blue": for(i=0;i<2;i++){System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));}
                     break;
-                case "purple": for(i=0;i<2;i++){System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));}
+                case "purple": for(i=0;i<2;i++) {
+                    System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
+                }
+                break;
             }
 
 
@@ -635,6 +734,7 @@ public class TUI extends  View {
                     case "blue": System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
                         break;
                     case "purple": System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
+                        break;
                 }
             }
 
@@ -646,7 +746,9 @@ public class TUI extends  View {
                     break;
                 case "blue": for(i=0;i<2;i++){/*if(i==0){System.out.print("");}*/System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));}
                     break;
-                case "purple": for(i=0;i<2;i++){if(i==0){System.out.print("");}System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));}
+                case "purple": for(i=0;i<2;i++){
+                    /*if(i==0){System.out.print("");}*/System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));}
+                        break;
             }
 
 
@@ -684,7 +786,7 @@ public class TUI extends  View {
                                 break;
                             case "blue": System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
                                 break;
-                            case "purple": System.out.print(EmojiParser.parseToUnicode(emojiColour[3])); break;
+                            case "purple": System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
                         }
                     }
                 }
@@ -740,6 +842,7 @@ public class TUI extends  View {
                 case "purple":
                     System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
                     //System.out.print("");
+                    break;
             }
 
 
@@ -771,6 +874,7 @@ public class TUI extends  View {
                         break;
                     case "purple":
                         System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
+                        break;
                 }
             }
             if(!(c.getPointsMultiply() == null || (c.getPointsMultiply().isEmpty() && c.getSide()==1))){
@@ -836,29 +940,30 @@ public class TUI extends  View {
 
 
         }else if(c instanceof InitialCard){
-            if(L){
-                if(c.getCorner().getFirst().getResource()!=null){
-                    switch (c.getCorner().getFirst().getResource()){
-                        case FUNGI: System.out.print(EmojiParser.parseToUnicode(emojiCornerFront[0]));
+            if(L) {
+                if (c.getCorner().getFirst().getResource() != null) {
+                    switch (c.getCorner().getFirst().getResource()) {
+                        case FUNGI:
+                            System.out.print(EmojiParser.parseToUnicode(emojiCornerFront[0]));
                             break;
-                        case PLANT: System.out.print(EmojiParser.parseToUnicode(emojiCornerFront[3]));
+                        case PLANT:
+                            System.out.print(EmojiParser.parseToUnicode(emojiCornerFront[3]));
                             break;
-                        case INSECT: System.out.print(EmojiParser.parseToUnicode(emojiCornerFront[2]));
+                        case INSECT:
+                            System.out.print(EmojiParser.parseToUnicode(emojiCornerFront[2]));
                             break;
-                        case ANIMAL: System.out.print(EmojiParser.parseToUnicode(emojiCornerFront[1]));
+                        case ANIMAL:
+                            System.out.print(EmojiParser.parseToUnicode(emojiCornerFront[1]));
                             break;
                     }
-                }else{
+                } else {
                     System.out.print(EmojiParser.parseToUnicode(emojiCornerBack));
-
-
                 }
-
+            }
 
                 for(i=0;i<5;i++){
                     System.out.print(EmojiParser.parseToUnicode(emojiColour[1]));
                 }
-            }
 
 
             if(R){
@@ -875,12 +980,8 @@ public class TUI extends  View {
                     }
                 }else{
                     System.out.print(EmojiParser.parseToUnicode(emojiCornerBack));
-
-
                 }
             }
-
-
         }
     }
 
@@ -1115,17 +1216,7 @@ public class TUI extends  View {
 
     private void bottomSingleCard(Card c, boolean L, boolean R){
         int i;
-/*        String[] emojiPoints=new String[10];
-       emojiPoints[0]=":zero:";
-       emojiPoints[1]=":one:";
-       emojiPoints[2]=":two:";
-       emojiPoints[3]=":three:";
-       emojiPoints[4]=":four:";
-       emojiPoints[5]=":five:";
-       emojiPoints[6]=":six:";
-       emojiPoints[7]=":seven:";
-       emojiPoints[8]=":eight:";
-       emojiPoints[9]=":nine:";*/
+
         String[] emojiColour= new String[5];
         emojiColour[0]=":broken_heart:";
         emojiColour[1]=":orange_heart:";
@@ -1516,7 +1607,6 @@ public class TUI extends  View {
                             System.out.print(EmojiParser.parseToUnicode(emojiCornerBack));
                             break;
 
-
                         case 3:
                             System.out.print(EmojiParser.parseToUnicode(emojiColour[1]));
                             break;
@@ -1550,7 +1640,7 @@ public class TUI extends  View {
                             if(c.getCorner().get(2).getResource() == null){
                                 System.out.print(EmojiParser.parseToUnicode(emojiCornerBack));
                             }else{
-                                System.out.print(EmojiParser.parseToUnicode(emojiCornerFront[0]));
+                                System.out.print(EmojiParser.parseToUnicode(emojiCornerFront[0])); //fungi
                             }
                             break;
                         case 2:
@@ -1580,11 +1670,6 @@ public class TUI extends  View {
 
     }
 
-
-
-
-
-
     /**
      * done
 
@@ -1602,7 +1687,7 @@ public class TUI extends  View {
      */
     @Override
     public void showCommonTable(Card faceDownGold, Card faceDownResource, ArrayList<Card> faceupGold, ArrayList<Card> faceupResource) {
-        System.out.println("Common table: ");
+        System.out.println("Common table. Gold and Resource cards:");
         if(faceDownGold != null){
             topSingleCard(faceDownGold, true, true);
             printSpaceOneCard(2);
@@ -1729,19 +1814,6 @@ public class TUI extends  View {
         printSpaceOneCard(2);
         bottomSingleCardObjective(obj.get(1));
         System.out.print("\n");
-/*        System.out.println("Common objectives: ");
-       topSingleCardObjective(obj.getFirst());
-       System.out.print("\n");
-       middleSingleCardObjective(obj.getFirst());
-       System.out.print("\n");
-       bottomSingleCardObjective(obj.getFirst());
-       System.out.print("\n");
-       System.out.print("\n");
-       topSingleCardObjective(obj.get(1));
-       System.out.print("\n");
-       middleSingleCardObjective(obj.get(1));
-       System.out.print("\n");
-       bottomSingleCardObjective(obj.get(1));*/
     }
 
 
@@ -1854,8 +1926,6 @@ public class TUI extends  View {
         System.out.println("Number of Resource and Object:");
         printResourceOrObject(p,p.getNumOfResourceAndObject());
     }
-
-
 
 
     /**
@@ -2360,32 +2430,6 @@ public class TUI extends  View {
                     }
                     break;
             }
-
-
-/*           if(o.getCondition().getFirstOrientationCornerCheck()==1){
-               switch (o.getCondition().getColour1()){
-                   case "red": System.out.print(EmojiParser.parseToUnicode(":broken_heart:")); break;
-                   case "green": System.out.print(EmojiParser.parseToUnicode(":green_heart:")); break;
-                   case "blue": System.out.print(EmojiParser.parseToUnicode(":blue_heart:")); break;
-                   case "purple": System.out.print(EmojiParser.parseToUnicode(":purple_heart:")); break;
-               }
-               for(i=0;i<3;i++) {
-                   System.out.print(EmojiParser.parseToUnicode(":white_large_square:"));
-               }
-
-
-           }else{
-               System.out.print(EmojiParser.parseToUnicode(":white_large_square:"));
-               switch (o.getCondition().getColour1()){
-                   case "red": System.out.print(EmojiParser.parseToUnicode(":broken_heart:")); break;
-                   case "green": System.out.print(EmojiParser.parseToUnicode(":green_heart:")); break;
-                   case "blue": System.out.print(EmojiParser.parseToUnicode(":blue_heart:")); break;
-                   case "purple": System.out.print(EmojiParser.parseToUnicode(":purple_heart:")); break;
-               }
-               for(i=0;i<2;i++){
-                   System.out.print(EmojiParser.parseToUnicode(":white_large_square:"));
-               }
-           }*/
         }
     }
     /**
@@ -2429,7 +2473,7 @@ public class TUI extends  View {
             }
             switch(o.getCondition().getTypeOfObjective()){
                 case TwoSameColourOneDiffersPlacing:
-                    switch (o.getCondition().getColour2()){
+                    switch (o.getCondition().getColour1()){
                         case "red": System.out.print(EmojiParser.parseToUnicode(":broken_heart:")); break;
                         case "green": System.out.print(EmojiParser.parseToUnicode(":green_heart:")); break;
                         case "blue": System.out.print(EmojiParser.parseToUnicode(":blue_heart:")); break;
@@ -2560,9 +2604,10 @@ public class TUI extends  View {
        Runnable task1 = () -> {
            System.out.println("Everyone is waiting! Choose a card!");
        };*/
-        System.out.println("Last messages from chat: \n");
-        showLastMex();
-
+        if(!chatMessagesStorage.isEmpty()) {
+            System.out.println("Last messages from chat: \n");
+            showLastMex();
+        }
 
         chatUnblockWait();
         while (true) { //make a control! changed break position
@@ -2601,7 +2646,7 @@ public class TUI extends  View {
 
 
                 } else if (input.trim().equalsIgnoreCase("Flip."))  { //flip
-                    System.out.println("Flip command recognized: " + matcher.group(4));
+                    //System.out.println("Flip command recognized: " + matcher.group(4));
 
 
                     cardToFlip(); //it also calls show player hand
@@ -2673,9 +2718,6 @@ public class TUI extends  View {
 
         chatUnblockWait();
         while (true) {
-            //executor.schedule(task1, 90, TimeUnit.SECONDS);
-
-
             String input = this.input.nextLine();
             //receivedInput.set(true);
 
@@ -2814,5 +2856,28 @@ public class TUI extends  View {
         super.requestOtherData();
     }
 
+    @Override
+    public void gameAlmostFinished(){
+        System.out.println("\n Wow! You are a great player! \nLet's wait other players to finish and see who was the best one.");
+    }
 
+    private boolean positionOccupied(HashMap<Card, Integer[]> manuscript, int x, int y) {
+        Integer[] positionToFind = {x, y};
+
+        for (Integer[] value : manuscript.values()) {
+            if (Arrays.equals(value, positionToFind)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private int findIndexOf(Card c){
+        for(int i=0;i<timeline.size();i++){
+            if(timeline.get(i).equals(c)){
+                return i;
+            }
+        }
+        return -1;
+    }
 }

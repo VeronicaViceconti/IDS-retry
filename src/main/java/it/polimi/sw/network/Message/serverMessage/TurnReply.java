@@ -1,5 +1,6 @@
 package it.polimi.sw.network.Message.serverMessage;
 
+import it.polimi.sw.model.Card;
 import it.polimi.sw.model.Player;
 import it.polimi.sw.network.Client;
 
@@ -17,6 +18,8 @@ public class TurnReply extends SampleServerMessage {
     private final Player currp;
 
     private final ArrayList<Point2D> positions;
+
+    private final ArrayList<Card> timeLine;
     /**
      * Constructor for a TurnReply message.
      *
@@ -24,10 +27,11 @@ public class TurnReply extends SampleServerMessage {
      * @param pos A list of valid positions (e.g., for card placement) relevant to the current turn.
      */
 
-    public TurnReply(Player player, ArrayList<Point2D> pos){
+    public TurnReply(Player player, ArrayList<Point2D> pos, ArrayList<Card> tline){
         super(TypeMessageServer.TURN_REPLY);
         this.currp = player;
         this.positions = new ArrayList<>(pos);
+        this.timeLine = new ArrayList<>(tline);
     }
     /**
      * This method defines the actions to be taken by the server after sending a TurnReply message to a client.
@@ -47,7 +51,16 @@ public class TurnReply extends SampleServerMessage {
         client.getMatch().setCurrPlayer(currp);
         if(currp.equals(client.getMatch().getMe())){
             client.getMatch().getMe().resetAvPos(positions);
+          /*  if(currp.getTimeline() != null && !currp.getTimeline().isEmpty()){
+                client.getView().addToTimeLine(currp.getTimeline().getLast());
+            }
+            else{
+                System.out.println("timetine non aggiornata. error!");
+            }*/
             client.getView().resetAvPos(positions);
+
+            for(Card c: currp.getTimeline())
+                System.out.println("In turn reply abbiamo timeline ->"+c.toString());
 
             client.getView().chatWait(); //chat stores
 

@@ -42,7 +42,8 @@ public class UpdatePlayersReply extends SampleServerMessage {
      * @param handBack The updated player's hand (back view).
      */
     public UpdatePlayersReply(Player player1, int point, Card placedCard, Integer x, Integer y,
-                              HashMap<String, Integer> numOfResourceAndObject, ArrayList<Card> hand,ArrayList<Card> handBack, boolean endGame){
+                              HashMap<String, Integer> numOfResourceAndObject, ArrayList<Card> hand,ArrayList<Card> handBack,
+                              boolean endGame){
         super(TypeMessageServer.UPDATE_PLAYERS_REPLY);
         this.player = player1;
         this.points = point;
@@ -75,7 +76,7 @@ public class UpdatePlayersReply extends SampleServerMessage {
             client.getMatch().getMe().setHand(phand);
             client.getMatch().getMe().setHandBack(handBack);
             client.getMatch().getMe().addCardToMap(playedCard, x, y);
-            client.getMatch().getMe().addToTimeline(playedCard);
+            client.getView().addToTimeLine(playedCard);
 
             client.getView().chatWait(); //chat stores
             client.getView().updatePlayerPlayCard(player,playedCard, x, y, numOfResourceAndObject,phand,handBack ,points);
@@ -84,6 +85,11 @@ public class UpdatePlayersReply extends SampleServerMessage {
                                                 client.getMatch().getFaceupGold(),
                                                 client.getMatch().getFaceupResource());
             client.getView().showPlayerHand(client.getMatch().getMe().getHand());
+
+            System.out.println("Timeline during updating card->");
+            for(Card c: player.getTimeline())
+                System.out.println("Cartaa -> "+c.toString());
+
             if(lastTurn) {
                 client.getView().drawCard(); // here chat unlocks
             }

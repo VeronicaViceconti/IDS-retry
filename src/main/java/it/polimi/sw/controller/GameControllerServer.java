@@ -137,7 +137,7 @@ public class GameControllerServer  {
         }
 
         currgame.setGameState(GameState.PLACECARD);
-        currgame.notify(new TurnReply(currgame.getCurrPlayer(), currgame.getPlayerCurrentTurn().getAvailablePositions()));
+        currgame.notify(new TurnReply(currgame.getCurrPlayer(), currgame.getPlayerCurrentTurn().getAvailablePositions(), currgame.currPlayer.getTimeline()));
 
     }
 
@@ -180,14 +180,15 @@ public class GameControllerServer  {
                 //update map
                 p.addCardToMap(card, x, y);
                 p.addToTimeline(card);
+
+                System.out.println("Timeline init during placing card->");
+                for(Card c: p.getTimeline())
+                    System.out.println("Cartaa -> "+c.toString());
+
                 //remove from hand
                 p.getHand().remove(p.getHand().get(index));
                 p.getHandBack().remove(p.getHandBack().get(index));
 
-                System.out.println("Test.GCS.Elementi nella mappa manuscript: ");
-                for (Card c:p.getMap().keySet()) {
-                    System.out.println("Card-->"+c.toString());
-                }
                 updateAvailablePositions(p, x, y);
                 card.setDrawn(true);
                 card.setUsed(true);
@@ -206,9 +207,6 @@ public class GameControllerServer  {
                 currgame.getFacedownResource().removeFirst();
 
                 ArrayList<Objective> ob12 = currgame.pickupSecretObjective();
-                System.out.println("Test.GCS");
-                System.out.println(ob12.getFirst().toString());
-                System.out.println(ob12.get(1).toString());
 
                 currgame.notify(new SecretObjReply(ob12.get(0), ob12.get(1), p, p.getHand(),p.getHandBack(),p.getMap())); //manda
 
@@ -223,9 +221,7 @@ public class GameControllerServer  {
                 currgame.notify(new ErrorReply(ErrorType.NOT_THE_RIGHT_MOMENT_TO_DRAW_CARD, p));
             } else {
                 //by this line we are sure that it is the right moment to place a card. we have to control if the placement is correct
-                System.out.println("Test.GCS.PRIIIIIIIIIIIIIIIMAAAAAAAAAAAAAA");
                 boolean canPlay = mayPlayThisCard(p, card, x, y);
-                System.out.println("Test.gcs. dopo mayPlaythis card");
                 if (canPlay) {   //now we have to place the card, remove it from the hand,
                     // add points, resources, objects, change the state of the game
                     int index = p.findCardInHand(card);
@@ -247,10 +243,14 @@ public class GameControllerServer  {
                     addResourcesOrObjects(card, p);
                     updateCoveredCard(card, p, x, y); //updates the corner "covered" and removes resource or object.
 
+                    System.out.println("Timeline non init during placing card->");
+                    for(Card c: p.getTimeline())
+                        System.out.println("Cartaa -> "+c.toString());
+
                     currgame.setGameState(DRAWCARD);
                     if(endGame) {
                         currgame.notify(new UpdatePlayersReply(p, p.getPoints(), card, x, y, p.getNumOfResourceAndObject(), p.getHand(), p.getHandBack(), false));
-                        //currgame.notify(new GameAlmostFinishedReply());
+                        currgame.notify(new GameAlmostFinishedReply(currgame.currPlayer));
                     }else{
                         currgame.notify(new UpdatePlayersReply(p, p.getPoints(), card, x, y, p.getNumOfResourceAndObject(), p.getHand(), p.getHandBack(), true));
                         //currgame.setGameState(NOT_MY_TURN); //nobody can do anything
@@ -376,10 +376,8 @@ public class GameControllerServer  {
      * returns a card in the position (x,y). if the card is not present, then return null
      */
     private Card cardInPosition(Player pl, Integer x, Integer y) {
-        System.out.println("Test.gcs. Card position :" + x + " " + y);
         for(Map.Entry<Card,Integer[]> entry: pl.getMap().entrySet()){
             if(entry.getValue()[0].equals(x)&&entry.getValue()[1].equals(y)){
-                System.out.println("test.gcs.provato carta in posizione x,y in p.map");
                 return entry.getKey();
             }
         }
@@ -417,18 +415,18 @@ public class GameControllerServer  {
                 cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int) point.getX() + 1, (int) point.getY() - 1), 0) &&
                 cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int) point.getX() + 1, (int) point.getY() + 1), 2)));
 
-        for(Point2D oldPoints: p.getAvailablePositions()){
-            if (!(cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int)oldPoints.getX() - 1, (int)oldPoints.getY() - 1), 1) &&
-                    cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int)oldPoints.getX() - 1, (int)oldPoints.getY() + 1), 3) &&
-                    cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int)oldPoints.getX() + 1, (int)oldPoints.getY() - 1), 0) &&
-                    cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int)oldPoints.getX() + 1, (int)oldPoints.getY() + 1), 2))){
-                p.remove(oldPoints);
+            for(Point2D oldPoints: p.getAvailablePositions()){
+                if (!(cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int)oldPoints.getX() - 1, (int)oldPoints.getY() - 1), 1) &&
+                        cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int)oldPoints.getX() - 1, (int)oldPoints.getY() + 1), 3) &&
+                        cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int)oldPoints.getX() + 1, (int)oldPoints.getY() - 1), 0) &&
+                        cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int)oldPoints.getX() + 1, (int)oldPoints.getY() + 1), 2))){
+                    p.remove(oldPoints);
+                }
             }
-        }
 
-        for (Point2D poi: pointsToCheck){ // add the new good ones
-            p.addAvPos(poi);
-        }
+            for (Point2D poi: pointsToCheck){ // add the new good ones
+                p.addAvPos(poi);
+            }
 
         p.removeAvPos(new Point2D.Double(x,y)); // remove itself
     }
@@ -701,7 +699,7 @@ public class GameControllerServer  {
         boolean thereIsPlayer= currgame.getTotPlayers().stream().anyMatch(player -> Objects.equals(player.getNickName(), pWantsToDraw.getNickName()));
 
         if (!thereIsPlayer) {
-            //  currgame.notify(new ErrorReply(ErrorType.IGNORE_MESSAGE, pWantsToDraw)); just ignore it
+          //  currgame.notify(new ErrorReply(ErrorType.IGNORE_MESSAGE, pWantsToDraw)); just ignore it
             System.out.println("Ghost says 'booooooo'");
             return;
         }
@@ -1102,19 +1100,19 @@ public class GameControllerServer  {
 
     public void nextTurn(){
 
-        if(currgame.getCurrPlayer().equals(currgame.getTotPlayers().getLast())) {
-            if(!endGame){
-                checkLast();
-                currgame.setPlayerCurrentTurn(currgame.getTotPlayers().getFirst()); //notify is inside
-                //currgame.setGameState(PLACECARD);
+            if(currgame.getCurrPlayer().equals(currgame.getTotPlayers().getLast())) {
+                if(!endGame){
+                    checkLast();
+                    currgame.setPlayerCurrentTurn(currgame.getTotPlayers().getFirst()); //notify is inside
+                    //currgame.setGameState(PLACECARD);
+                }else{
+                    getWinner();
+                }
             }else{
-                getWinner();
+                currgame.setPlayerCurrentTurn(currgame.getTotPlayers().get(currgame.currPlayer.getId()+1)); //notify is inside
+                System.out.println("endGame false, tocca al prossimo");
+                //currgame.setGameState(PLACECARD);
             }
-        }else{
-            currgame.setPlayerCurrentTurn(currgame.getTotPlayers().get(currgame.currPlayer.getId()+1)); //notify is inside
-            System.out.println("endGame false, tocca al prossimo");
-            //currgame.setGameState(PLACECARD);
-        }
     }
 
     /**

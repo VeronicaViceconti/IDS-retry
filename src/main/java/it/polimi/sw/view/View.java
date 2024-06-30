@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
  */
 public abstract class View extends Observable {
     private int numOfPlayers;
+    private ArrayList<Card> timeline;
     protected ArrayList<Point2D> availablePositions;
     protected String nickname;
 
@@ -32,6 +33,7 @@ public abstract class View extends Observable {
     public View() {
         availablePositions = new ArrayList<>();
         availablePositions.add(new Point2D.Double());
+        timeline = new ArrayList<>();
     }
 
     public void setNickname(String nickname) {
@@ -135,7 +137,9 @@ public abstract class View extends Observable {
      * @param fuR face up resource cards of the game
      * @param commonObj 2 common objectives of the game
      */
+
     abstract public void setBoardData(Card fdG, Card fdR, ArrayList<Card> fuG, ArrayList<Card> fuR,ArrayList<Objective> commonObj);
+    abstract public void addToTimeLine(Card timeLine);
     /**
      * Used to add the points at the end of the game
      * @param p the player to update
