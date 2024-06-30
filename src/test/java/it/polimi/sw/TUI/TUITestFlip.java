@@ -10,10 +10,10 @@ import java.util.Arrays;
 
 public class TUITestFlip {
     static TUI tui=new TUI();
-    static Corner corner1=new Corner(null, Resources.FUNGI,1,true,null);
-    static Corner corner2=new Corner(null,null,2,false,null);
-    static Corner corner3=new Corner(null,null,3,true,null);
-    static Corner corner4=new Corner(null,null,4,true,null);
+    static Corner corner1=new Corner(null, Resources.FUNGI,1,true,false);
+    static Corner corner2=new Corner(null,null,2,false,false);
+    static Corner corner3=new Corner(null,null,3,true,false);
+    static Corner corner4=new Corner(null,null,4,true,false);
     static Resources resources1=Resources.PLANT;
     static Resources resources2=Resources.PLANT;
     static Resources resources3=Resources.INSECT;

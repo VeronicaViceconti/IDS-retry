@@ -28,10 +28,10 @@ public class PlayerTest {
         p3 = p2;
         p4 = null;
 
-        corners.add(new Corner(Object.INKWELL, null,1, true, null));
-        corners.add(new Corner(null, null,2, false, null));
-        corners.add(new Corner(null,Resources.PLANT,3, true, null));
-        corners.add(new Corner(null, null,4, false, null));
+        corners.add(new Corner(Object.INKWELL, null,1, true, false));
+        corners.add(new Corner(null, null,2, false, false));
+        corners.add(new Corner(null,Resources.PLANT,3, true, false));
+        corners.add(new Corner(null, null,4, false, false));
         c = new ResourceCard(corners, 2, 1, "green", false, false, false,1, Resources.PLANT);
         c2= new GoldCard(corners,1,24,"red",false,false,false,1,null,"INKWELL",null);
         hand=new ArrayList<>(Arrays.asList(c,c2));

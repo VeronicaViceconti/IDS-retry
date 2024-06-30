@@ -19,7 +19,7 @@ public class CornerTest {
         Object object=Object.QUILL;
         Optional<Card> covered=null;
 
-        Corner corner=new Corner(object, null,number, true, null);
+        Corner corner=new Corner(object, null,number, true, true);
 
         // Testing getter and setter methods
         assert corner.getVisible()==visible : "it's not true";
@@ -32,10 +32,10 @@ public class CornerTest {
         assert corner.getNumber()==2 : "set of number it's not correct";
 
         corner.setVisible(false);
-        assert corner.getVisible()==false : "set of visible it's not correct";
+        assert !corner.getVisible() : "set of visible it's not correct";
         Card c = new GoldCard();
-        corner.setCovered(c);
-        assert corner.getCovered().equals(c): "set of covered it's not correct";
+        corner.setCovered();
+        assert corner.getCovered() : "set of covered it's not correct";
 
         // Testing if resource is correctly set
         corner.setResource(Resources.PLANT);

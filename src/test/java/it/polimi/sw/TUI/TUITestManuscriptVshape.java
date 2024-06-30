@@ -13,10 +13,10 @@ public class TUITestManuscriptVshape {
         static TUI tui=new TUI();
 
 
-    static Corner corner2_1=new Corner(Object.INKWELL,null,1,true,null);
-    static Corner corner2_2=new Corner(null,null,2,true,null);
-    static Corner corner2_3=new Corner(null,null,3,true,null);
-    static Corner corner2_4=new Corner(null,null,4,false, null);
+    static Corner corner2_1=new Corner(Object.INKWELL,null,1,true,false);
+    static Corner corner2_2=new Corner(null,null,2,true,false);
+    static Corner corner2_3=new Corner(null,null,3,true,false);
+    static Corner corner2_4=new Corner(null,null,4,false, false);
 
     static Resources resources1=Resources.PLANT;
     static Resources resources2=Resources.PLANT;
@@ -25,27 +25,27 @@ public class TUITestManuscriptVshape {
     static ArrayList <Corner> corners_2=new ArrayList<>(Arrays.asList(corner2_1,corner2_2,corner2_3,corner2_4));
     static GoldCard goldCard=new GoldCard(corners_2,2,13,"green",false,false,false,2,Resources.PLANT,"MANUSCRIPT",necessaryResources);
 
-    static Corner corner4_1=new Corner(null, Resources.FUNGI,1,false,null);
-    static Corner corner4_2=new Corner(null,null,2,true,null);
-    static Corner corner4_3=new Corner(null,null,3,true,null);
-    static Corner corner4_4=new Corner(null,null,4,true,null);
+    static Corner corner4_1=new Corner(null, Resources.FUNGI,1,false,false);
+    static Corner corner4_2=new Corner(null,null,2,true,false);
+    static Corner corner4_3=new Corner(null,null,3,true,false);
+    static Corner corner4_4=new Corner(null,null,4,true,false);
 
     static ArrayList<Corner> corners4=new ArrayList<>(Arrays.asList(corner4_1,corner4_2,corner4_3,corner4_4));
     static ResourceCard resourceCard4=new ResourceCard(corners4,1,2,"purple",false,false,false,2, Resources.FUNGI);
 
-    static Corner corner5_1=new Corner(null, Resources.FUNGI,1,false,null);
-    static Corner corner5_2=new Corner(null,null,2,true,goldCard);
-    static Corner corner5_3=new Corner(null,null,3,true,null);
-    static Corner corner5_4=new Corner(null,null,4,true,null);
+    static Corner corner5_1=new Corner(null, Resources.FUNGI,1,false,false);
+    static Corner corner5_2=new Corner(null,null,2,true,true);
+    static Corner corner5_3=new Corner(null,null,3,true,false);
+    static Corner corner5_4=new Corner(null,null,4,true,false);
 
     static ArrayList<Corner> corners5 =new ArrayList<>(Arrays.asList(corner5_1,corner5_2,corner5_3,corner5_4));
     static ResourceCard resourceCard5=new ResourceCard(corners5,1,2,"blue",false,false,false,2, Resources.FUNGI);
 
 
-    static Corner corner3_1=new Corner(null, Resources.FUNGI,1,true,resourceCard4);
-        static Corner corner3_2=new Corner(null,Resources.PLANT,2,true,null);
-        static Corner corner3_3=new Corner(null,Resources.INSECT,3,true,null);
-        static Corner corner3_4=new Corner(null,Resources.ANIMAL,4,true,null);
+    static Corner corner3_1=new Corner(null, Resources.FUNGI,1,true,true);
+        static Corner corner3_2=new Corner(null,Resources.PLANT,2,true,false);
+        static Corner corner3_3=new Corner(null,Resources.INSECT,3,true,false);
+        static Corner corner3_4=new Corner(null,Resources.ANIMAL,4,true,false);
         static ArrayList<Corner> corners3= new ArrayList<>(Arrays.asList(corner3_1,corner3_2,corner3_3,corner3_4));
         static Resources resources3_1=Resources.ANIMAL;
         static Resources resources3_3=Resources.PLANT;
@@ -55,10 +55,10 @@ public class TUITestManuscriptVshape {
 
 
 
-        static Corner corner1=new Corner(null, Resources.FUNGI,1,false,initialCard);
-        static Corner corner2=new Corner(null,null,2,true,resourceCard5);
-        static Corner corner3=new Corner(null,null,3,true,null);
-        static Corner corner4=new Corner(null,null,4,true,null);
+        static Corner corner1=new Corner(null, Resources.FUNGI,1,false,true);
+        static Corner corner2=new Corner(null,null,2,true,true);
+        static Corner corner3=new Corner(null,null,3,true,false);
+        static Corner corner4=new Corner(null,null,4,true,false);
 
         static ArrayList<Corner> corners1=new ArrayList<>(Arrays.asList(corner1,corner2,corner3,corner4));
         static ResourceCard resourceCard=new ResourceCard(corners1,1,2,"red",false,false,false,2, Resources.FUNGI);

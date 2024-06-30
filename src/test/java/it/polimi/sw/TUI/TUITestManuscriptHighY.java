@@ -11,10 +11,10 @@ import java.util.HashMap;
 public class TUITestManuscriptHighY {
         static TUI tui=new TUI();
 
-        static Corner cornerg_1=new Corner(Object.INKWELL,null,1,true,null);
-        static Corner cornerg_2=new Corner(null,null,2,true,null);
-        static Corner cornerg_3=new Corner(null,null,3,true,null);
-        static Corner cornerg_4=new Corner(null,null,4,false, null);
+        static Corner cornerg_1=new Corner(Object.INKWELL,null,1,true,false);
+        static Corner cornerg_2=new Corner(null,null,2,true,false);
+        static Corner cornerg_3=new Corner(null,null,3,true,false);
+        static Corner cornerg_4=new Corner(null,null,4,false, false);
 
         static Resources resources1=Resources.PLANT;
         static ArrayList<Resources> necessaryResources=new ArrayList<>(Arrays.asList(resources1,resources1,resources1));
@@ -30,20 +30,20 @@ public class TUITestManuscriptHighY {
         static GoldCard goldCard7=new GoldCard(cornersg1,2,13,"green",false,false,false,2,Resources.PLANT,"MANUSCRIPT",necessaryResources);
 
 
-        static Corner corner1=new Corner(null, Resources.FUNGI,1,false,goldCard1);
-        static Corner corner2=new Corner(null,null,2,true,null);
-        static Corner corner3=new Corner(null,null,3,true,goldCard);
-        static Corner corner4=new Corner(null,null,4,true,null);
+        static Corner corner1=new Corner(null, Resources.FUNGI,1,false,true);
+        static Corner corner2=new Corner(null,null,2,true,false);
+        static Corner corner3=new Corner(null,null,3,true,true);
+        static Corner corner4=new Corner(null,null,4,true,false);
         static ArrayList<Corner> corners1=new ArrayList<>(Arrays.asList(corner1,corner2,corner3,corner4));
         static ResourceCard resourceCard=new ResourceCard(corners1,1,2,"red",false,false,false,2, Resources.FUNGI);
 
 
 
 
-        static Corner corner4_1=new Corner(null, Resources.FUNGI,1,false,goldCard4);
-        static Corner corner4_2=new Corner(null,null,2,true,null);
-        static Corner corner4_3=new Corner(null,null,3,true,goldCard);
-        static Corner corner4_4=new Corner(null,null,4,true,null);
+        static Corner corner4_1=new Corner(null, Resources.FUNGI,1,false,true);
+        static Corner corner4_2=new Corner(null,null,2,true,false);
+        static Corner corner4_3=new Corner(null,null,3,true,true);
+        static Corner corner4_4=new Corner(null,null,4,true,false);
 
         static ArrayList<Corner> cornersr4=new ArrayList<>(Arrays.asList(corner4_1,corner4_2,corner4_3,corner4_4));
         static ResourceCard resourceCard4=new ResourceCard(cornersr4,1,2,"purple",false,false,false,2, Resources.FUNGI);
@@ -57,10 +57,10 @@ public class TUITestManuscriptHighY {
         static ResourceCard resourceCard8=new ResourceCard(cornersr4,1,2,"blue",false,false,false,2, Resources.FUNGI);
         static ResourceCard resourceCard9=new ResourceCard(cornersr4,1,2,"blue",false,false,false,2, Resources.FUNGI);
 
-        static Corner corneri_1=new Corner(null, Resources.FUNGI,1,true,null);
-        static Corner corneri_2=new Corner(null,Resources.PLANT,2,true,null);
-        static Corner corneri_3=new Corner(null,Resources.INSECT,3,true,null);
-        static Corner corneri_4=new Corner(null,Resources.ANIMAL,4,true,null);
+        static Corner corneri_1=new Corner(null, Resources.FUNGI,1,true,false);
+        static Corner corneri_2=new Corner(null,Resources.PLANT,2,true,false);
+        static Corner corneri_3=new Corner(null,Resources.INSECT,3,true,false);
+        static Corner corneri_4=new Corner(null,Resources.ANIMAL,4,true,false);
         static ArrayList<Corner> cornersi= new ArrayList<>(Arrays.asList(corneri_1,corneri_2,corneri_3,corneri_4));
         static Resources resources3_1=Resources.ANIMAL;
         static Resources resources3_3=Resources.PLANT;
