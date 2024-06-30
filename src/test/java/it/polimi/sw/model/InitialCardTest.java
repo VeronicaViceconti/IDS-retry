@@ -12,10 +12,10 @@ public class InitialCardTest {
         {
             /*assertTrue( true );*/
             ArrayList<Corner> corners = new ArrayList<>();
-            corners.add(new Corner(null, null,1, true, null));
-            corners.add(new Corner(null, null,2, true, null));
-            corners.add(new Corner(null, null,3, true, null));
-            corners.add(new Corner(null, null,4, true, null));
+            corners.add(new Corner(null, null,1, true, false));
+            corners.add(new Corner(null, null,2, true, false));
+            corners.add(new Corner(null, null,3, true, false));
+            corners.add(new Corner(null, null,4, true, false));
 
             int id = 1;
             String typeCard = "Initial Card";

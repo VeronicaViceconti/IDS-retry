@@ -14,7 +14,7 @@ public class ResourceCardTest {
     {
 
         ArrayList<Corner> corners = new ArrayList<>();
-        corners.add(new Corner(Object.INKWELL, null,1, true, null));
+        corners.add(new Corner(Object.INKWELL, null,1, true, false));
         int points = 5;
         int id = 1;
         String colour = "red";

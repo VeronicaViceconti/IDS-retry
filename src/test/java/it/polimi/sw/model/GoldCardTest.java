@@ -14,10 +14,10 @@ public class GoldCardTest {
 
         /*assertTrue( true );*/
         ArrayList<Corner> corners = new ArrayList<>();
-        corners.add(new Corner(Object.INKWELL, null,1, true, null));
-        corners.add(new Corner(null, null,2, true, null));
-        corners.add(new Corner(null, Resources.ANIMAL,3, true, null));
-        corners.add(new Corner(Object.QUILL, null,4, true, null));
+        corners.add(new Corner(Object.INKWELL, null,1, true, false));
+        corners.add(new Corner(null, null,2, true, false));
+        corners.add(new Corner(null, Resources.ANIMAL,3, true, false));
+        corners.add(new Corner(Object.QUILL, null,4, true, false));
         int points = 5;
         int id = 1;
         String typeCard = "Type";

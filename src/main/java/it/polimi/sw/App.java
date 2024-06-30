@@ -37,6 +37,6 @@ public class App
 
 
     public static void main(String[] args) throws InterruptedException, NotBoundException, RemoteException {
-
+        System.out.println("i am working");
     }
 }
