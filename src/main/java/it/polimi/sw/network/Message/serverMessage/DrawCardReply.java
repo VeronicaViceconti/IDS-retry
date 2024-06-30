@@ -78,25 +78,33 @@ public class DrawCardReply extends SampleServerMessage {
      */
     @Override
     public void execute(Client client ){
-            if (destination.equals(client.getMatch().getMe())) {
-                //se non è null, allora non sto inviando la carta iniziale,
-                //aggiorno tavolo comune e hand del giocatore
 
-                client.getView().chatWait(); // chat starts storing and not printing
+         System.out.println("DRAW CARD REPLY HA FACEUP RESOURCE: ");
+        for (Card c: client.getMatch().getFaceupResource()) {
+            System.out.println("card -> "+c.toString());
+        }
 
-                client.getMatch().getMe().getHand().add(wantedCard);
-                client.getMatch().getMe().getHandBack().add(wantedCardBack);
-                client.getView().savePlayerHandBack(client.getMatch().getMe().getHandBack());
-                client.getView().showPlayerHand(client.getMatch().getMe().getHand()); //salva anche frontCards
+        System.out.println("FACEDOWN RESOURCE DOPO "+faceDownResource.toString());
+        System.out.println("FACEDOWN GOLD DOPO "+faceDownGold.toString());
+        if (destination.equals(client.getMatch().getMe())) {
+            //se non è null, allora non sto inviando la carta iniziale,
+            //aggiorno tavolo comune e hand del giocatore
 
-                client.getView().chatUnblockWait(); //chat restarts printing
-            } else {
-                client.getView().notYourTurn();
-            }
-            //sia che non sono io il giocatore sia che sono io, devo togliere dalla view la carta pescata.
+            client.getView().chatWait(); // chat starts storing and not printing
 
-            if(faceDownGold != null && client.getView() instanceof GUI){ //se null non faccio niente, siamo all'inizio, è stato inviato BOARDDATAREPLY
-                client.getView().showCommonTable(faceDownGold,faceDownResource,faceUpGold,faceupResource);
-            }
+            client.getMatch().getMe().getHand().add(wantedCard);
+            client.getMatch().getMe().getHandBack().add(wantedCardBack);
+            client.getView().savePlayerHandBack(client.getMatch().getMe().getHandBack());
+            client.getView().showPlayerHand(client.getMatch().getMe().getHand()); //salva anche frontCards
+
+            client.getView().chatUnblockWait(); //chat restarts printing
+        } else {
+            client.getView().notYourTurn();
+        }
+        //sia che non sono io il giocatore sia che sono io, devo togliere dalla view la carta pescata.
+
+        if(faceDownGold != null && client.getView() instanceof GUI){ //se null non faccio niente, siamo all'inizio, è stato inviato BOARDDATAREPLY
+            client.getView().showCommonTable(faceDownGold,faceDownResource,faceUpGold,faceupResource);
         }
     }
+}

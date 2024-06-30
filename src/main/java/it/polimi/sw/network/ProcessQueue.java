@@ -218,8 +218,8 @@ public class ProcessQueue implements Runnable {
             }
             case DRAW_DECK_REQUEST, PLACE_REQUEST, PRIVATE_OBJECTIVE_REQUEST, DRAW_TABLE_REQUEST -> message.execute(server.getLobbyReference().get((message).getClientLobbyReference()));
             case PING -> {}
-            case PRIVATE_MESSAGE_REQUEST -> {message.execute(server.getLobbyReference().get((message).getClientLobbyReference()));}
-            case PUBLIC_MESSAGE_REQUEST -> {message.execute(server.getLobbyReference().get((message).getClientLobbyReference()));}
+            case PRIVATE_MESSAGE_REQUEST -> message.execute(server.getLobbyReference().get((message).getClientLobbyReference()));
+            case PUBLIC_MESSAGE_REQUEST -> message.execute(server.getLobbyReference().get((message).getClientLobbyReference()));
         }
     }
 

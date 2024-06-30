@@ -45,10 +45,10 @@ public class TUI extends  View {
 
 
     String BLUE = "\033[0;34m";
-
     String RESET = "\033[0m"; // Reset to default color
-
     String RED = "\u001B[31m";
+
+
     /**
      * Default constructor for the TUI class.
      * This constructor likely initializes the scanner for user input and internal data structures.
@@ -172,19 +172,16 @@ public class TUI extends  View {
                 .max(Comparator.comparingInt(entry -> entry.getValue()[1]))
                 .map(entry -> entry.getValue()[1])
                 .orElse(-80);
-        //System.out.println("A");
         int mostBottom = map.entrySet()
                 .stream()
                 .min(Comparator.comparingInt(entry -> entry.getValue()[1]))
                 .map(entry -> entry.getValue()[1])
                 .orElse(80);
-        //System.out.println("B");
         int mostLeft = map.entrySet()
                 .stream()
                 .min(Comparator.comparingInt(entry -> entry.getValue()[0]))
                 .map(entry -> entry.getValue()[0])
                 .orElse(-80);
-        //System.out.println("C");
         //ad the first line topSingle of the top line
         System.out.print("   "); // to adjust according to i
         firstLine(mostUp, mostLeft, map);

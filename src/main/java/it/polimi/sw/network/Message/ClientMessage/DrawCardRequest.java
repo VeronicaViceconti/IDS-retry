@@ -1,6 +1,7 @@
 package it.polimi.sw.network.Message.ClientMessage;
 
 import it.polimi.sw.controller.GameControllerServer;
+import it.polimi.sw.model.Card;
 import it.polimi.sw.model.Player;
 /**
  * This class represents a message sent by the client requesting to draw a card.

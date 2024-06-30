@@ -70,6 +70,14 @@ public class SecretObjReply extends SampleServerMessage {
 
             client.getView().secObjtoChoose(secObjOne, secObjTwo);
             client.getView().chatUnblockWait();
+
+           /* System.out.println(client.getMatch().getFacedownGold());
+            System.out.println(client.getMatch().getFacedownResource());
+            for(Card c: client.getMatch().getFaceupResource())
+                System.out.println(c.toString());
+            for(Card c: client.getMatch().getFaceupGold())
+                System.out.println(c.toString());
+            */
         }else{
             if(client.getMatch().getAPlayer(player) != null) { //there is the player in the client match
                 client.getMatch().getAPlayer(player).setMap(manuscript);

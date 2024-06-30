@@ -320,8 +320,6 @@ public class Game extends Observable {
         for (Player p : playersList) {//fino qua ok
             p.addCard(faceupInitial.get(0));//ok
             p.addCardBack(facedownInitial.get(0)); //ordine fdI and fuI is the same. id+6
-            System.out.println("Carta fronte nella mano: "+p.getHand().get(0));
-            System.out.println("Carta back nella mano: "+p.getHandBack().get(0));
             notify(new SendInitialCard(p.getHand().get(0),p.getHandBack().get(0), p,p.getId()));
 
             facedownInitial.remove(flipCard(faceupInitial.get(0)));
@@ -453,7 +451,6 @@ public class Game extends Observable {
         this.currPlayer = playerX;
         notify(new TurnReply(playerX, playerX.getAvailablePositions(), playerX.getTimeline()));
         setGameState(PLACECARD);
-
     }
 
 
