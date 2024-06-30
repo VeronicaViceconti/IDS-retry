@@ -1,25 +1,29 @@
 package it.polimi.sw.model;
 
+
 import java.io.Serializable;
 import java.util.Optional;
+
 
 /**
  * the class corner specifies the corner of a card
  */
 
+
 public class Corner implements Serializable {
     /**
      * an object in a corner, if present
      */
-   private Object object;
+    private Object object;
     /**
      * a resource in a corner, if present
      */
-   private Resources resource;
+    private Resources resource;
     /**
      * enumeration of corners 1-4, 1 is TopLeft, 2 TopRight, 3 BottomLeft, 4 BottomRight
      */
     private int number;
+
 
     /**
      * visible if it is possible to place a card over the corner
@@ -28,7 +32,7 @@ public class Corner implements Serializable {
     /**
      * corner may be covered by another card. may change during the game. by default a corner is not covered
      */
-    private Card covered;
+    private boolean covered;
     /**
      * Constructs a new `Corner` object with the specified attributes.
      *
@@ -38,7 +42,7 @@ public class Corner implements Serializable {
      * @param visible A boolean flag indicating whether this corner is visible or not.
      * @param covered A `Card` object representing the card covering this corner (if any). Can be null if not covered.
      */
-    public Corner(Object object,Resources resource,int number,boolean visible,Card covered) {
+    public Corner(Object object,Resources resource,int number,boolean visible,boolean covered) {
         this.object = object;
         this.resource = resource;
         this.number = number;
@@ -49,6 +53,7 @@ public class Corner implements Serializable {
      * Constructs a new `Corner` object with default values for its attributes.
      */
 
+
     public Corner() {
     }
     /**
@@ -56,6 +61,7 @@ public class Corner implements Serializable {
      *
      * @return The resource associated with this corner as a `Resources` enum value.
      */
+
 
     public Resources getResource() {  return resource;
     }
@@ -97,16 +103,16 @@ public class Corner implements Serializable {
      * @param covered A boolean value indicating whether the corner should be visible (true) or hidden (false).
      */
 
+
     public void setVisible(boolean covered) {
         this.visible = covered;
     }
     /**
      * Sets the card covering this corner (if any).
      *
-     * @param covered A `Card` object representing the card that covers this corner, or null if not covered.
      */
-    public void setCovered(Card covered) {
-        this.covered = covered;
+    public void setCovered() {
+        this.covered = true;
     }
     /**
      * Retrieves the object associated with this corner.
@@ -129,7 +135,7 @@ public class Corner implements Serializable {
      *
      * @return A `Card` object representing the card that covers this corner, or null if not covered.
      */
-    public Card getCovered() {
+    public boolean getCovered() {
         return covered;
     }
     /**

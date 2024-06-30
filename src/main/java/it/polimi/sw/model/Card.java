@@ -1,14 +1,19 @@
 package it.polimi.sw.model;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+
 /**
  * the class of card in which there are attributes common to gold and resource card
  */
+
+
+
 
 
 
@@ -46,10 +51,12 @@ public abstract class Card implements Serializable {
      */
     private int side;
 
+
     /**
      * The `permanentResource` list
      */
     private ArrayList<Resources> permanentResource;
+
 
     /**
      * Constructs a new Card object.
@@ -74,6 +81,7 @@ public abstract class Card implements Serializable {
         this.side = side;
     }
 
+
     /**
      * Used to copy a card
      * @param c
@@ -90,6 +98,7 @@ public abstract class Card implements Serializable {
         this.permanentResource = c.permanentResource;
     }
 
+
     /**
      * Default constructor for the `Card` class.
      */
@@ -105,6 +114,7 @@ public abstract class Card implements Serializable {
     public int getSide() {
         return side;
     }
+
 
     /**
      * Sets the side of the card.
@@ -124,9 +134,11 @@ public abstract class Card implements Serializable {
      * @return true if the card has been used to fulfill an objective, false otherwise
      */
 
+
     public boolean isCalculatedObjective() {
         return calculatedObjective;
     }
+
 
     /**
      * Sets a flag indicating if the card has been used to fulfill an objective.
@@ -151,6 +163,7 @@ public abstract class Card implements Serializable {
      *
      * @param corner an ArrayList containing Corner objects representing the card's corners
      */
+
 
     public void setCorner(ArrayList<Corner> corner) {
         this.corner = corner;
@@ -184,6 +197,7 @@ public abstract class Card implements Serializable {
     public int getId() {
         return id;
     }
+
 
     /**
      * Sets the unique identifier for the card.
@@ -285,6 +299,7 @@ public abstract class Card implements Serializable {
                 ", side:" + side+"\n";
     }
 
+
     /**
      * A static method that iterates through a list of `Card` objects and prints their string representations (using the `toString()` method) to the console.
      *
@@ -294,6 +309,7 @@ public abstract class Card implements Serializable {
         listofcards.forEach(item -> System.out.println(item.toString()));
     }
 
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) return true;
@@ -301,6 +317,7 @@ public abstract class Card implements Serializable {
         if(!(o instanceof Card)) return false;
         return this.getId() == ((Card) o).getId() && this.getClass() == o.getClass();
     }
+
 
     @Override
     public int hashCode() {
@@ -316,6 +333,7 @@ public abstract class Card implements Serializable {
         return result;
     }
 
+
     /**
      * Placeholder method for `getNecessaryResource()`.
      *
@@ -323,6 +341,7 @@ public abstract class Card implements Serializable {
      *
      * @return currently returns null
      */
+
 
     public ArrayList<Resources> getNecessaryResource(){
         return null;
@@ -338,6 +357,7 @@ public abstract class Card implements Serializable {
         return null;
     }
 
+
     /**
      * Abstract method declaration for `getPermanentResource()`.
      *
@@ -346,8 +366,4 @@ public abstract class Card implements Serializable {
      * @return (abstract) intended to be overridden by subclasses
      */
     abstract public ArrayList<Resources> getPermanentResource();
-
-
 }
-
-

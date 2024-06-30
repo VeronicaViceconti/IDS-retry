@@ -289,8 +289,8 @@ public class TUI extends  View {
 
 
             //we arrived to the card we have to print
-            topSingleCard(searchedUpperCard, (searchedUpperCard.getCorner().get(0).getCovered()==null),
-                    (searchedUpperCard.getCorner().get(1).getCovered() == null));
+            topSingleCard(searchedUpperCard, !(searchedUpperCard.getCorner().get(0).getCovered()),
+                    !(searchedUpperCard.getCorner().get(1).getCovered() ));
             printSpaceOneCard(5);
 
 
@@ -366,10 +366,6 @@ public class TUI extends  View {
                    System.out.print(" ");
                }
            }*/
-
-
-
-
         System.out.println();
     }
 
@@ -445,16 +441,16 @@ public class TUI extends  View {
 
             //we arrived to the card we have to print
             if (nextCard) { //next one is from the row above
-                bottomSingleCard(searchedUpperCard, (searchedUpperCard.getCorner().get(2).getCovered() == null),
-                        (searchedUpperCard.getCorner().get(3).getCovered() == null));
+                bottomSingleCard(searchedUpperCard, !(searchedUpperCard.getCorner().get(2).getCovered()),
+                        !(searchedUpperCard.getCorner().get(3).getCovered() ));
                 prev = currXUp;
                 searchedUpperCard = nextCardToPrint(map, alt, currXUp);
                 currXUp = (searchedUpperCard != null) ? map.get(searchedUpperCard)[0] : null;
 
 
             } else { //from the row under
-                topSingleCard(searchedLowerCard, (searchedLowerCard.getCorner().get(0).getCovered() == null),
-                        (searchedLowerCard.getCorner().get(1).getCovered() == null));
+                topSingleCard(searchedLowerCard, !(searchedLowerCard.getCorner().get(0).getCovered() ),
+                        !(searchedLowerCard.getCorner().get(1).getCovered() ));
 
 
                 prev = currXDown;
