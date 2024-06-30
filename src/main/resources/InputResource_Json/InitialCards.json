@@ -6,28 +6,28 @@
         "resource": "FUNGI",
         "number": 1,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "PLANT",
         "number": 2,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "INSECT",
         "number": 3,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "ANIMAL",
         "number": 4,
         "visible": true,
-        "covered": false
+        "covered":false
       }
     ],
     "id": 1,
@@ -44,28 +44,28 @@
         "resource": "PLANT",
         "number": 1,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "ANIMAL",
         "number": 2,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "FUNGI",
         "number": 3,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "INSECT",
         "number": 4,
         "visible": true,
-        "covered": false
+        "covered":false
       }
     ],
     "id": 2,
@@ -82,28 +82,28 @@
         "resource": "INSECT",
         "number": 1,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "ANIMAL",
         "number": 2,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "FUNGI",
         "number": 3,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "PLANT",
         "number": 4,
         "visible": true,
-        "covered": false
+        "covered":false
       }
     ],
     "id": 3,
@@ -120,28 +120,28 @@
         "resource": "PLANT",
         "number": 1,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "INSECT",
         "number": 2,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "ANIMAL",
         "number": 3,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "FUNGI",
         "number": 4,
         "visible": true,
-        "covered": false
+        "covered":false
       }
     ],
     "id": 4,
@@ -158,28 +158,28 @@
         "resource": "INSECT",
         "number": 1,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "FUNGI",
         "number": 2,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "PLANT",
         "number": 3,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "ANIMAL",
         "number": 4,
         "visible": true,
-        "covered": false
+        "covered":false
       }
     ],
     "id": 5, "permanentResource": null,
@@ -195,28 +195,28 @@
         "resource": "FUNGI",
         "number": 1,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "ANIMAL",
         "number": 2,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "PLANT",
         "number": 3,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "INSECT",
         "number": 4,
         "visible": true,
-        "covered": false
+        "covered":false
       }
     ],
     "id": 6,
@@ -233,28 +233,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "PLANT",
         "number": 2,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "INSECT",
         "number": 3,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": false
+        "covered":false
       }
     ],
     "id": 7,
@@ -271,28 +271,28 @@
         "resource":"ANIMAL",
         "number": 1,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": "FUNGI",
         "number": 4,
         "visible": true,
-        "covered": false
+        "covered":false
       }
     ],
     "id": 8,
@@ -309,28 +309,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": false
+        "covered":false
       }
     ],
     "id": 9,
@@ -347,28 +347,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": false
+        "covered":false
       }
     ],
     "id": 10,
@@ -385,28 +385,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": false
+        "covered":false
       }
     ],
     "id": 11,
@@ -423,28 +423,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": false
+        "covered":false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": false
+        "covered":false
       }
     ],
     "id": 12,

@@ -1,25 +1,29 @@
 package it.polimi.sw.model;
 
+
 import java.io.Serializable;
 import java.util.Optional;
+
 
 /**
  * the class corner specifies the corner of a card
  */
 
+
 public class Corner implements Serializable {
     /**
      * an object in a corner, if present
      */
-   private Object object;
+    private Object object;
     /**
      * a resource in a corner, if present
      */
-   private Resources resource;
+    private Resources resource;
     /**
      * enumeration of corners 1-4, 1 is TopLeft, 2 TopRight, 3 BottomLeft, 4 BottomRight
      */
     private int number;
+
 
     /**
      * visible if it is possible to place a card over the corner
@@ -49,6 +53,7 @@ public class Corner implements Serializable {
      * Constructs a new `Corner` object with default values for its attributes.
      */
 
+
     public Corner() {
     }
     /**
@@ -56,6 +61,7 @@ public class Corner implements Serializable {
      *
      * @return The resource associated with this corner as a `Resources` enum value.
      */
+
 
     public Resources getResource() {  return resource;
     }
@@ -96,6 +102,7 @@ public class Corner implements Serializable {
      *
      * @param covered A boolean value indicating whether the corner should be visible (true) or hidden (false).
      */
+
 
     public void setVisible(boolean covered) {
         this.visible = covered;
