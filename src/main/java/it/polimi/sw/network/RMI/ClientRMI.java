@@ -40,6 +40,7 @@ public class ClientRMI extends Client implements Serializable,Runnable {
      */
     public ClientRMI(View view, String nickName) throws RemoteException, NotBoundException {
         super(view,nickName);
+        view.setNickname(nickName);
 
         new Thread(this).start();
         //mi connetto come osservatore della view

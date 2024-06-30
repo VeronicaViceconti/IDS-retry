@@ -28,6 +28,7 @@ public class Framework extends JFrame {
     private int chosen;
     private Integer[] coord;
     private JLabel cardChosen;
+    private String nickname;
 
     /**
      * Constructs a new Framework.
@@ -52,17 +53,6 @@ public class Framework extends JFrame {
 
         tp = new JTabbedPane(JTabbedPane.TOP);
 
-        /*// Crea un CountDownLatch con conteggio iniziale di 1
-        CountDownLatch latch = new CountDownLatch(1);
-
-        // Crea la finestra per il splash screen
-        JWindow splashScreen = new JWindow();
-        // Carica l'immagine
-        ImageIcon codex = new ImageIcon("src\\main\\resources\\graphicalResources\\mainView\\Slider-Codex-2-1920x1080.jpg");
-        Image img = codex.getImage().getScaledInstance(550,550, Image.SCALE_SMOOTH);
-        codex.setImage(img);
-        splashScreen.getContentPane().add(new JLabel(codex),BorderLayout.CENTER);*/
-
         add(new JScrollPane(tp));
         setVisible(true);
     }
@@ -76,8 +66,12 @@ public class Framework extends JFrame {
      */
     public void initializeCommonTable(Card fdG, Card fdR, ArrayList<Card> fuG, ArrayList<Card> fuR,ArrayList<Objective> commonObj){
         ctpt = new CommonTableANDPrivateTable(fdG,fdR,fuG,fuR,commonObj);
-        tp.add("Main Game",ctpt);
-        tp.add("Plateau&Chat",new JScrollPane(ps));
+
+        SwingUtilities.invokeLater(()->{
+            tp.add("Main Game",ctpt);
+            tp.add("Plateau&Chat",new JScrollPane(ps));
+        });
+
     }
 
     /**
@@ -134,6 +128,7 @@ public class Framework extends JFrame {
         Integer[] positionAndSide = new Integer[2];
         positionAndSide[0] = selection.getChosen();
         positionAndSide[1] = Integer.parseInt(selection.getSide());
+        cardChosen = selection.getCardChosen();
         return positionAndSide;
     }
 
@@ -146,7 +141,6 @@ public class Framework extends JFrame {
         coord = new Integer[2];
         ImageSelectionDialog selection = new ImageSelectionDialog(this, ctpt.getMyHandAndObjectivesAndCommonTable().getHo().cloneJLabelArray(),"Coordinates",avaiableCoords,false);
         selection.setVisible(true);
-        cardChosen = selection.getCardChosen();
         return selection.getCoord();
     }
 
@@ -183,10 +177,18 @@ public class Framework extends JFrame {
      *
      * @param gui refers to the gui in order to call a specific method when 'Im ready' button is clicked
      */
-    public void turnNotification(GUI gui){
+    public void turnNotification(GUI gui,String nickname){
         tp.setSelectedIndex(0);
         YourTurnDialog nytd = new YourTurnDialog(this,"<p>It's your turn! Flip the cards and, when you are ready, click the 'I'm ready' button! Or:<ul><li>Send a message!</li><li>Visit other player's manuscript!</li></ul></p>",500,200);
         nytd.setVisible(true);
+
+        this.nickname = nickname;
+        //set the tab pane to the player's turn
+        for (int i=0;i<this.ctpt.getManuscript().getAllManuscripts().size();i++) {
+            if(this.ctpt.getManuscript().getAllManuscripts().get(i).getNickname().equals(nickname)) {
+                ctpt.getManuscript().getTp().setSelectedIndex(i);
+            }
+        }
 
         ctpt.getMyHandAndObjectivesAndCommonTable().getHo().addReadyButton(gui);
     }
@@ -218,10 +220,6 @@ public class Framework extends JFrame {
             //quando il server manda la risposta, perchè ora non so qual è la prossima carta nel facedown!
             OptionDialog od2 = new OptionDialog(this,"Gold deck","Resource deck","Select the deck from which draw a card!");
             od2.setVisible(true);
-            /*if(od2.selectedOption == 1)
-                System.out.println("selezionato gold deck facedown");
-            else
-                System.out.println("Selezionato resource deck facedown");*/
             infoCard.add(od2.selectedOption);
             return infoCard;
         }else{//ha selezionato che vuole pescare dai faceup, gli chiedo da quale dei 2 + quale delle due carte
@@ -296,12 +294,18 @@ public class Framework extends JFrame {
 
     }
 
-    public void updateManuscript(String nickname, Integer x, Integer y) {
-        for (Manuscript ms: this.ctpt.getManuscript().getAllManuscripts()) {
-            if(ms.getNickname().equals(nickname))
-                ms.updateManuscript(cardChosen,x,y);
-        }
+    public void updateManuscript(String nickname, Card card,Integer x, Integer y) {
 
+        for (int i=0;i<this.ctpt.getManuscript().getAllManuscripts().size();i++) {
+            System.out.println("Nickname found "+this.ctpt.getManuscript().getAllManuscripts().get(i).getNickname());
+
+            if(this.ctpt.getManuscript().getAllManuscripts().get(i).getNickname().equals(nickname)) {
+                this.ctpt.getManuscript().getAllManuscripts().get(i).updateManuscript(card, x, y);
+            }
+            if(this.ctpt.getManuscript().getAllManuscripts().get(i).getNickname().equals(this.nickname)) {
+                ctpt.getManuscript().getTp().setSelectedIndex(i);
+            }
+        }
     }
 
 

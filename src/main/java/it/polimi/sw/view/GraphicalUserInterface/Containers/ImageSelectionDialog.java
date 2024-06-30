@@ -261,6 +261,7 @@ public class ImageSelectionDialog extends JDialog {
 
                             // new JLabel with same ImageIcon
                             cardChosen = new JLabel(icon);
+                            System.out.println("Card chosen! "+cardChosen.getIcon());
 
                             // Opzionalmente, copia altre proprietà del JLabel originale
                             cardChosen.setText(hand.get(chosen - 1).getText());

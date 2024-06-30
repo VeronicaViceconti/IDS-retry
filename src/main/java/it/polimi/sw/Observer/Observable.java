@@ -124,15 +124,16 @@ public abstract class Observable <T> implements Serializable {
             }
         }
     }
+
     /**
      * Notifies all registered observers for view-related updates to request data about other players.
      * Iterates through the list of observers and calls their `requestData` method.
      */
-
     public void requestOtherData(){
            for(Observer observer: observersView){
                observer.requestData(); //inside there should be control, who asked data
            }
     }
+
 
 }

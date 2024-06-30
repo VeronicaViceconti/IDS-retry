@@ -4,6 +4,7 @@ import it.polimi.sw.model.Card;
 import it.polimi.sw.model.Objective;
 import it.polimi.sw.model.Player;
 import it.polimi.sw.network.Client;
+import it.polimi.sw.view.GraphicalUserInterface.GUI;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -65,11 +66,16 @@ public class SecretObjReply extends SampleServerMessage {
             client.getView().savePlayerHandBack(myHandBack);
             client.getView().chatWait();
             client.getView().showPlayerTable(manuscript);
+
             client.getView().secObjtoChoose(secObjOne, secObjTwo);
             client.getView().chatUnblockWait();
         }else{
-            if(client.getMatch().getAPlayer(player) != null) //there is the player in the client match
+            if(client.getMatch().getAPlayer(player) != null) { //there is the player in the client match
                 client.getMatch().getAPlayer(player).setMap(manuscript);
+                if(client.getView() instanceof GUI) {
+                    client.getView().updatePlayerPlayCard(player, manuscript.keySet().iterator().next(), 0, 0, null, null, null, 0);
+                }
+            }
         }
     }
 }

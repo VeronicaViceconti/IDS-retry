@@ -35,4 +35,5 @@ public interface Observer <T> {
      * The specific implementation of how data is requested depends on the specific use case.
      */
     void requestData();
+
 }

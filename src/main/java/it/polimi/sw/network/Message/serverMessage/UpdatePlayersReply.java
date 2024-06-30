@@ -3,6 +3,7 @@ package it.polimi.sw.network.Message.serverMessage;
 import it.polimi.sw.model.Card;
 import it.polimi.sw.model.Player;
 import it.polimi.sw.network.Client;
+import it.polimi.sw.view.GraphicalUserInterface.GUI;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -92,6 +93,8 @@ public class UpdatePlayersReply extends SampleServerMessage {
                     p.addCardToMap(playedCard,x,y);
                     p.setPoints(points);
                     p.addToTimeline(playedCard);
+                    if(client.getView() instanceof GUI)
+                        client.getView().updatePlayerPlayCard(p,playedCard,x,y,null,null,null,points);
                 }
             }
         }

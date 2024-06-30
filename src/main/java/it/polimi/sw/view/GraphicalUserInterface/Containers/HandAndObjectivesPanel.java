@@ -103,12 +103,11 @@ public class HandAndObjectivesPanel extends JPanel {
         if(handd.size() == 1) { //inizio del gioco
             if (handd.getFirst().getClass().getName().substring(19).equalsIgnoreCase("InitialCard")) {
                 if(handd.getFirst().getSide() == 1){
-                    path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"initialCardFront"+File.separator+"";
+                    path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"InitialCardFront"+File.separator+"";
                     side = "1";
-                }else{ path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"initialCardBack"+File.separator+"";
+                }else{ path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"InitialCardBack"+File.separator+"";
                     side = "2";
                 }
-
                 ImageIcon handImage = new ImageIcon(path + String.format("%03d", handd.getFirst().getId()) + ".png");
                 img = handImage.getImage().getScaledInstance(widthImage, heightImage, Image.SCALE_SMOOTH);
                 handImage.setImage(img);
@@ -121,24 +120,14 @@ public class HandAndObjectivesPanel extends JPanel {
         }else { //qualsiasi hand dopo il primo giro con la initialCard
             for (Card c : handd) {
                 //assegno il giusto path
-                if (c.getClass().getName().substring(19).equalsIgnoreCase("GoldCard")) {
-                    if (c.getSide() == 1) {
-                        path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"goldCardFront"+File.separator+"";
-                        side = "1";
-                    }else {
-                        path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"goldCardBack"+File.separator+"";
-                        side = "2";
-                    }
-                } else {
-                    if (c.getSide() == 1) {
-                        path = "src"+File.separator+"main"+File.separator+"resources"+ File.separator+"graphicalResources"+File.separator+"resourceCardFront"+File.separator+"";
-                        side = "1";
-                    }else {
-                        path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"resourceCardBack"+File.separator+"";
-                        side = "2";
-                    }
+                path = "src/main/resources/graphicalResources/"+c.getClass().getName().substring(19);
+                if(c.getSide() == 1) {
+                    path += "Front/";
+                    side = "1";
+                }else {
+                    path += "Back/";
+                    side = "2";
                 }
-
                 //inserisco le immagini
                 ImageIcon handImage = new ImageIcon(path + String.format("%03d", c.getId()) + ".png");
                 img = handImage.getImage().getScaledInstance(widthImage, heightImage, Image.SCALE_SMOOTH);

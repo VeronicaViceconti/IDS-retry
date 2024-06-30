@@ -15,16 +15,28 @@ public class ManuscriptsMainPanel extends JPanel {
         tp = new JTabbedPane(JTabbedPane.TOP);
         allManuscripts = new ArrayList<>();
 
-        add(new JScrollPane(tp));
+        add(new JScrollPane(tp),BorderLayout.CENTER);
 
+        setVisible(true);
     }
 
     public void createTabbedManuscripts(ArrayList<String> names) {
-        //for each player, create its tab manuscript
-        for (String name: names) {
-            allManuscripts.add(new Manuscript(name));
-            tp.add(name, new JScrollPane(allManuscripts.getLast()));
-        }
+
+        SwingUtilities.invokeLater(() -> {
+            //for each player, create its tab manuscript
+            for (String name: names) {
+                Manuscript manuscript = new Manuscript(name);
+                JScrollPane scrollPane = new JScrollPane(manuscript);
+
+                tp.add(name, scrollPane);
+                allManuscripts.add(manuscript);
+            }
+        });
+
+    }
+
+    public JTabbedPane getTp() {
+        return tp;
     }
 
     public ArrayList<Manuscript> getAllManuscripts() {

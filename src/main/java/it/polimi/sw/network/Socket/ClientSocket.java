@@ -38,6 +38,7 @@ public class ClientSocket extends Client implements Observer, Runnable, Serializ
      */
     public ClientSocket(String serveraddress, int serverport, View view,String nickname) {
         super(view,nickname);
+        view.setNickname(nickName);
         Socket socket = null;
         try {
             socket = new Socket();
@@ -245,6 +246,7 @@ public class ClientSocket extends Client implements Observer, Runnable, Serializ
                 break;
             case RESEND_NICKNAME:
                 nickName = ((ResendingNickname)message).getNicknname();
+                view.setNickname(nickName);
                 resendNickname();
         }
     }

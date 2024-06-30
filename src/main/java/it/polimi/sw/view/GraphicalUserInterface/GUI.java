@@ -17,6 +17,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This class represents the graphical user interface (GUI) for a client application.
@@ -175,7 +176,7 @@ public class GUI extends View {
             this.backHand = new ArrayList<>(handBack);
         }
 
-        frame.turnNotification(this);
+        frame.turnNotification(this,nickname);
 
     }
 
@@ -225,13 +226,14 @@ public class GUI extends View {
         if(hand != null && handBack != null){
             this.frontHand = new ArrayList<>(hand);
             this.backHand = new ArrayList<>(handBack);
+            this.frame.updatePlayerResAndObj(numOfResourceAndObject);
         }
 
-        //aggiornamento carta nel manoscritto -> ishmeet
-        this.frame.updateManuscript(nickname,x,y);
+        System.out.println("Update manuscript");
+        this.frame.updateManuscript(p.getNickName(),c,x,y);
 
         //updates points and resources
-        this.frame.updatePlayerResAndObj(numOfResourceAndObject);
+
         this.frame.updatePoints(p.getPion(),points);
     }
 
@@ -281,6 +283,9 @@ public class GUI extends View {
     @Override
     public void showPlayerTable(HashMap<Card, Integer[]> map) {
             //da fare, viene usato quando il giocatore richiede di vedere il manoscritto degli altri
+        for (Map.Entry<Card, Integer[] > card :map.entrySet()) {
+            frame.updateManuscript(nickname,map.keySet().iterator().next(),card.getValue()[0],card.getValue()[1]);
+        }
     }
 
     /**
@@ -339,7 +344,7 @@ public class GUI extends View {
      */
     @Override
     public void readPlayCardInput() {
-        this.frame.turnNotification(this);
+        this.frame.turnNotification(this,nickname);
     }
 
     /**

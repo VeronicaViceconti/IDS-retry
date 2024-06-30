@@ -76,7 +76,7 @@ public class CommonTablePanel extends JPanel {
      * @param fuR face up resources
      */
     public void addCommonTable(Card fdG, Card fdR, ArrayList<Card> fuG, ArrayList<Card> fuR){
-        String path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"goldCardBack"+File.separator+"";
+        String path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"GoldCardBack"+File.separator+"";
 
         JLabel cardDescription = new JLabel("Decks: ");
         gbc.insets = new Insets(15, 0, 5, 40);
@@ -104,7 +104,7 @@ public class CommonTablePanel extends JPanel {
 
 
         //gestione immagini FACE UP GOLD
-        path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"goldCardFront"+File.separator+"";
+        path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"GoldCardFront"+File.separator+"";
         gbc.insets = new Insets(0, 10, 10, 10);
         fuGLabel = new ArrayList<>();
 
@@ -126,7 +126,7 @@ public class CommonTablePanel extends JPanel {
         }
 
         //gestione immagine FACE DOWN RESOURCE
-        path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"resourceCardBack"+File.separator+"";
+        path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"ResourceCardBack"+File.separator+"";
         ImageIcon fdRImage = new ImageIcon(path + String.format("%03d", fdR.getId()) +".png");
         img = fdRImage.getImage().getScaledInstance(widthImage,heightImage,Image.SCALE_SMOOTH);
         fdRImage.setImage(img);
@@ -141,7 +141,7 @@ public class CommonTablePanel extends JPanel {
         //gestione immagini FACE UP RESOURCE
         fuRLabel = new ArrayList<>();
         gbc.insets = new Insets(10, 10, 10, 10);
-        path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"resourceCardFront"+File.separator+"";
+        path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"ResourceCardFront"+File.separator+"";
 
         for (Card c:fuR) {
             ImageIcon fuRImage = new ImageIcon(path + String.format("%03d", c.getId())+".png");
