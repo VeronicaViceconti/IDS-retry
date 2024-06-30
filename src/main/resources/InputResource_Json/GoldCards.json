@@ -6,28 +6,28 @@
         "resource": null,
         "number": 1,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": "INKWELL",
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 1,
@@ -48,28 +48,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": "QUILL",
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
       ],
       "points": 1,
@@ -90,28 +90,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 1,
@@ -132,28 +132,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 2,
@@ -174,28 +174,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 2,
@@ -216,28 +216,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 2,
@@ -258,28 +258,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": "QUILL",
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 3,
@@ -300,28 +300,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 3,
@@ -342,28 +342,28 @@
         "resource": null,
         "number": 1,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": "MANUSCRIPT",
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 3,
@@ -384,28 +384,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 5,
@@ -426,28 +426,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 1,
@@ -468,28 +468,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": "MANUSCRIPT",
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 1,
@@ -510,28 +510,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": "QUILL",
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 1,
@@ -552,28 +552,28 @@
         "resource": null,
         "number": 1,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 2,
@@ -594,28 +594,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 2,
@@ -636,28 +636,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 2,
@@ -678,28 +678,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": "INKWELL",
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 3,
@@ -720,28 +720,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 3,
@@ -762,28 +762,28 @@
         "resource": null,
         "number": 1,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": "QUILL",
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 3,
@@ -804,28 +804,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 5,
@@ -846,28 +846,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 1,
@@ -888,28 +888,28 @@
         "resource": null,
         "number": 1,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": "MANUSCRIPT",
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 1,
@@ -930,28 +930,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": "INKWELL",
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 1,
@@ -972,28 +972,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 2,
@@ -1014,28 +1014,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 2,
@@ -1056,28 +1056,28 @@
         "resource": null,
         "number": 1,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 2,
@@ -1098,28 +1098,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": "MANUSCRIPT",
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 3,
@@ -1140,28 +1140,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": "QUILL",
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 3,
@@ -1182,28 +1182,28 @@
         "resource": null,
         "number": 1,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": "INKWELL",
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 3,
@@ -1224,28 +1224,28 @@
         "resource": null,
         "number": 1,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 5,
@@ -1266,28 +1266,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": "INKWELL",
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 1,
@@ -1308,28 +1308,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": "MANUSCRIPT",
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 1,
@@ -1350,28 +1350,28 @@
         "resource": null,
         "number": 1,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": "QUILL",
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 1,
@@ -1392,28 +1392,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 2,
@@ -1434,28 +1434,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 2,
@@ -1476,28 +1476,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 2,
@@ -1518,28 +1518,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 3,
@@ -1560,28 +1560,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": "MANUSCRIPT",
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 3,
@@ -1602,28 +1602,28 @@
         "resource": null,
         "number": 1,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": "INKWELL",
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 3,
@@ -1644,28 +1644,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": false,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": false,
-        "covered": null
+        "covered": false
       }
     ],
     "points": 5,
@@ -1686,28 +1686,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -1728,28 +1728,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -1770,28 +1770,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -1812,28 +1812,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -1854,28 +1854,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -1896,28 +1896,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -1938,28 +1938,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -1980,28 +1980,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2022,28 +2022,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2064,28 +2064,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2106,28 +2106,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2148,28 +2148,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2190,28 +2190,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2232,28 +2232,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2274,28 +2274,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2316,28 +2316,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2358,28 +2358,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2400,28 +2400,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2442,28 +2442,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2484,28 +2484,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2526,28 +2526,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2568,28 +2568,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2610,28 +2610,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2652,28 +2652,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2694,28 +2694,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2736,28 +2736,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2778,28 +2778,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2820,28 +2820,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2862,28 +2862,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2904,28 +2904,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2946,28 +2946,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -2988,28 +2988,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -3030,28 +3030,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -3072,28 +3072,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -3114,28 +3114,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -3156,28 +3156,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -3198,28 +3198,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -3240,28 +3240,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -3282,28 +3282,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,
@@ -3324,28 +3324,28 @@
         "resource": null,
         "number": 1,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 2,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 3,
         "visible": true,
-        "covered": null
+        "covered": false
       },
       {
         "object": null,
         "resource": null,
         "number": 4,
         "visible": true,
-        "covered": null
+        "covered": false
       }
     ],
     "points": null,

@@ -374,6 +374,11 @@ public class GUI extends View {
         this.frame.createTabbedManuscripts(names);
     }
 
+    @Override
+    public void gameAlmostFinished() {
+
+    }
+
     //not used in gui
     @Override
     public void showCommonObjectives(ArrayList<Objective> obj) {

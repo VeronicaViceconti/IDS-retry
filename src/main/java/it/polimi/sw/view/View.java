@@ -313,4 +313,5 @@ public abstract class View extends Observable {
 
 
     abstract public void createTabbedManuscripts(ArrayList<String> names) ; //used in gui to set up the tab panes
+    abstract public void gameAlmostFinished();
 }

@@ -28,7 +28,7 @@ public class Corner implements Serializable {
     /**
      * corner may be covered by another card. may change during the game. by default a corner is not covered
      */
-    private Card covered;
+    private boolean covered;
     /**
      * Constructs a new `Corner` object with the specified attributes.
      *
@@ -38,7 +38,7 @@ public class Corner implements Serializable {
      * @param visible A boolean flag indicating whether this corner is visible or not.
      * @param covered A `Card` object representing the card covering this corner (if any). Can be null if not covered.
      */
-    public Corner(Object object,Resources resource,int number,boolean visible,Card covered) {
+    public Corner(Object object,Resources resource,int number,boolean visible,boolean covered) {
         this.object = object;
         this.resource = resource;
         this.number = number;
@@ -103,10 +103,9 @@ public class Corner implements Serializable {
     /**
      * Sets the card covering this corner (if any).
      *
-     * @param covered A `Card` object representing the card that covers this corner, or null if not covered.
      */
-    public void setCovered(Card covered) {
-        this.covered = covered;
+    public void setCovered() {
+        this.covered = true;
     }
     /**
      * Retrieves the object associated with this corner.
@@ -129,7 +128,7 @@ public class Corner implements Serializable {
      *
      * @return A `Card` object representing the card that covers this corner, or null if not covered.
      */
-    public Card getCovered() {
+    public boolean getCovered() {
         return covered;
     }
     /**

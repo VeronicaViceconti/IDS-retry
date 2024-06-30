@@ -5,6 +5,8 @@ import it.polimi.sw.network.Message.serverMessage.*;
 
 import java.util.*;
 
+import static it.polimi.sw.model.GameState.PLACECARD;
+
 public class Game extends Observable {
     /**
      * Unique id of the game.
@@ -450,6 +452,8 @@ public class Game extends Observable {
         //controller passa un giocatore playerX dopo il controllo che quello sia connesso
         this.currPlayer = playerX;
         notify(new TurnReply(playerX, playerX.getAvailablePositions()));
+        setGameState(PLACECARD);
+
     }
 
 

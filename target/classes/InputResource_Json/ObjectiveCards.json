@@ -66,8 +66,8 @@
     "condition": {
       "id": 7,
       "typeOfObjective": "TwoSameColourOneDiffersPlacing",
-      "colour1": "red",
-      "colour2": "blue",
+      "colour1": "blue",
+      "colour2": "red",
       "firstOrientationCornerCheck": 3
     },
     "chosen": false

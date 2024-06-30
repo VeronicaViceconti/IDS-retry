@@ -120,5 +120,9 @@ public enum TypeMessageServer {
     /**
      * Message type for chat replies from the server to the client.
      */
-    CHAT_REPLY
+    CHAT_REPLY,
+    /*
+    a player has finished his game, but still has to wait other players to count points
+     */
+    GAME_ALMOST_DONE
 }
