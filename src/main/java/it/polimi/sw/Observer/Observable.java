@@ -8,6 +8,8 @@ import it.polimi.sw.network.Message.ViewMessage.SendingChatMessage;
 import it.polimi.sw.network.Message.ViewMessage.TypeMessageView;
 import it.polimi.sw.network.Message.serverMessage.ErrorType;
 import it.polimi.sw.network.Message.serverMessage.SampleServerMessage;
+import it.polimi.sw.network.RMI.ClientHandlerRMI;
+import it.polimi.sw.network.Socket.ClientHandlerSOCKET;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -84,6 +86,25 @@ public abstract class Observable <T> implements Serializable {
          }
      }
  }
+    public void singleNotify(SampleServerMessage message, ClientHandlerSOCKET clientHandlerSOCKET){
+        if (observers.contains(clientHandlerSOCKET)) {
+            try {
+                clientHandlerSOCKET.update(message);
+            } catch (RemoteException e) {
+                return;
+            }
+        }
+    }
+    public void singleNotify(SampleServerMessage message, ClientHandlerRMI clientHandlerRMI){
+        if (observers.contains(clientHandlerRMI)) {
+            try {
+                clientHandlerRMI.update(message);
+            } catch (RemoteException e) {
+                return;
+            }
+        }
+    }
+
     /**
      * Returns a copy of the list of observers for server-side updates.
      *

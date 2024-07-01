@@ -4,6 +4,7 @@ import it.polimi.sw.controller.GameControllerServer;
 import it.polimi.sw.network.CommonGameLogicServer;
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
 
 /**
  * abstract class that is extended to specific messages. from client to server
