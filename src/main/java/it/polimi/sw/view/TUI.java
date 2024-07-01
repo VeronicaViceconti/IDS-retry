@@ -1895,7 +1895,7 @@ public class TUI extends  View {
      */
     @Override
     public void showGameStart() {
-        System.out.println("\n \n \n \n \n Welcome to CODEX NATURALIS!");
+        System.out.println("\n \n \n \n \nWelcome to CODEX NATURALIS!");
         System.out.println("Master the art of four elements, gather resources and create the strongest manuscript!");
         System.out.println("Here are the basic rules:");
         System.out.println();

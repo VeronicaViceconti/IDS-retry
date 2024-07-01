@@ -274,7 +274,7 @@ public abstract class View extends Observable {
         int selection = 0;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.println("This are the available pions:");
+        System.out.println("These are the available pions:");
         for (Pion pion:availablePions) {
             System.out.println("-"+pion.toString().replace("_"," "));
         }
