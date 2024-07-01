@@ -12,7 +12,7 @@ Interazione attraverso linea di comando (CLI) oppure grafica (GUI).
 
 ### UML 
 
-Di seguito è riportato il diagramma UML generale generato automaticamente da Intellij: [UML generale](https://github.com/ishmeet786/ing-sw-2024-raibaldi-viceconti-siao-singh/blob/main/deliverables/UML/Uml%20generated.png)
+Di seguito è riportato il diagramma UML generale generato automaticamente da Intellij: [UML generale](https://github.com/VeronicaViceconti/IDS-retry/blob/master/deliverables/UML/Uml%20generated.png) 
 
 ### Coverege 
 
@@ -41,7 +41,7 @@ Funzionalità avanzate:
 
 ### JARS 
 
-Si possono scaricare i JAR inerenti al progetto al seguente link: [JAR](https://github.com/ishmeet786/ing-sw-2024-raibaldi-viceconti-siao-singh/blob/main/deliverables/JAR/gc09.zip)
+Si possono scaricare i JAR inerenti al progetto al seguente link: [JAR]
 
 ## Esecuzione 
 
