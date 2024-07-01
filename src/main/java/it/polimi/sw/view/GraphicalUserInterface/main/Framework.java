@@ -3,6 +3,8 @@ package it.polimi.sw.view.GraphicalUserInterface.main;
 import it.polimi.sw.model.Card;
 import it.polimi.sw.model.Objective;
 import it.polimi.sw.model.Pion;
+import it.polimi.sw.model.Player;
+import java.util.List;
 import it.polimi.sw.network.Message.serverMessage.ErrorType;
 import it.polimi.sw.view.GraphicalUserInterface.Containers.CommonTableANDPrivateTable;
 import it.polimi.sw.view.GraphicalUserInterface.Containers.ImageSelectionDialog;
@@ -314,6 +316,14 @@ public class Framework extends JFrame {
         }
     }
 
+    public void announceWinners(List<Player> winners){
+        StringBuilder s = new StringBuilder(" ");
+        for (Player p: winners) {
+            s.append(p.getNickName()).append(", ");
+        }
+        YourTurnDialog finalDialog = new YourTurnDialog(this, "The winners are :"+s,450,350);
+        finalDialog.setVisible(true);
+    }
 
     public void createTabbedManuscripts(ArrayList<String> names) {
         ctpt.getManuscript().createTabbedManuscripts(names);
@@ -339,7 +349,11 @@ public class Framework extends JFrame {
             super(mainFrame, "Notification", true); // Imposta il dialog come modale
             setSize(width,height);
             setLayout(new GridBagLayout());
-            setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            if(notification.startsWith("The winner")) {
+                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                System.exit(0);
+            }else
+                setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
             // Posiziona la finestra al centro dello schermo
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -377,6 +391,8 @@ public class Framework extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     dispose(); // Chiude la finestra quando scade il timer
+                    if(notification.startsWith("The winner"))
+                        System.exit(0);
                     if(timer != null)
                         timer.stop();
                 }

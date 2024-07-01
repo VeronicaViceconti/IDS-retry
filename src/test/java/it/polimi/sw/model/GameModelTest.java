@@ -1,11 +1,13 @@
 package it.polimi.sw.model;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -35,17 +37,24 @@ public class GameModelTest {
         List<GoldCard> newGoldCard = null;
         ArrayList<Objective> newObjectiveCards = null;
         try {
-            newResourceCard = objectMapper.readValue(new File("src/main/resources/InputResource_Json/ResourceCards.json"),
+            InputStream resourceStream = getClass().getClassLoader().getResourceAsStream("/ResourceCards.json");
+
+            newResourceCard = objectMapper.readValue(resourceStream,
                     objectMapper.getTypeFactory().constructCollectionType(List.class, ResourceCard.class)
             );
-            newGoldCard = objectMapper.readValue(new File("src/main/resources/InputResource_Json/GoldCards.json"),
+            resourceStream = getClass().getClassLoader().getResourceAsStream("/GoldCards.json");
+
+            newGoldCard = objectMapper.readValue(resourceStream,
                     objectMapper.getTypeFactory().constructCollectionType(List.class, GoldCard.class)
             );
-            newInitialCard = objectMapper.readValue(new File("src/main/resources/InputResource_Json/InitialCards.json"),
+            resourceStream = getClass().getClassLoader().getResourceAsStream("/InitialCards.json");
+
+            newInitialCard = objectMapper.readValue(resourceStream,
                     objectMapper.getTypeFactory().constructCollectionType(List.class, InitialCard.class)
             );
-            newObjectiveCards = objectMapper.readValue(
-                    new File("src/main/resources/InputResource_Json/ObjectiveCards.json"),
+            resourceStream = getClass().getClassLoader().getResourceAsStream("ObjectiveCards.json");
+
+            newObjectiveCards = objectMapper.readValue(resourceStream,
                     objectMapper.getTypeFactory().constructCollectionType(List.class, Objective.class)
             );
             objectiveCards.addAll(newObjectiveCards);

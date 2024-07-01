@@ -4,7 +4,6 @@ import it.polimi.sw.model.Card;
 import it.polimi.sw.model.Objective;
 import it.polimi.sw.model.Pion;
 import it.polimi.sw.model.Player;
-import it.polimi.sw.network.Client;
 import it.polimi.sw.network.Message.ViewMessage.SendingCardPlayed;
 import it.polimi.sw.network.Message.ViewMessage.SendingCardToDraw;
 import it.polimi.sw.network.Message.ViewMessage.SendingPrivateObjective;
@@ -213,7 +212,7 @@ public class GUI extends View {
 
     @Override
     public void announceWinner(List<Player> winner) {
-
+        frame.announceWinners(winner);
     }
 
     /**
