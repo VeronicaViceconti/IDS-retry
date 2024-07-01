@@ -27,6 +27,7 @@ public class PlayerNumberAndPionRequest extends SampleClientMessage {
         this.pion = pion;
         this.nickname = nickname;
     }
+
     /**
      * Getter method to access the player's chosen nickname.
      *

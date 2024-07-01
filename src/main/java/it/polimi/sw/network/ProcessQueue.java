@@ -43,7 +43,11 @@ public class ProcessQueue implements Runnable {
         while (!Thread.currentThread().isInterrupted()) {
             SampleClientMessage message = queueHandler.getNextMessage();
             if (message != null) {
-                processMessage(message);
+                try {
+                    processMessage(message);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
             } else {
                 try {
                     Thread.sleep(700); // to avoid busy-waiting
@@ -68,7 +72,7 @@ public class ProcessQueue implements Runnable {
      *
      * @param message the message received from the client
      */
-    private void processMessage(SampleClientMessage message) {
+    private void processMessage(SampleClientMessage message) throws RemoteException {
         // Check message content
         switch(message.getType()){
             case CONNECTION_REQUEST -> {
@@ -200,18 +204,20 @@ public class ProcessQueue implements Runnable {
                 int lobbyid = (message).getClientLobbyReference();
                 Boolean flag = false;
                 Pion pion = ((PlayerNumberAndPionRequest)message).getPion();
-                Pion []allPions = new Pion[]{Pion.pion_blue,Pion.pion_yellow,Pion.pion_red,Pion.pion_green};
+                Pion [] allPions = new Pion[]{Pion.pion_blue,Pion.pion_yellow,Pion.pion_red,Pion.pion_green};
                 ArrayList<Pion> pions = new ArrayList<>(Arrays.asList(allPions));
                 for (Player p : server.getLobbyReference().get(lobbyid).getCurrgame().getTotPlayers()) {
-                   if(p.getPion().equals(pion)){
-                       flag = true;
-                       pions.remove(p.getPion());
-                       break;
-                   } //if pion isn't in the list, it won't be removed
+                    if(p.getPion().equals(pion))
+                        flag = true;
+                    pions.remove(p.getPion());
                 }
                 if(flag){
                     //pion already got by another player, send error
-                    server.getLobbyReference().get(lobbyid).getCurrgame().notify(new SendingPionErrorReply(pions));
+                    if(server.getHandlerForClient_Map_RMI().get(((PlayerNumberAndPionRequest)message).getNickname()) == null){
+                        server.getHandlerForClient_Map().get(((PlayerNumberAndPionRequest)message).getNickname()).update(new SendingPionErrorReply(pions));
+                    }else{
+                        server.getHandlerForClient_Map_RMI().get(((PlayerNumberAndPionRequest)message).getNickname()).update(new SendingPionErrorReply(pions));
+                    }
                 }else {
                     int numberofPlayer = ((PlayerNumberAndPionRequest)message).getNum();
                     Player player = new Player(((PlayerNumberAndPionRequest)message).getNickname(), pion);

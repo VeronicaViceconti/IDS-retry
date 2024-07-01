@@ -26,6 +26,6 @@ public class SendingPionErrorReply extends SampleServerMessage {
     @Override
     public void execute(Client client) {
         System.out.println("Pion selection gone wrong, rechoose:\n");
-        client.getView().selectNumberOfplayerInMatch();
+        client.getView().selectPion(availablePions);
     }
 }
