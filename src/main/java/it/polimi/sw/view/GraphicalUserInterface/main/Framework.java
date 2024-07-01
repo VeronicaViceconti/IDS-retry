@@ -24,6 +24,8 @@ public class Framework extends JFrame {
     private PlateauAndChat ps;
     private CommonTableANDPrivateTable ctpt;
     private JTabbedPane tp;
+    private ArrayList<String> names;
+    private boolean ok;
 
     private int chosen;
     private Integer[] coord;
@@ -35,7 +37,10 @@ public class Framework extends JFrame {
      * Initializes Codex Naturalis Game.
      */
     public Framework(GUI gui) {
+
         super("Codex Naturalis");
+        ok = true;
+        this.names = new ArrayList<>();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension screenSize = toolkit.getScreenSize(); //used to take the PC dimensions
@@ -105,8 +110,8 @@ public class Framework extends JFrame {
      * Method invocated to create and add the pions in 0 points on the score board
      * @param pions, the pions of the players
      */
-    public void initializePions(ArrayList<Pion> pions){
-        this.ps.getPs().getPlateau().initializePions(pions);
+    public void initializePions(int indexMe,ArrayList<Pion> pions){
+        this.ps.getPs().getPlateau().initializePions(indexMe,pions);
     }
 
     /**
@@ -191,6 +196,9 @@ public class Framework extends JFrame {
         }
 
         ctpt.getMyHandAndObjectivesAndCommonTable().getHo().addReadyButton(gui);
+        if(ok)
+            ps.getChatPanel().setChatPlayers(nickname,names);
+        ok = false;
     }
 
     /**
@@ -297,8 +305,6 @@ public class Framework extends JFrame {
     public void updateManuscript(String nickname, Card card,Integer x, Integer y) {
 
         for (int i=0;i<this.ctpt.getManuscript().getAllManuscripts().size();i++) {
-            System.out.println("Nickname found "+this.ctpt.getManuscript().getAllManuscripts().get(i).getNickname());
-
             if(this.ctpt.getManuscript().getAllManuscripts().get(i).getNickname().equals(nickname)) {
                 this.ctpt.getManuscript().getAllManuscripts().get(i).updateManuscript(card, x, y);
             }
@@ -311,6 +317,7 @@ public class Framework extends JFrame {
 
     public void createTabbedManuscripts(ArrayList<String> names) {
         ctpt.getManuscript().createTabbedManuscripts(names);
+        this.names = names;
     }
 
     /**
@@ -415,7 +422,7 @@ public class Framework extends JFrame {
             super(mainFrame, "Select the deck", true); // Imposta il dialog come modale
             setSize(300, 200);
             setLayout(new GridBagLayout());
-            setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
             // Posiziona la finestra al centro dello schermo
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

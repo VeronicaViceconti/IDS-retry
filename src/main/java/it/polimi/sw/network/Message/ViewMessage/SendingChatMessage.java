@@ -53,15 +53,4 @@ public class SendingChatMessage extends SampleViewMessage{
      */
     public boolean isPublic(){return toOne == null;}
 
-/*    public SampleClientMessage transformClientMex(int lobby, int idPLayer) {
-        SampleClientMessage mex;
-
-        if(isPublic()){
-             mex = new PublicChatRequest(lobby, playerMessage, idPLayer);
-
-        }else{
-             mex = new PrivateChatRequest(lobby, playerMessage, toOne, idPLayer);
-        }
-        return mex;
-    }*/
 }

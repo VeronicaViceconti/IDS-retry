@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 /**
  * This class likely represents a JPanel component for displaying and interacting with a chat functionality within a user interface.
@@ -32,7 +33,7 @@ public class ChatPanel extends JPanel{
      */
 
 
-    public ChatPanel(GUI gui,Dimension screenSize){
+    public ChatPanel(GUI gui, Dimension screenSize){
 
         chat=new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -91,25 +92,23 @@ public class ChatPanel extends JPanel{
 
         add(send,buttonConstraints);
 
-
-
         GridBagConstraints menuConstraints = new GridBagConstraints();
         menuConstraints.gridx = 2;
         menuConstraints.gridy = 1;
-        String[] opzioniSend={"All","Player1","Player2","Player3","Player4"};
-        menuSendTo=new JComboBox(opzioniSend);
+
+        menuSendTo = new JComboBox();
         menuSendTo.setPreferredSize(new Dimension(50,20));
         add(menuSendTo,menuConstraints);
 
         send.addActionListener(e -> {
-            if(menuSendTo.getSelectedItem().equals("All")){
+            if(menuSendTo.getSelectedItem().toString().equals("All")){
                 String messageText = sendMessage.getText();
                 gui.notify(new SendingChatMessage(messageText));
-                gui.showGameChat(messageText);
             }else{
+                System.out.println("MANDO A ->"+sendMessage.getText()+ "  "+menuSendTo.getSelectedItem().toString());
                 String messageText = sendMessage.getText();
-                gui.notify(new SendingChatMessage(messageText));
-                gui.showGameChat(messageText);
+                gui.notify(new SendingChatMessage(messageText,menuSendTo.getSelectedItem().toString()));
+                this.showGameChat("Send from me: "+messageText);
             }
             sendMessage.setText("");
         });
@@ -130,5 +129,19 @@ public class ChatPanel extends JPanel{
         receiveMessage.append(message + "\n");
     }
 
+
+    public void setChatPlayers(String me, ArrayList<String> names){
+        String[] namesArray = new String[names.size()];
+        names.remove(me);
+
+        namesArray[0] = "All";
+        for(int i=1;i<=names.size();i++) {
+            namesArray[i] = names.get(i-1);
+        }
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(namesArray);
+
+        // Imposta il modello nel JComboBox
+        menuSendTo.setModel(model);
+    }
 
 }

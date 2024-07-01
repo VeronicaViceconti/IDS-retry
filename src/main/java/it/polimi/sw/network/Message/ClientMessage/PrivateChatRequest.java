@@ -20,8 +20,6 @@ public class PrivateChatRequest extends SampleClientMessage {
     private final String toWhom;
 
     private final int fromWhom;
-    private ClientHandlerSOCKET clientHandlerSOCKET;
-    private ClientHandlerRMI clientHandlerRMI;
 
     /**
      * Constructor for a PrivateChatRequest message.
@@ -31,25 +29,7 @@ public class PrivateChatRequest extends SampleClientMessage {
      * @param Nickname The nickname of the player intended to receive the message.
      * @param id_player The ID of the player sending the message.
      */
-    public PrivateChatRequest(int lobby,String message, String Nickname,int id_player, ClientHandlerRMI clientHandlerRMI){
-        super(TypeMessageClient.PRIVATE_MESSAGE_REQUEST,lobby,id_player);
-        this.mess = message;
-        this.toWhom = Nickname;
-        this.fromWhom = id_player;
-        this.clientHandlerRMI=clientHandlerRMI;
-        this.clientHandlerSOCKET=null;
-    }
-
-    public PrivateChatRequest(int lobby,String message, String Nickname,int id_player, ClientHandlerSOCKET clientHandlerSOCKET){
-        super(TypeMessageClient.PRIVATE_MESSAGE_REQUEST,lobby,id_player);
-        this.mess = message;
-        this.toWhom = Nickname;
-        this.fromWhom = id_player;
-        this.clientHandlerSOCKET=clientHandlerSOCKET;
-        this.clientHandlerRMI=null;
-    }
-
-    public PrivateChatRequest(int lobby,String message, String Nickname,int id_player){
+    public PrivateChatRequest(int lobby, String Nickname,String message,int id_player){
         super(TypeMessageClient.PRIVATE_MESSAGE_REQUEST,lobby,id_player);
         this.mess = message;
         this.toWhom = Nickname;
@@ -92,13 +72,11 @@ public class PrivateChatRequest extends SampleClientMessage {
         String nickname = gcs.currgame.getTotPlayers().stream()
                 .filter(player -> player.getId() == fromWhom)
                 .findFirst().get().getNickName();
-        SampleServerMessage toOne = new ChatReply(toWhom,mess);
+        System.out.println("Message execute private-> from "+nickname+" to->"+toWhom+ ", message->"+mess);
+        SampleServerMessage toOne = new ChatReply(nickname,toWhom,mess);
 
-        if(clientHandlerRMI!= null){
-            gcs.currgame.singleNotify(toOne, clientHandlerRMI);
-        }else{
-            gcs.currgame.singleNotify(toOne, clientHandlerSOCKET);
-        }
+        System.out.println("Dovrei star inviando a un solo rmi:");
+        gcs.currgame.singleNotify(toOne);
 
     }
 }

@@ -77,13 +77,19 @@ public class ScoreBoardPanel extends JPanel {
      * Method that creates and adds the pions in the board game
      * @param pionList the pions of the players
      */
-    public void initializePions(ArrayList<Pion> pionList){
+    public void initializePions(int index,ArrayList<Pion> pionList){
+        int i=0,dimension=20;
         //posizione iniziale
         Point relativePoint = relativePositionMap.get(0);
         for (Pion pion:pionList) {
             //carico immagine pion e la aggiungo all'array
+            if(i == index) //me
+                dimension = 25;
+            else
+                dimension = 20;
+            i++;
             ImageIcon handImages = new ImageIcon("src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"pions"+File.separator+""+pion+".png");
-            Image img = handImages.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            Image img = handImages.getImage().getScaledInstance(dimension,dimension, Image.SCALE_SMOOTH);
             handImages.setImage(img);
             pions.add(new JLabel(handImages));
 
@@ -94,7 +100,7 @@ public class ScoreBoardPanel extends JPanel {
                 // Crea e aggiungi un JLabel per il pion del giocatore
                 JLabel playerToken = pions.getLast();
                 playerToken.setName(pion.toString());
-                playerToken.setSize(20, 20); // Imposta la dimensione del pion
+                playerToken.setSize(dimension,dimension); // Imposta la dimensione del pion
                 playerToken.setLocation(baseX, baseY); // Imposta la posizione del pion
                 boardImage.add(playerToken); // Aggiunge il pion al JLabel boardImage
             }

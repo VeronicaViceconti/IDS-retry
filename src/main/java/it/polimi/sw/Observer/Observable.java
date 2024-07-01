@@ -6,10 +6,12 @@ import it.polimi.sw.network.Message.ClientMessage.SampleClientMessage;
 import it.polimi.sw.network.Message.ViewMessage.SampleViewMessage;
 import it.polimi.sw.network.Message.ViewMessage.SendingChatMessage;
 import it.polimi.sw.network.Message.ViewMessage.TypeMessageView;
+import it.polimi.sw.network.Message.serverMessage.ChatReply;
 import it.polimi.sw.network.Message.serverMessage.ErrorType;
 import it.polimi.sw.network.Message.serverMessage.SampleServerMessage;
 import it.polimi.sw.network.RMI.ClientHandlerRMI;
 import it.polimi.sw.network.Socket.ClientHandlerSOCKET;
+import it.polimi.sw.view.GraphicalUserInterface.Containers.ChatPanel;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -80,28 +82,32 @@ public abstract class Observable <T> implements Serializable {
  public void notify(SampleServerMessage message)  {
      for(Observer observer: observers){
          try {
+             if(message instanceof ChatReply)
+                System.out.println("Notify del mex-> "+((ChatReply)message).getMessage());
              observer.update(message);
          } catch (RemoteException e) {
-             throw new RuntimeException(e);
+             return;
          }
      }
  }
-    public void singleNotify(SampleServerMessage message, ClientHandlerSOCKET clientHandlerSOCKET){
-        if (observers.contains(clientHandlerSOCKET)) {
-            try {
-                clientHandlerSOCKET.update(message);
-            } catch (RemoteException e) {
-                return;
+    public void singleNotify(SampleServerMessage message){
+        ChatReply reply = (ChatReply) message;
+        for (Observer obs: observers) {
+            if(obs instanceof ClientHandlerRMI && ((ClientHandlerRMI) obs).getClientName().equals(reply.getDestination())) {
+                try {
+                    obs.update(message);
+                } catch (RemoteException e) {
+                    return;
+                }
+            }else{
+                if(obs instanceof ClientHandlerSOCKET && ((ClientHandlerSOCKET)obs).getClientName().equals(reply.getDestination()))
+                    try {
+                        obs.update(message);
+                    } catch (RemoteException e) {
+                        return;
+                    }
             }
-        }
-    }
-    public void singleNotify(SampleServerMessage message, ClientHandlerRMI clientHandlerRMI){
-        if (observers.contains(clientHandlerRMI)) {
-            try {
-                clientHandlerRMI.update(message);
-            } catch (RemoteException e) {
-                return;
-            }
+
         }
     }
 

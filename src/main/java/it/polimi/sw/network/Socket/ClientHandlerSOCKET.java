@@ -24,6 +24,10 @@ public class ClientHandlerSOCKET implements Runnable, Serializable, Observer {
     private final Socket client;
     private boolean online;
     private final CommonGameLogicServer socketServer;
+    /**
+     * The name of the client associated with this `ClientHandlerRMI` object.
+     */
+    private String  clientName;
     private QueueHandlerServer queueHandler;
     private ObjectOutputStream output;
     private ObjectInputStream input;
@@ -39,13 +43,6 @@ public class ClientHandlerSOCKET implements Runnable, Serializable, Observer {
         this.socketServer = socketServer;
         this.queueHandler = queueHandler;
     }
-
-   /* public ClientHandlerSOCKET(CommonGameLogicServer socketServer, Socket client) {
-        this.client = client;
-        this.idLobby = -1;
-        this.online = true;
-        this.socketServer = socketServer;
-    }*/
 
     /**
      * This method overrides the `run` method from the `Runnable` interface.
@@ -127,17 +124,20 @@ public class ClientHandlerSOCKET implements Runnable, Serializable, Observer {
 
         SampleClientMessage message = (SampleClientMessage) obj;
         if(message.getType() == TypeMessageClient.CONNECTION_REQUEST){
+            this.clientName = ((ConnectionRequest)message).getNickname();
             queueHandler.appendMessage(new ConnectionRequest(((ConnectionRequest)message).getNickname(), this));
         }else {
             if(message.getType() == TypeMessageClient.NICKNAME_REQUEST) {
+                this.clientName = ((NicknameRequest)message).getName();
                 queueHandler.appendMessage(new NicknameRequest(((NicknameRequest) message).getName(), this));
             }else{
-                if(message.getType() == TypeMessageClient.PRIVATE_MESSAGE_REQUEST) {
-                    queueHandler.appendMessage(new PrivateChatRequest(((PrivateChatRequest) message).getClientLobbyReference(), ((PrivateChatRequest) message).getMessage(), ((PrivateChatRequest) message).getToWhom(), ((PrivateChatRequest) message).getFromWhom(), this));
-
-                }else  queueHandler.appendMessage(message);
+                queueHandler.appendMessage(message);
             }
         }
+    }
+
+    public String getClientName() {
+        return clientName;
     }
 
     /**

@@ -153,7 +153,7 @@ public class ClientSocket extends Client implements Observer, Runnable, Serializ
 
     @Override
     public void privateChatMessage(SendingChatMessage message) {
-        sendMessage(new PrivateChatRequest(getIdlobby(), message.getPlayerMessage(), message.getToOne(), getMatch().getMe().getId()));
+        sendMessage(new PrivateChatRequest(getIdlobby(), message.getToOne(),message.getPlayerMessage(),  getMatch().getMe().getId()));
 
 
     }

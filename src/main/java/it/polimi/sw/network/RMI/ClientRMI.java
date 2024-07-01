@@ -172,7 +172,8 @@ public class ClientRMI extends Client implements Serializable,Runnable {
     @Override
     public void privateChatMessage(SendingChatMessage message) {
         try {
-            clientHandler.privateChatMessage(getIdlobby(),message.getPlayerMessage(),message.getToOne() , getMatch().getMe().getId());
+            System.out.println("Message to ->"+message.getToOne()+":" +message.getPlayerMessage());
+            clientHandler.privateChatMessage(getIdlobby(),message.getToOne(), message.getPlayerMessage() , getMatch().getMe().getId());
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
@@ -187,9 +188,10 @@ public class ClientRMI extends Client implements Serializable,Runnable {
     @Override
     public void publicChatMessage(SendingChatMessage message) {
         try {
+            System.out.println("Message to everyone ->"+message.getPlayerMessage());
             clientHandler.publicChatMessage(getIdlobby(),message.getPlayerMessage(),getMatch().getMe().getId());
         } catch (RemoteException e) {
-            throw new RuntimeException(e);
+            return;
         }
     }
 

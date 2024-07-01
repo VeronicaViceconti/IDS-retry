@@ -99,12 +99,14 @@ public class BoardDataReply extends SampleServerMessage {
             client.getView().initGame();
             client.getMatch().setCommonObjective(commonObj);
             client.getView().setBoardData(facedownGold, facedownRes, faceupGold,faceupRes,commonObj);
-            client.getView().initializePions(pions);
+
             //pass all the player's name
             ArrayList<String> names = new ArrayList<>();
             for (Player p: allPlayers) {
                 names.add(p.getNickName());
+
             }
+            client.getView().initializePions(allPlayers.indexOf(client.getMatch().getMe()),pions);
             client.getView().createTabbedManuscripts(names);
         }else {
             //if it's me, it's time to re-show the manuscript

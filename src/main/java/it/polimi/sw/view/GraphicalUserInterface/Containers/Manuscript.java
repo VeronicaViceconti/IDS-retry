@@ -72,10 +72,11 @@ public class Manuscript extends JPanel {
         JLabel coordinatesLabel = new JLabel("(" + x + ", " + y + ")");
         coordinatesLabel.setOpaque(true);
         coordinatesLabel.setBackground(Color.white);
-        coordinatesLabel.setBounds(28, 15, 30, 18); // Position the label at the top of the card
+        coordinatesLabel.setBounds(28, 15, 43, 18); // Position the label at the top of the card
 
         // Add the coordinates label to the card
         cardLabel.add(coordinatesLabel);
+
 
         // Wrapping card in a JPanel with null layout to place it correctly
         JPanel wrapper = new JPanel(null);

@@ -1867,11 +1867,13 @@ public class TUI extends  View {
      */
     @Override
     public void showGameChat(String message) {
+        System.out.println("Stampa chat->" +mayShowChat);
         if(mayShowChat){
             showLastMex(); //all stored if present
             System.out.println(message);
         }else{
             //suppongo che solo un thread entra qua.
+            System.out.println("non puoi usare chat");
             chatMessagesStorage.add(message);
         }
     }
@@ -1884,7 +1886,7 @@ public class TUI extends  View {
     }
 
     @Override
-    public void initializePions(ArrayList<Pion> pions) {
+    public void initializePions(int indexMe,ArrayList<Pion> pions) {
 
     }
 
@@ -2832,7 +2834,6 @@ public class TUI extends  View {
     public void showLastMex(){
         if(!chatMessagesStorage.isEmpty()){
             System.out.println("Last messages from chat: ");
-
 
             for(String m: chatMessagesStorage){
                 System.out.println(m);

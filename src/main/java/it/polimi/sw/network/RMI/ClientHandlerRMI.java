@@ -174,7 +174,7 @@ public class ClientHandlerRMI extends UnicastRemoteObject implements InterfaceCl
      */
     @Override
     public void privateChatMessage(int lobby,String receiver, String message,int id_player) throws RemoteException {
-        queueServer.appendMessage(new PrivateChatRequest(lobby,message,receiver,id_player,this));
+        queueServer.appendMessage(new PrivateChatRequest(lobby,receiver,message,id_player));
     }
     /**
      * This method sends a public chat message to all players in a lobby.
@@ -330,6 +330,10 @@ public class ClientHandlerRMI extends UnicastRemoteObject implements InterfaceCl
     @Override
     public void requestData() {
 
+    }
+
+    public String getClientName() {
+        return clientName;
     }
 
     @Override

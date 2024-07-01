@@ -22,7 +22,6 @@ public class GameCreated extends SampleServerMessage {
     private int askOrNotNumPlayers;
     private ArrayList<Pion> availablePions;
     private int idlobby;
-    private CommonGameLogicServer gameControllerServer;
     /**
      * Constructor for a GameCreated message.
      *
@@ -49,12 +48,9 @@ public class GameCreated extends SampleServerMessage {
     public void execute(Client client) {
         //set lobby for the client
         client.setIdlobby(idlobby);
-        if (askOrNotNumPlayers == 1) {
+        if(askOrNotNumPlayers == 1) //have to ask the number of players in the game
             client.getView().selectNumberOfplayerInMatch();
-        }
-        client.getView().selectPion(this.availablePions);
+        client.getView().selectPion(availablePions);
     }
-
-
 }
 

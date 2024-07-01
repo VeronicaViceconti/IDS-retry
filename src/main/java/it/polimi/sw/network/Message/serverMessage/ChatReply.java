@@ -15,6 +15,8 @@ import java.rmi.RemoteException;
 public class ChatReply extends SampleServerMessage{
     private final String message;
     private final String destination;
+    private final String fromWhom;
+
     /**
      * Constructor for a ChatReply message to be broadcast to the entire game chat.
      *
@@ -24,6 +26,7 @@ public class ChatReply extends SampleServerMessage{
         super(TypeMessageServer.CHAT_REPLY);
         this.message = mex;
         this.destination = null;
+        this.fromWhom = null;
     }
     /**
      * Constructor for a ChatReply message to be sent to a specific player.
@@ -31,11 +34,21 @@ public class ChatReply extends SampleServerMessage{
      * @param name The nickname of the player to receive the message.
      * @param mex The chat message content.
      */
-    public ChatReply (String name, String mex){
+    public ChatReply (String fromWhom, String name, String mex){
         super(TypeMessageServer.CHAT_REPLY);
         this.message = mex;
         this.destination = name;
+        this.fromWhom = fromWhom;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
     /**
      * This method defines the actions to be taken by the server after sending a ChatReply message to a client.
      *
@@ -47,15 +60,16 @@ public class ChatReply extends SampleServerMessage{
     @Override
     public void execute(Client client) throws RemoteException {
         if(destination == null){
+            System.out.println("Dovrebbe aggiornare il mex con->"+message);
             client.getView().showGameChat(message);
         }
         else{
             System.out.println("IN EXECUTE CHATREPLY ELSE->dest: "+destination+",mex "+message+" "+",me "+client.getMatch().getMe().getNickName());
             for (Player p : client.getMatch().getTotPlayers()) {
 
-                if(message.trim().equalsIgnoreCase(p.getNickName())){ //it is for you
-                    System.out.println("IN EXECUTE CHATREPLY ELSE TROVATO TIZIO");
-                    client.getView().showGameChat("Private message from " + message + ": " +destination);
+                if(destination.trim().equalsIgnoreCase(p.getNickName())){ //it is for you
+                    System.out.println("IN EXECUTE CHATREPLY ELSE TROVATO TIZIO destinatario ->"+destination);
+                    client.getView().showGameChat("Private message from "+fromWhom+ ": " +message);
                 }
             }
         }

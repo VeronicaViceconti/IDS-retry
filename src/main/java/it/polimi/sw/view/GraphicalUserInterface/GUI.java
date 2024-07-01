@@ -56,8 +56,8 @@ public class GUI extends View {
      * @param pions
      */
     @Override
-    public void initializePions(ArrayList<Pion> pions){
-        this.frame.initializePions(pions);
+    public void initializePions(int indexMe,ArrayList<Pion> pions){
+        this.frame.initializePions(indexMe,pions);
     }
 
     /**
@@ -378,6 +378,7 @@ public class GUI extends View {
     @Override
     public void createTabbedManuscripts(ArrayList<String> names) {
         this.frame.createTabbedManuscripts(names);
+
     }
 
     @Override

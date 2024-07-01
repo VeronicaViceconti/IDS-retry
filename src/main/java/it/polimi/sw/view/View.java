@@ -107,7 +107,7 @@ public abstract class View extends Observable {
      *  * Resetting game variables
      */
     abstract public void initGame();
-    abstract public void initializePions(ArrayList<Pion> pions);
+    abstract public void initializePions(int indexMe,ArrayList<Pion> pions);
 
     /**
      * message printed at the beginning of the game such as "WELCOME TO THIS FANTASTIC GAME"
