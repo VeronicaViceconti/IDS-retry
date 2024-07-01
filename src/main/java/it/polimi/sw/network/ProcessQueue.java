@@ -241,6 +241,7 @@ public class ProcessQueue implements Runnable {
             case PING -> {}
             case PRIVATE_MESSAGE_REQUEST -> message.execute(server.getLobbyReference().get((message).getClientLobbyReference()));
             case PUBLIC_MESSAGE_REQUEST -> message.execute(server.getLobbyReference().get((message).getClientLobbyReference()));
+            case SERVER_DISCONNECTED -> message.execute(server.getLobbyReference().get((message.getClientLobbyReference())));
         }
     }
 

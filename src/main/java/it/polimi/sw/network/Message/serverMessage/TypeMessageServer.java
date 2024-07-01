@@ -129,5 +129,10 @@ public enum TypeMessageServer {
     /**
      * Message informing the client that the pion selection went wrong.
      */
-    SENDING_PION_ERROR
+    SENDING_PION_ERROR,
+    /**
+     * Message informing the client that the server is alive.
+     */
+    SERVER_DISCONNECTED_REPLY
+
 }

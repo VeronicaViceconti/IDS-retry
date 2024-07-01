@@ -76,6 +76,11 @@ public enum TypeMessageClient {
     /**
      * Request to exit the game.
      */
-    EXIT_REQUEST
+    EXIT_REQUEST,
+
+    /**
+     * Request server timeout
+     * **/
+    SERVER_DISCONNECTED
 }
 

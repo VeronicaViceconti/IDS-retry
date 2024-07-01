@@ -26,6 +26,7 @@ public abstract class View extends Observable {
     private ArrayList<Card> timeline;
     protected ArrayList<Point2D> availablePositions;
     protected String nickname;
+    protected Boolean serverIson = null;
 
     private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -34,8 +35,38 @@ public abstract class View extends Observable {
         availablePositions = new ArrayList<>();
         availablePositions.add(new Point2D.Double());
         timeline = new ArrayList<>();
+        startServerCheckThreads();
     }
+    private void startServerCheckThreads() {
+        // Thread to set serverIson to false after 2 minutes
+        new Thread(() -> {
+            try {
+                Thread.sleep(2 * 60 * 1000); // Sleep for 2 minutes
+                synchronized (this) {
+                    serverIson = false;
+                }
+                System.out.println("Server set to false after 2 minutes.");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
 
+        // Thread to check serverIson value and exit if false
+        new Thread(() -> {
+            while (true) {
+                synchronized (this) {
+                    if (serverIson != null && !serverIson) {
+                        System.exit(-1);
+                    }
+                }
+                try {
+                    Thread.sleep(1000); // Check every second
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
@@ -318,4 +349,8 @@ public abstract class View extends Observable {
 
     abstract public void createTabbedManuscripts(ArrayList<String> names) ; //used in gui to set up the tab panes
     abstract public void gameAlmostFinished();
+    public void isServerAlive(){
+        serverIson = true;
+        System.out.println("Server is alive\n");
+    }
 }
