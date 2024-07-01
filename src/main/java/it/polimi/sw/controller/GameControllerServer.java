@@ -787,13 +787,13 @@ public class GameControllerServer  {
         Card addCard;
 
         if (type.equals("Resource")) {
-            if(currgame.getFacedownResource() != null && !currgame.getFaceupResource().isEmpty()){
+            if(currgame.getFacedownResource() != null && !currgame.getFacedownResource().isEmpty()){ // size > 0){
                 addCard = currgame.getFacedownResource().getFirst();
                 currgame.getFacedownResource().removeFirst();
                 currgame.getFaceupResource().add(index, currgame.flipCard(addCard));
             }
         } else {
-            if(currgame.getFacedownGold() != null&& !currgame.getFaceupGold().isEmpty()){
+            if(currgame.getFacedownGold() != null  && !currgame.getFacedownGold().isEmpty()){
                 addCard = currgame.getFacedownGold().getFirst();
                 currgame.getFacedownGold().removeFirst();
                 currgame.getFaceupGold().add(index, currgame.flipCard(addCard));
@@ -823,9 +823,11 @@ public class GameControllerServer  {
 
         for (Objective comObj : currgame.getCommonObjective()) { // for each of 2 objectives
             numObjectivesComplete += calculatePointsObj(player, comObj);
+            System.out.println("test cgs. update final "+numObjectivesComplete + player.getPoints());
 
         }
         numObjectivesComplete += calculatePointsObj(player, player.getObjective());
+        System.out.println("test cgs. update final "+numObjectivesComplete + player.getPoints());
         return numObjectivesComplete;
     }
 
@@ -1088,7 +1090,7 @@ public class GameControllerServer  {
             endGame=true;
         }else{
             for(int i=0; i<currgame.getTotPlayers().size(); i++){
-                if (currgame.getTotPlayers().get(i).getPoints() >= 1) { //to update!!!!
+                if (currgame.getTotPlayers().get(i).getPoints() >= 20) {
                     endGame = true;
                     break;
                 }

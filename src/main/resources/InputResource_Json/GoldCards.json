@@ -23,7 +23,7 @@
         "covered": false
       },
       {
-        "object": "INKWELL",
+        "object": "QUILL",
         "resource": null,
         "number": 4,
         "visible": true,
@@ -34,7 +34,7 @@
     "id": 1,
     "colour": "red",
     "permanentResources": null,
-    "pointsMultiply": "INKWELL",
+    "pointsMultiply": "QUILL",
     "necessaryResource": ["FUNGI","FUNGI","ANIMAL"],
     "used": false,
     "drawn": false,
@@ -51,7 +51,7 @@
         "covered": false
       },
       {
-        "object": "QUILL",
+        "object": "INKWELL",
         "resource": null,
         "number": 2,
         "visible": true,
@@ -76,7 +76,7 @@
       "id": 2,
       "colour": "red",
       "permanentResources": null,
-      "pointsMultiply": "QUILL",
+      "pointsMultiply": "INKWELL",
       "necessaryResource": ["FUNGI","FUNGI","PLANT"],
       "used": false,
       "drawn": false,
@@ -268,7 +268,7 @@
         "covered": false
       },
       {
-        "object": "QUILL",
+        "object": "INKWELL",
         "resource": null,
         "number": 3,
         "visible": true,
@@ -296,7 +296,7 @@
   {
     "corner":[
       {
-        "object": "INKWELL",
+        "object": "QUILL",
         "resource": null,
         "number": 1,
         "visible": true,
@@ -422,7 +422,7 @@
   {
     "corner":[
       {
-        "object": "INKWELL",
+        "object": "QUILL",
         "resource": null,
         "number": 1,
         "visible": true,
@@ -454,7 +454,7 @@
     "id": 11,
     "colour": "green",
     "permanentResources": null,
-    "pointsMultiply": "INKWELL",
+    "pointsMultiply": "QUILL",
     "necessaryResource": ["PLANT","PLANT","INSECT"],
     "used": false,
     "drawn": false,
@@ -520,7 +520,7 @@
         "covered": false
       },
       {
-        "object": "QUILL",
+        "object": "INKWELL",
         "resource": null,
         "number": 3,
         "visible": true,
@@ -538,7 +538,7 @@
     "id": 13,
     "colour": "green",
     "permanentResources": null,
-    "pointsMultiply": "QUILL",
+    "pointsMultiply": "INKWELL",
     "necessaryResource": ["PLANT","PLANT","ANIMAL"],
     "used": false,
     "drawn": false,
@@ -688,7 +688,7 @@
         "covered": false
       },
       {
-        "object": "INKWELL",
+        "object": "QUILL",
         "resource": null,
         "number": 3,
         "visible": true,
@@ -765,7 +765,7 @@
         "covered": false
       },
       {
-        "object": "QUILL",
+        "object": "INKWELL",
         "resource": null,
         "number": 2,
         "visible": true,
@@ -842,7 +842,7 @@
   {
     "corner":[
       {
-        "object": "QUILL",
+        "object": "INKWELL",
         "resource": null,
         "number": 1,
         "visible": true,
@@ -874,7 +874,7 @@
     "id": 21,
     "colour": "blue",
     "permanentResources": null,
-    "pointsMultiply": "QUILL",
+    "pointsMultiply": "INKWELL",
     "necessaryResource": ["ANIMAL","ANIMAL","INSECT"],
     "used": false,
     "drawn": false,
@@ -940,7 +940,7 @@
         "covered": false
       },
       {
-        "object": "INKWELL",
+        "object": "QUILL",
         "resource": null,
         "number": 3,
         "visible": true,
@@ -958,7 +958,7 @@
     "id": 23,
     "colour": "blue",
     "permanentResources": null,
-    "pointsMultiply": "INKWELL",
+    "pointsMultiply": "QUILL",
     "necessaryResource": ["ANIMAL","ANIMAL","FUNGI"],
     "used": false,
     "drawn": false,
@@ -1143,7 +1143,7 @@
         "covered": false
       },
       {
-        "object": "QUILL",
+        "object": "INKWELL",
         "resource": null,
         "number": 2,
         "visible": true,
@@ -1199,7 +1199,7 @@
         "covered": false
       },
       {
-        "object": "INKWELL",
+        "object": "QUILL",
         "resource": null,
         "number": 4,
         "visible": true,
@@ -1269,7 +1269,7 @@
         "covered": false
       },
       {
-        "object": "INKWELL",
+        "object": "QUILL",
         "resource": null,
         "number": 2,
         "visible": true,
@@ -1294,7 +1294,7 @@
     "id": 31,
     "colour": "purple",
     "permanentResources": null,
-    "pointsMultiply": "INKWELL",
+    "pointsMultiply": "QUILL",
     "necessaryResource": ["INSECT","INSECT","PLANT"],
     "used": false,
     "drawn": false,
@@ -1367,7 +1367,7 @@
         "covered": false
       },
       {
-        "object": "QUILL",
+        "object": "INKWELL",
         "resource": null,
         "number": 4,
         "visible": true,
@@ -1378,7 +1378,7 @@
     "id": 33,
     "colour": "purple",
     "permanentResources": null,
-    "pointsMultiply": "QUILL",
+    "pointsMultiply": "INKWELL",
     "necessaryResource": ["INSECT","INSECT","FUNGI"],
     "used": false,
     "drawn": false,
@@ -1514,7 +1514,7 @@
   {
     "corner":[
       {
-        "object": "QUILL",
+        "object": "INKWELL",
         "resource": null,
         "number": 1,
         "visible": true,
@@ -1612,7 +1612,7 @@
         "covered": false
       },
       {
-        "object": "INKWELL",
+        "object": "QUILL",
         "resource": null,
         "number": 3,
         "visible": true,
