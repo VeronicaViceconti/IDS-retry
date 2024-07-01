@@ -41,6 +41,31 @@ public class Game extends Observable {
      * The phase of the game.
      */
     private GameState gameState;
+    /**
+     * Sets the `faceupGold` property of the class.
+     *
+     * @param faceupGold An ArrayList containing Card objects representing the faceup gold cards.
+     */
+    public void setFaceupGold(ArrayList<Card> faceupGold) {
+        this.faceupGold = faceupGold;
+    }
+    /**
+     * Sets the `faceupResource` property of the class.
+     *
+     * @param faceupResource An ArrayList containing Card objects representing the faceup resource cards.
+     */
+    public void setFaceupResource(ArrayList<Card> faceupResource) {
+        this.faceupResource = faceupResource;
+    }
+    /**
+     * Sets the `sidesResCard` property of the class.
+     *
+     * @param sidesResCard A HashMap containing Card objects as keys and Card objects as values, representing the mapping between resource cards and their corresponding side cards.
+     */
+
+    public void setSidesResCard(HashMap<Card, Card> sidesResCard) {
+        this.sidesResCard = sidesResCard;
+    }
 
     /**
      * Retrieves the face-down gold cards.
@@ -320,8 +345,6 @@ public class Game extends Observable {
         for (Player p : playersList) {//fino qua ok
             p.addCard(faceupInitial.get(0));//ok
             p.addCardBack(facedownInitial.get(0)); //ordine fdI and fuI is the same. id+6
-            System.out.println("Carta fronte nella mano: "+p.getHand().get(0));
-            System.out.println("Carta back nella mano: "+p.getHandBack().get(0));
             notify(new SendInitialCard(p.getHand().get(0),p.getHandBack().get(0), p,p.getId()));
 
             facedownInitial.remove(flipCard(faceupInitial.get(0)));

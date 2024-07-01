@@ -2,6 +2,7 @@ package it.polimi.sw.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.polimi.sw.model.*;
+import it.polimi.sw.model.Object;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -83,85 +84,138 @@ public class GameControllerServerTest {
     }
     @Test
     public void test1(){
+        ArrayList<Corner> corners = new ArrayList<>();
+        corners.add(new Corner(Object.INKWELL, null,0, true, false));
+        ResourceCard resourceCard1=new ResourceCard(corners,2,21,"red",false,false,false,1,Resources.FUNGI);
+        ResourceCard resourceCard2=new ResourceCard(corners,2,21,"red",false,false,false,1,Resources.FUNGI);
+        ResourceCard resourceCard3=new ResourceCard(corners,2,21,"red",false,false,false,1,Resources.FUNGI);
 
-        //Card c=new Card();
-        //gc = new GameControllerServer(game);
+        ResourceCard resourceCard1_1=new ResourceCard(corners,2,21,"red",false,false,false,2,Resources.FUNGI);
+
+        ResourceCard resourceCard2_1=new ResourceCard(corners,2,21,"red",false,false,false,2,Resources.FUNGI);
+
+        ResourceCard resourceCard3_1=new ResourceCard(corners,2,21,"red",false,false,false,2,Resources.FUNGI);
+        HashMap<Card, Card> sidesRes= new HashMap<>();
+        ArrayList<Card> resourceList=new ArrayList<>(Arrays.asList( resourceCard2,resourceCard3));
+        ArrayList<Card> handBack=new ArrayList<>(Arrays.asList(resourceCard1_1,resourceCard2_1,resourceCard3_1));
+        ArrayList<Card> hand=new ArrayList<>(Arrays.asList(resourceCard1,resourceCard2,resourceCard3));
+        ArrayList<Card> facedownResource=new ArrayList<>(Arrays.asList(resourceCard1, resourceCard2, resourceCard3));
+        ArrayList<Card> faceUpResource=new ArrayList<>(Arrays.asList(resourceCard3_1, resourceCard1_1));
+        ArrayList<Card> facedownGold=new ArrayList<>(Arrays.asList(resourceCard2));
+        ArrayList<Card> faceUpGold=new ArrayList<>(Arrays.asList(resourceCard1));
+        gc = new GameControllerServer(3, null,"Piero",Pion.pion_red);
 
         //Testing getter and setter methods
         gc.currgame.setPlayerCurrentTurn(players.get(0));
-        System.out.println(gc.currgame.getPlayerCurrentTurn().toString());
+        gc.addPlayertoGame(players.get(1));
+
         assertEquals(players.get(0),gc.currgame.getPlayerCurrentTurn());
 
+        gc.currgame.currPlayer.setHand(hand);
+        gc.currgame.currPlayer.setHandBack(handBack);
 
-        //int numCards = gc.currgame.getFacedownResource().size();
-        //gc.drawCardFromDeck(1); //resource deck
-        //assertEquals(numCards,gc.currgame.getFacedownResource().size()); //deve rimanere uguale perchè l'utente non può pescare
+        gc.currgame.setFacedownResource(facedownResource);
+        gc.currgame.setFacedownGold(facedownGold);
+        gc.currgame.setFaceupGold(faceUpGold);
+        gc.currgame.setFaceupResource(faceUpResource);
 
-        for (Card hand:gc.currgame.currPlayer.getHand()) {
-            System.out.println("carta nella mano: "+hand.toString());
-        }
+        int numCards = gc.currgame.getFacedownResource().size();
+        gc.drawCardFromDeck(gc.currgame.currPlayer, "resource");
+
+        assertEquals(3,gc.currgame.currPlayer.getHand().size());
+        assertEquals(numCards,gc.currgame.getFacedownResource().size()); //deve rimanere uguale perchè l'utente non può pescare
+
 
         gc.currgame.setGameState(GameState.PLACECARD);
-        //piazzo carta iniziale, dalla HAND deve andare in TABLE + punti rimanere 0 e aumentare risorse/oggetti di 1
-        gc.placeCard(gc.currgame.currPlayer,gc.currgame.currPlayer.getHand().get(0),0,0);
-        assertEquals(0, gc.currgame.currPlayer.getHand().size());
-        assertEquals(0, gc.currgame.currPlayer.getHandBack().size());
-        for (Map.Entry<Card,Integer[]> table:gc.currgame.currPlayer.getMap().entrySet()) {
-            System.out.println("carta nel tavolo: "+table.getKey()+", coordinate: "+table.getValue()[0]+" "+table.getValue()[1]);
-        }
-        assertEquals(0,gc.currgame.currPlayer.getPoints());
+        assertEquals(GameState.PLACECARD, gc.currgame.getGameState());
 
-        /*for (Map.Entry<String, Integer> element: gc.currgame.currPlayer.getNumOfResourceAndObject().entrySet()) {
-            System.out.println("elemento: "+ element.getKey()+ " totale:"+element.getValue());
-        }
-        assertEquals(c.getPermanentResource().size(),gc.currgame.currPlayer.getNumOfResourceAndObject().size());
-        for(Map.Entry<String,Integer> res :gc.currgame.currPlayer.getNumOfResourceAndObject().entrySet()){
-            assertEquals(1,res.getValue());
-        }*/
-        assertEquals(GameState.DRAWCARD,gc.currgame.getGameState());
+        //piazzo carta dalla HAND
+        gc.placeCard(gc.currgame.currPlayer,gc.currgame.currPlayer.getHand().getFirst(),0,0);
+        assertEquals(2, gc.currgame.currPlayer.getHand().size());
+        assertEquals(2, gc.currgame.currPlayer.getHandBack().size());
+        assertEquals(2, gc.currgame.currPlayer.getPoints());
+        assertEquals(true, resourceCard1.getDrawn());
+        assertEquals(true, resourceCard1.getUsed());
 
-        //dopo aver piazzato una carta, provo la parte di pescare una carta, deve aumentare la size della hand,
-        //la dimensione del facedowngold deve diminuire di 1
+        //dopo aver piazzato una carta, provo la parte di pescare una carta, deve aumentare la size della hand,la dimensione del facedowngold deve diminuire di 1
+
+        gc.currgame.setFacedownResource(resourceList);
+
+        sidesRes.put(resourceCard2, resourceCard2_1);
+        sidesRes.put(resourceCard1, resourceCard1_1);
+        sidesRes.put(resourceCard3, resourceCard3_1);
+
         int oldsize = gc.currgame.currPlayer.getHand().size();
-        int oldsizeDeck = gc.currgame.getFacedownGold().size();
-        gc.drawCardFromDeck(gc.currgame.currPlayer,"Gold"); //pesco da gold
+        int oldsizeDeck = gc.currgame.getFacedownResource().size();
+
+        gc.currgame.setSidesResCard(sidesRes);
+
+
+
+        gc.drawCardFromDeck(gc.currgame.currPlayer,"Resource");
+        gc.currgame.setPlayerCurrentTurn(players.get(0));
+
         assertEquals(oldsize+1,gc.currgame.currPlayer.getHand().size());
         assertEquals(oldsize+1,gc.currgame.currPlayer.getHandBack().size());
-        for (Card card:gc.currgame.currPlayer.getHand()) {
-            System.out.println("carta pescata: "+card.toString());
-            System.out.println("carta pescata back: "+gc.currgame.currPlayer.getHandBack().get(0).toString());
-        }
+
         assertEquals(oldsizeDeck-1,gc.currgame.getFacedownGold().size());
 
-        //ora provo a pescare dal tavolo, tanto ho meno di 3 carte in mano quindi me lo fa fare
-        //controllo che aumenti la dimensione di hand e che rimanga uguale quella di faceupResource perchè c'è il refill
-        gc.currgame.setGameState(GameState.DRAWCARD);
-        oldsize = gc.currgame.currPlayer.getHand().size();
-        oldsizeDeck = gc.currgame.getFaceupResource().size();
-        gc.drawCardFromTable(gc.currgame.currPlayer,1,"Resource"); //prima carta dall'array a terra
-        gc.currgame.setPlayerCurrentTurn(players.get(1));
-        assertEquals(oldsize+1,gc.currgame.currPlayer.getHand().size());
-        assertEquals(oldsize+1,gc.currgame.currPlayer.getHandBack().size());
-        for (Card table:gc.currgame.currPlayer.getHand()) {
-            System.out.println("carte in mano secondo giro : "+table.toString());
-        }
-        for (Card table:gc.currgame.currPlayer.getHandBack()) {
-            System.out.println("carte back in mano secondo giro : "+table.toString());
-        }
-        assertEquals(oldsizeDeck,gc.currgame.getFaceupResource().size());
 
-        //provo a mettere in table una goldCard per testare se posso metterla DA CONTINUARE
-        gc.placeCard(gc.currgame.currPlayer,gc.currgame.currPlayer.getHand().getFirst(),0,1);
-        //TESTARE LA PARTE DI getWINNER PIU' METODI PRIVATI LEGATI A GETWINNER
 
-        //testing the flip method
-        //Card card = gc.currgame.currPlayer.getHand().getFirst();
-        //card = corrGold.get(card);
-        //assertEquals(card,gc.flipCardHand(gc.currgame.currPlayer.getHand().getFirst()));
+        gc.currgame.currPlayer.setHand(hand);
+        gc.currgame.currPlayer.setHandBack(handBack);
 
-        // If no AssertionError is thrown, all tests pass
+        gc.placeCard(gc.currgame.currPlayer,gc.currgame.currPlayer.getHand().get(1),0,0 );
 
-        gc.currgame.setMaxPlayersNumbers(3);
+        gc.currgame.setFaceupResource(faceUpResource);
+        gc. currgame.setFacedownResource(facedownResource);
+
+        gc.drawCardFromTable(gc.currgame.currPlayer, 1, "Resource");
+
+        gc.currgame.setPlayerCurrentTurn(players.getFirst());
+        assertEquals(3, gc.currgame.currPlayer.getHand().size());
+        assertEquals(3, gc.currgame.currPlayer.getHandBack().size());
+        assertEquals(2, facedownResource.size());
+
+        //test partita finita
+        //aggiungo i vari campi a maria
+
+        players.getLast().setHand(hand);
+        players.getLast().setHandBack(handBack);
+
+        Resources resource1=Resources.FUNGI;
+        Resources resource2=Resources.FUNGI;
+        Resources resource3=Resources.FUNGI;
+        List<Resources> resourcesRequired=new ArrayList<>(Arrays.asList(resource1,resource2,resource3));
+
+        Conditions condition1=new Conditions(101,3, ObjectiveTypes.ThreeSameColourPlacing,null,null,"blue",null,2,null);
+        Objective objective=new Objective(2,condition1,false);
+
+        Conditions condition2=new Conditions(97,0,ObjectiveTypes.ResourceFilling,resourcesRequired,null,null,null,null,null);
+        Objective objective2=new Objective(3,condition2,false);
+        ArrayList<Objective> objectives=new ArrayList<>(Arrays.asList(objective,objective2));
+
+        gc.currgame.currPlayer.setObjective(objective);
+        gc.currgame.setCommonObjective(objectives);
+        gc.currgame.getTotPlayers().getFirst().setObjective(objective2);
+
+
+        gc.currgame.setPlayerCurrentTurn(gc.currgame.getTotPlayers().getLast());
+        assertEquals(gc.currgame.getTotPlayers().getLast(), gc.currgame.currPlayer);
+        gc.currgame.currPlayer.setPoints(23);
+        assertEquals(23,gc.currgame.currPlayer.getPoints());
+        gc.setEndGame(false);
+        assertEquals(false,gc.isEndGame());
+
+        gc.nextTurn();
+
+
+
+
+
+
+
+        gc.currgame.setMaxPlayersNumbers(2);
         assertEquals(true,gc.isItFull());
 
         System.out.println("All tests passed successfully.");
@@ -171,8 +225,8 @@ public class GameControllerServerTest {
     @Test
     public void test2(){
         GameControllerServer newGameC = new GameControllerServer(0,null,null,null);
-      //inizializzazione del player che esegue un turno
 
+        //inizializzo un player
 
         players.getFirst().addCard(resourceCard.get(2));
         players.getFirst().addCardBack(newGameC.currgame.flipCard(resourceCard.get(2)));
@@ -279,18 +333,18 @@ public class GameControllerServerTest {
         int i,j=0;
 
         //test setter e getter
-        GameControllerServer gameControllerServer=new GameControllerServer(0,null,null,null);
+        GameControllerServer gameControllerServer=new GameControllerServer(3,null,"Stefania",Pion.pion_green);
+        gameControllerServer.addPlayertoGame(players.getFirst());
 
+
+        //setLobbyReference
         gameControllerServer.setLobbyreference(2);
         assertEquals(2,gameControllerServer.getLobbyreference());
 
-        gameControllerServer.setLobbyreference(1);
-        assertEquals(1,gameControllerServer.getLobbyreference());
 
-        gameControllerServer.setEndGame(true);
-        assertEquals(true,gameControllerServer.isEndGame());
 
-        gameControllerServer.currgame.setPlayerCurrentTurn(gameControllerServer.currgame.getTotPlayers().get(1));
+
+         gameControllerServer.currgame.setPlayerCurrentTurn(gameControllerServer.currgame.getTotPlayers().getFirst());
          Resources resource1=Resources.FUNGI;
          Resources resource2=Resources.FUNGI;
          Resources resource3=Resources.FUNGI;
@@ -301,22 +355,30 @@ public class GameControllerServerTest {
          Objective objective2=new Objective(3,condition2,false);
          ArrayList<Objective> objectives=new ArrayList<>(Arrays.asList(objective,objective2));
 
+
+
          gameControllerServer.currgame.getTotPlayers().getFirst().setObjective(objective);
-        gameControllerServer.currgame.getTotPlayers().get(1).setObjective(objective2);
-        gameControllerServer.currgame.getTotPlayers().get(2).setObjective(objective);
-        gameControllerServer.currgame.setCommonObjective(objectives);
+         assertEquals(objective, gameControllerServer.currgame.getTotPlayers().getFirst().getObjective());
+         gameControllerServer.currgame.getTotPlayers().get(1).setObjective(objective2);
+         assertEquals(objective2, gameControllerServer.currgame.getTotPlayers().get(1).getObjective());
+         gameControllerServer.currgame.setCommonObjective(objectives);
 
+         //setEndGame
+        gameControllerServer.setEndGame(true);
+        assertEquals(true,gameControllerServer.isEndGame());
 
-       gameControllerServer.currgame.setPlayerCurrentTurn(players.getLast());
-       gameControllerServer.currgame.currPlayer.setPoints(22);
-       gameControllerServer.nextTurn();
+        //richiamo fine gioco
+        gameControllerServer.currgame.setPlayerCurrentTurn(gameControllerServer.currgame.getTotPlayers().getLast());
+        gameControllerServer.currgame.currPlayer.setPoints(22);
+        gameControllerServer.nextTurn();
 
     }
 
     @Test
     public void test4(){
         int i,j=0;
-        GameControllerServer gameControllerServer=new GameControllerServer(0,null,null,null);
+        GameControllerServer gameControllerServer=new GameControllerServer(1,null,"stefania",Pion.pion_yellow);
+        gameControllerServer.currgame.setMaxPlayersNumbers(3);
         gameControllerServer.addPlayertoGame(new Player("antonio",Pion.pion_blue));
 
 
