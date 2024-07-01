@@ -729,6 +729,7 @@ public class GameControllerServer  {
                     drawCard = currgame.getFaceupResource().get(whichCard);
                     currgame.getCurrPlayer().addCardBack(currgame.flipCard(drawCard));
                     currgame.getCurrPlayer().addCard(drawCard);
+                    currgame.getFaceupResource().remove(whichCard);
 
                     for (Card c: currgame.getFaceupResource()) {
                         System.out.println("Prima di remove: "+c.toString());
@@ -786,13 +787,13 @@ public class GameControllerServer  {
         Card addCard;
 
         if (type.equals("Resource")) {
-            if(currgame.getFacedownResource() != null){
+            if(currgame.getFacedownResource() != null && !currgame.getFaceupResource().isEmpty()){
                 addCard = currgame.getFacedownResource().getFirst();
                 currgame.getFacedownResource().removeFirst();
                 currgame.getFaceupResource().add(index, currgame.flipCard(addCard));
             }
         } else {
-            if(currgame.getFacedownGold() != null){
+            if(currgame.getFacedownGold() != null&& !currgame.getFaceupGold().isEmpty()){
                 addCard = currgame.getFacedownGold().getFirst();
                 currgame.getFacedownGold().removeFirst();
                 currgame.getFaceupGold().add(index, currgame.flipCard(addCard));
@@ -822,11 +823,9 @@ public class GameControllerServer  {
 
         for (Objective comObj : currgame.getCommonObjective()) { // for each of 2 objectives
             numObjectivesComplete += calculatePointsObj(player, comObj);
-            System.out.println("test cgs. update final "+numObjectivesComplete + player.getPoints());
 
         }
         numObjectivesComplete += calculatePointsObj(player, player.getObjective());
-        System.out.println("test cgs. update final "+numObjectivesComplete + player.getPoints());
         return numObjectivesComplete;
     }
 
