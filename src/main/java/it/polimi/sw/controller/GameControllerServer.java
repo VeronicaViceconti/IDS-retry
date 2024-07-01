@@ -213,10 +213,7 @@ public class GameControllerServer  {
                 //if it covers at least one card. if there are no adjacent cards, then if statement is true and the permission id denied.
             }else if (!currgame.getPlayerCurrentTurn().equals(p)){
                 currgame.notify(new NotYourTurnReply(p));
-            /*
 
-            check initial card to be placed to send messagge secrectobjreply
-            * */
             } else if (!(currgame.getGameState() == GameState.PLACECARD)) {
                 currgame.notify(new ErrorReply(ErrorType.NOT_THE_RIGHT_MOMENT_TO_DRAW_CARD, p));
             } else {
@@ -247,17 +244,17 @@ public class GameControllerServer  {
                     for(Card c: p.getTimeline())
                         System.out.println("Cartaa -> "+c.toString());
 
-                    currgame.setGameState(DRAWCARD);
+
                     if(endGame) {
                         currgame.notify(new UpdatePlayersReply(p, p.getPoints(), card, x, y, p.getNumOfResourceAndObject(), p.getHand(), p.getHandBack(), false));
                         currgame.notify(new GameAlmostFinishedReply(currgame.currPlayer));
                     }else{
+                        currgame.setGameState(DRAWCARD);
                         currgame.notify(new UpdatePlayersReply(p, p.getPoints(), card, x, y, p.getNumOfResourceAndObject(), p.getHand(), p.getHandBack(), true));
                         //currgame.setGameState(NOT_MY_TURN); //nobody can do anything
-                        //nextTurn(); // includes notify turn
                     }
-                    currgame.notify(new BoardDataReply(currgame.getFacedownGold().getFirst(), currgame.getFacedownResource().getFirst(),
-                            currgame.getFaceupGold(), currgame.getFaceupResource(),currgame.currPlayer));
+                    //currgame.notify(new BoardDataReply(currgame.getFacedownGold().getFirst(), currgame.getFacedownResource().getFirst(),
+                    //        currgame.getFaceupGold(), currgame.getFaceupResource(),currgame.currPlayer));
                 }
             }
         }
@@ -521,6 +518,7 @@ public class GameControllerServer  {
 
     private void addResourcesOrObjects(Card card, Player p) {
         for (Corner cor : card.getCorner()) {
+            System.out.println("Corner ->"+cor.toString());
             if (cor.getVisible()) {
                 if (cor.getObject() != null) {
                     p.addResourceOrObject(cor.getObject().toString(), 1);
@@ -723,9 +721,11 @@ public class GameControllerServer  {
                     System.out.println("empty:");
                     currgame.notify(new ErrorReply(ErrorType.EMPTY_DECK, currgame.getPlayerCurrentTurn()));
                 } else {
-                    drawCard = currgame.getFaceupResource().get(whichCard );
+                    drawCard = currgame.getFaceupResource().get(whichCard);
                     currgame.getCurrPlayer().addCardBack(currgame.flipCard(drawCard));
                     currgame.getCurrPlayer().addCard(drawCard);
+                    currgame.getFaceupResource().remove(whichCard);
+
 
                     for (Card c: currgame.getFaceupResource()) {
                         System.out.println("Prima di remove: "+c.toString());
@@ -753,12 +753,10 @@ public class GameControllerServer  {
                     currgame.notify(new ErrorReply(ErrorType.EMPTY_DECK, currgame.getPlayerCurrentTurn()));
                 } else {
 
-                    drawCard = currgame.getFaceupGold().get(whichCard );
+                    drawCard = currgame.getFaceupGold().get(whichCard);
                     currgame.getCurrPlayer().addCardBack(currgame.flipCard(drawCard));
-                    System.out.println("test .gcs.Carte presenti DENTRO CONTROLLER:");
                     currgame.getCurrPlayer().addCard(drawCard);
-                    currgame.getCurrPlayer().getHand().forEach(System.out::println);
-                    currgame.getFaceupGold().remove(whichCard );
+                    currgame.getFaceupGold().remove(whichCard);
                     addCardToTable("Gold",whichCard);
 
                     currgame.notify(new DrawCardReply(drawCard,currgame.flipCard(drawCard), currgame.getPlayerCurrentTurn(),
@@ -783,13 +781,13 @@ public class GameControllerServer  {
         Card addCard;
 
         if (type.equals("Resource")) {
-            if(currgame.getFacedownResource() != null){
+            if(currgame.getFacedownResource() != null && !currgame.getFacedownResource().isEmpty()){ // size > 0
                 addCard = currgame.getFacedownResource().getFirst();
                 currgame.getFacedownResource().removeFirst();
                 currgame.getFaceupResource().add(index, currgame.flipCard(addCard));
             }
         } else {
-            if(currgame.getFacedownGold() != null){
+            if(currgame.getFacedownGold() != null && !currgame.getFacedownGold().isEmpty()){
                 addCard = currgame.getFacedownGold().getFirst();
                 currgame.getFacedownGold().removeFirst();
                 currgame.getFaceupGold().add(index, currgame.flipCard(addCard));

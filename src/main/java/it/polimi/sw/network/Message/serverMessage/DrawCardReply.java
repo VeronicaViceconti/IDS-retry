@@ -84,6 +84,11 @@ public class DrawCardReply extends SampleServerMessage {
             System.out.println("card -> "+c.toString());
         }
 
+        client.getMatch().setFacedownResource(faceDownResource);
+        client.getMatch().setFaceupGold(faceUpGold);
+        client.getMatch().setFacedownGold(faceDownGold);
+        client.getMatch().setFaceupResource(faceupResource);
+
         System.out.println("FACEDOWN RESOURCE DOPO "+faceDownResource.toString());
         System.out.println("FACEDOWN GOLD DOPO "+faceDownGold.toString());
         if (destination.equals(client.getMatch().getMe())) {
@@ -103,7 +108,7 @@ public class DrawCardReply extends SampleServerMessage {
         }
         //sia che non sono io il giocatore sia che sono io, devo togliere dalla view la carta pescata.
 
-        if(faceDownGold != null && client.getView() instanceof GUI){ //se null non faccio niente, siamo all'inizio, è stato inviato BOARDDATAREPLY
+        if(faceDownGold != null){ //se null non faccio niente, siamo all'inizio, è stato inviato BOARDDATAREPLY
             client.getView().showCommonTable(faceDownGold,faceDownResource,faceUpGold,faceupResource);
         }
     }

@@ -58,7 +58,6 @@ public class ChatReply extends SampleServerMessage{
                     client.getView().showGameChat("Private message from " + message + ": " +destination);
                 }
             }
-
         }
     }
 }

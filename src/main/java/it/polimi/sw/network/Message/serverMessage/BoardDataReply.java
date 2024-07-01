@@ -108,11 +108,8 @@ public class BoardDataReply extends SampleServerMessage {
             client.getView().createTabbedManuscripts(names);
         }else {
             //if it's me, it's time to re-show the manuscript
-            if (client.getMatch().getMe().equals(p))
+            if (client.getMatch().getMe().equals(p) || client.getView() instanceof GUI)
                 client.getView().showCommonTable(facedownGold, facedownRes, faceupGold, faceupRes);
-            if (client.getView() instanceof GUI) {
-                client.getView().showCommonTable(facedownGold, facedownRes, faceupGold, faceupRes);
-            }
         }
     }
 }
