@@ -60,7 +60,7 @@ public abstract class View extends Observable {
                     }
                 }
                 try {
-                    Thread.sleep(1000); // Check every second
+                    Thread.sleep(1000 * 60); // Check every minute
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -349,6 +349,10 @@ public abstract class View extends Observable {
 
     abstract public void createTabbedManuscripts(ArrayList<String> names) ; //used in gui to set up the tab panes
     abstract public void gameAlmostFinished();
+    /**
+     * Marks the server as alive by setting the {@code serverIson} boolean to {@code true}.
+     * This method also prints a confirmation message to the console.
+     */
     public void isServerAlive(){
         serverIson = true;
         System.out.println("Server is alive\n");

@@ -259,7 +259,7 @@ public class ClientSocket extends Client implements Observer, Runnable, Serializ
         try{
             output.writeObject(message);
             output.flush();
-            output.writeObject(new CheckServerDisconnected(getIdlobby(),getMatch().getMe().getId()));
+            output.writeObject(new CheckServerDisconnected());
             output.flush();
 
         } catch (IOException e) {

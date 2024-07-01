@@ -7,14 +7,13 @@ import it.polimi.sw.network.Message.ClientMessage.ConnectionRequest;
 import it.polimi.sw.network.Message.ClientMessage.NicknameRequest;
 import it.polimi.sw.network.Message.ClientMessage.PlayerNumberAndPionRequest;
 import it.polimi.sw.network.Message.ClientMessage.SampleClientMessage;
-import it.polimi.sw.network.Message.serverMessage.GameCreated;
-import it.polimi.sw.network.Message.serverMessage.NicknameReply;
-import it.polimi.sw.network.Message.serverMessage.SendingPionErrorReply;
-import it.polimi.sw.network.Message.serverMessage.WaitingPlayerReply;
+import it.polimi.sw.network.Message.serverMessage.*;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static it.polimi.sw.network.Message.ClientMessage.TypeMessageClient.SERVER_DISCONNECTED;
 
 /**
  * This class likely implements a thread that processes messages received from clients through the provided QueueHandler.
@@ -241,7 +240,11 @@ public class ProcessQueue implements Runnable {
             case PING -> {}
             case PRIVATE_MESSAGE_REQUEST -> message.execute(server.getLobbyReference().get((message).getClientLobbyReference()));
             case PUBLIC_MESSAGE_REQUEST -> message.execute(server.getLobbyReference().get((message).getClientLobbyReference()));
-            case SERVER_DISCONNECTED -> message.execute(server.getLobbyReference().get((message.getClientLobbyReference())));
+            case SERVER_DISCONNECTED -> {
+                for(GameControllerServer gc : server.getLobbyReference()){
+                    gc.getCurrgame().notify(new CheckServerDisconnectedReply());
+                }
+            }
         }
     }
 

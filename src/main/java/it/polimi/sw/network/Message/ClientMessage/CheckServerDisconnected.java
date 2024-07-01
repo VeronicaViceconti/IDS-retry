@@ -12,8 +12,8 @@ import it.polimi.sw.network.Message.serverMessage.SampleServerMessage;
  * This message includes the lobby ID and the ID of the player who wants to exit.
  */
 public class CheckServerDisconnected extends SampleClientMessage{
-    public CheckServerDisconnected(int lobby, int id_player) {
-        super(TypeMessageClient.SERVER_DISCONNECTED,lobby, id_player);
+    public CheckServerDisconnected() {
+        super(TypeMessageClient.SERVER_DISCONNECTED);
     }
 
 
