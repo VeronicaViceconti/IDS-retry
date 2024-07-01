@@ -86,10 +86,10 @@ public class UpdatePlayersReply extends SampleServerMessage {
                                                 client.getMatch().getFaceupResource());
             client.getView().showPlayerHand(client.getMatch().getMe().getHand());
 
-            System.out.println("Timeline during updating card->");
+  /*          System.out.println("Timeline during updating card->");
             for(Card c: player.getTimeline())
                 System.out.println("Cartaa -> "+c.toString());
-
+*/
             if(lastTurn) {
                 client.getView().drawCard(); // here chat unlocks
             }

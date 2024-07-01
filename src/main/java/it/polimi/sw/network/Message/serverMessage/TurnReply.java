@@ -19,7 +19,6 @@ public class TurnReply extends SampleServerMessage {
 
     private final ArrayList<Point2D> positions;
 
-    private final ArrayList<Card> timeLine;
     /**
      * Constructor for a TurnReply message.
      *
@@ -27,11 +26,10 @@ public class TurnReply extends SampleServerMessage {
      * @param pos A list of valid positions (e.g., for card placement) relevant to the current turn.
      */
 
-    public TurnReply(Player player, ArrayList<Point2D> pos, ArrayList<Card> tline){
+    public TurnReply(Player player, ArrayList<Point2D> pos){
         super(TypeMessageServer.TURN_REPLY);
         this.currp = player;
         this.positions = new ArrayList<>(pos);
-        this.timeLine = new ArrayList<>(tline);
     }
     /**
      * This method defines the actions to be taken by the server after sending a TurnReply message to a client.
@@ -51,27 +49,18 @@ public class TurnReply extends SampleServerMessage {
         client.getMatch().setCurrPlayer(currp);
         if(currp.equals(client.getMatch().getMe())){
             client.getMatch().getMe().resetAvPos(positions);
-          /*  if(currp.getTimeline() != null && !currp.getTimeline().isEmpty()){
-                client.getView().addToTimeLine(currp.getTimeline().getLast());
-            }
-            else{
-                System.out.println("timetine non aggiornata. error!");
-            }*/
+
             client.getView().resetAvPos(positions);
-
-            for(Card c: currp.getTimeline())
-                System.out.println("In turn reply abbiamo timeline ->"+c.toString());
-
             client.getView().chatWait(); //chat stores
 
             client.getView().myTurnNotification(client.getMatch().getMe().getMap(), client.getMatch().getMe().getHand(),client.getMatch().getMe().getHandBack());
             //client.getView().showAvailablePositions(); should be called inside myturnNotification
             // chat unblocks within my turn notification
-        }else{
+        }/*else{
             //Yana: I would remove .notYourTurn. player is already in reader
             System.out.println("NOT YOUR TURN");
             //client.getView().notYourTurn();
             //client.getView().readNotYourTurnInput(); viene creato un thread per reader alla fine di drawcard reader
-        }
+        }*/
     }
 }

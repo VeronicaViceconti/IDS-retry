@@ -34,11 +34,11 @@ public class FinalPointsReply extends SampleServerMessage{
      */
     @Override
     public void execute(Client client) {
-        if(client.getMatch().getMe().getNickName().equals(player.getNickName())){
+        //if(client.getMatch().getMe().getNickName().equals(player.getNickName())){
             client.getMatch().getMe().addPoints(points);
             client.getView().chatWait();
-            client.getView().addPoints(client.getMatch().getMe(), points);
+            client.getView().addPoints(player, points);
             client.getView().chatUnblockWait();
-        }
+        //}
     }
 }

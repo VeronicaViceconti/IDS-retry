@@ -172,16 +172,19 @@ public class TUI extends  View {
                 .max(Comparator.comparingInt(entry -> entry.getValue()[1]))
                 .map(entry -> entry.getValue()[1])
                 .orElse(-80);
+        //System.out.println("A");
         int mostBottom = map.entrySet()
                 .stream()
                 .min(Comparator.comparingInt(entry -> entry.getValue()[1]))
                 .map(entry -> entry.getValue()[1])
                 .orElse(80);
+        //System.out.println("B");
         int mostLeft = map.entrySet()
                 .stream()
                 .min(Comparator.comparingInt(entry -> entry.getValue()[0]))
                 .map(entry -> entry.getValue()[0])
                 .orElse(-80);
+        //System.out.println("C");
         //ad the first line topSingle of the top line
         System.out.print("   "); // to adjust according to i
         firstLine(mostUp, mostLeft, map);
@@ -416,11 +419,6 @@ public class TUI extends  View {
             currXUp = (searchedUpperCard != null) ? map.get(searchedUpperCard)[0] : null;
         }
 
-/*        if (currXDown != null) {
-            minDist = currXUp > currXDown ? currXDown : currXUp;
-            minDist = minDist - mostLeft;
-            //System.out.print(" ");
-        }*/
         printSpaceOneCard(6 * (minDist)); //non ricordo perche
 
 
@@ -428,32 +426,10 @@ public class TUI extends  View {
             System.out.print(" ");
         }
 
-/*
-        Integer[] coordinates = map.get(searchedUpperCard);
-        boolean leftPresent = positionOccupied(map,coordinates[0]-1,coordinates[1]-1);
-        boolean rightPresent = positionOccupied(map, coordinates[0]+1,coordinates[1]-1);
-*/
 
         //they cannot be both null, since in each row there is at least one card
         while (searchedUpperCard != null || searchedLowerCard != null) { // make enough space between cards
             //if both null, then it would not enter in while loop
-/*
-
-            if (currXDown == null) {
-                minDist = currXUp - prev;
-                nextCard = true;
-                next = currXUp;
-            } else if (currXUp == null) {
-                minDist = currXDown - prev;
-                nextCard = false;
-                next = currXDown;
-
-
-            } else {
-                next = Math.min(currXUp, currXDown);
-                nextCard = currXUp <= currXDown;
-                minDist = next - prev;
-            }*/ //portarlo alla fine
 
             boolean L = true;
             boolean R = true;
@@ -993,91 +969,66 @@ public class TUI extends  View {
     private void middleSingleCard(Card c) {
         if (c instanceof GoldCard || c instanceof ResourceCard) {
             if (c.getcolour().equals("red")) {
-                String emojiFront = ":broken_heart:";
-                String emojiBack = ":mushroom:";
-
 
                 if (c.getSide() == 1) {
-                    int i;
-                    for (i = 0; i < 7; i++) {
-                        System.out.print(EmojiParser.parseToUnicode(emojiFront));
+                    for (int i = 0; i < 7; i++) {
+                        System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                     }
                 } else {
-                    int i;
-                    for (i = 0; i < 3; i++) {
-                        System.out.print(EmojiParser.parseToUnicode(emojiFront));
+                    for (int i = 0; i < 3; i++) {
+                        System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                     }
-                    System.out.print(EmojiParser.parseToUnicode(emojiBack));
-
-
-                    for (i = 0; i < 3; i++) {
-                        System.out.print(EmojiParser.parseToUnicode(emojiFront));
+                    System.out.print(EmojiParser.parseToUnicode(":mushroom:"));
+                    for (int i = 0; i < 3; i++) {
+                        System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                     }
                 }
 
 
             } else if (c.getcolour().equals("green")) {
-                String emojiFront = ":green_heart:";
-                String emojiBack = ":four_leaf_clover:";
-
-
                 if (c.getSide() == 1) {
-                    int i;
-                    for (i = 0; i < 7; i++) {
-                        System.out.print(EmojiParser.parseToUnicode(emojiFront));
+                    for (int i = 0; i < 7; i++) {
+                        System.out.print(EmojiParser.parseToUnicode(":green_heart:"));
                     }
                 } else {
-                    int i;
-                    for (i = 0; i < 3; i++) {
-                        System.out.print(EmojiParser.parseToUnicode(emojiFront));
+                    for (int i = 0; i < 3; i++) {
+                        System.out.print(EmojiParser.parseToUnicode(":green_heart:"));
                     }
-                    System.out.print(EmojiParser.parseToUnicode(emojiBack));
-                    for (i = 0; i < 3; i++) {
-                        System.out.print(EmojiParser.parseToUnicode(emojiFront));
+                    System.out.print(EmojiParser.parseToUnicode(":four_leaf_clover:"));
+                    for (int i = 0; i < 3; i++) {
+                        System.out.print(EmojiParser.parseToUnicode(":green_heart:"));
                     }
                 }
 
 
             } else if (c.getcolour().equals("blue")) {
-                String emojiFront = ":blue_heart:";
-                String emojiBack = ":wolf:";
-
-
                 if (c.getSide() == 1) {
-                    int i;
-                    for (i = 0; i < 7; i++) {
-                        System.out.print(EmojiParser.parseToUnicode(emojiFront));
+                    for (int i = 0; i < 7; i++) {
+                        System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                     }
                 } else {
-                    int i;
-                    for (i = 0; i < 3; i++) {
-                        System.out.print(EmojiParser.parseToUnicode(emojiFront));
+                    for (int i = 0; i < 3; i++) {
+                        System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                     }
-                    System.out.print(EmojiParser.parseToUnicode(emojiBack));
-                    for (i = 0; i < 3; i++) {
-                        System.out.print(EmojiParser.parseToUnicode(emojiFront));
+                    System.out.print(EmojiParser.parseToUnicode(":wolf:"));
+                    for (int i = 0; i < 3; i++) {
+                        System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                     }
                 }
 
 
             } else if (c.getcolour().equals("purple")) {
-                String emojiFront = ":purple_heart:";
-                String emojiBack = ":butterfly:";
-
-
                 if (c.getSide() == 1) {
-                    int i;
-                    for (i = 0; i < 7; i++) {
-                        System.out.print(EmojiParser.parseToUnicode(emojiFront));
+                    for (int i = 0; i < 7; i++) {
+                        System.out.print(EmojiParser.parseToUnicode(":purple_heart:"));
                     }
                 } else {
-                    int i;
-                    for (i = 0; i < 3; i++) {
-                        System.out.print(EmojiParser.parseToUnicode(emojiFront));
+                    for (int i = 0; i < 3; i++) {
+                        System.out.print(EmojiParser.parseToUnicode(":purple_heart:"));
                     }
-                    System.out.print(EmojiParser.parseToUnicode(emojiBack));
-                    for (i = 0; i < 3; i++) {
-                        System.out.print(EmojiParser.parseToUnicode(emojiFront));
+                    System.out.print(EmojiParser.parseToUnicode(":butterfly:"));
+                    for (int i = 0; i < 3; i++) {
+                        System.out.print(EmojiParser.parseToUnicode(":purple_heart:"));
                     }
                 }
 
@@ -1086,23 +1037,14 @@ public class TUI extends  View {
 
 
         } else if (c instanceof InitialCard) {
-            String emojiBack = ":orange_heart:";
-            String[] emojiFront =new String[4];
-            emojiFront[0]=":mushroom:";
-            emojiFront[1]=":wolf:";
-            emojiFront[2]=":butterfly:";
-            emojiFront[3]=":four_leaf_clover:";
-
 
             if (c.getSide() == 1) { //front
-                int i;
-                for (i = 0; i < 7; i++) {
-                    System.out.print(EmojiParser.parseToUnicode(emojiBack));
+                for (int i = 0; i < 7; i++) {
+                    System.out.print(EmojiParser.parseToUnicode(":orange_heart:"));
                 }
             } else { //back
-                int i;
-                for (i = 0; i < 2; i++) {
-                    System.out.print(EmojiParser.parseToUnicode(emojiBack));
+                for (int i = 0; i < 2; i++) {
+                    System.out.print(EmojiParser.parseToUnicode(":orange_heart:"));
                 }
 
 
@@ -1112,75 +1054,71 @@ public class TUI extends  View {
 
                 switch(c.getPermanentResource().size()){
                     case 1:
-                        System.out.print(EmojiParser.parseToUnicode(emojiBack));
+                        System.out.print(EmojiParser.parseToUnicode(":orange_heart:"));
                         switch (c.getPermanentResource().getFirst()){ //all of them have at least one
-                            case FUNGI: System.out.print(EmojiParser.parseToUnicode(emojiFront[0]));
+                            case FUNGI: System.out.print(EmojiParser.parseToUnicode(":mushroom:"));
                                 break;
-                            case PLANT: System.out.print(EmojiParser.parseToUnicode(emojiFront[3]));
+                            case PLANT: System.out.print(EmojiParser.parseToUnicode(":four_leaf_clover:"));
                                 break;
-                            case INSECT: System.out.print(EmojiParser.parseToUnicode(emojiFront[2]));
+                            case INSECT: System.out.print(EmojiParser.parseToUnicode(":butterfly:"));
                                 break;
-                            case ANIMAL: System.out.print(EmojiParser.parseToUnicode(emojiFront[1]));
+                            case ANIMAL: System.out.print(EmojiParser.parseToUnicode(":wolf:"));
                                 break;
                         }
-                        System.out.print(EmojiParser.parseToUnicode(emojiBack));
-
-
+                        System.out.print(EmojiParser.parseToUnicode(":orange_heart:"));
                         break;
                     case 2:
                         switch (c.getPermanentResource().getFirst()){ //all of them have at least one
-                            case FUNGI: System.out.print(EmojiParser.parseToUnicode(emojiFront[0]));
+                            case FUNGI: System.out.print(EmojiParser.parseToUnicode(":mushroom:"));
                                 break;
-                            case PLANT: System.out.print(EmojiParser.parseToUnicode(emojiFront[3]));
+                            case PLANT: System.out.print(EmojiParser.parseToUnicode(":four_leaf_clover:"));
                                 break;
-                            case INSECT: System.out.print(EmojiParser.parseToUnicode(emojiFront[2]));
+                            case INSECT: System.out.print(EmojiParser.parseToUnicode(":butterfly:"));
                                 break;
-                            case ANIMAL: System.out.print(EmojiParser.parseToUnicode(emojiFront[1]));
+                            case ANIMAL: System.out.print(EmojiParser.parseToUnicode(":wolf:"));
                                 break;
                         }
-                        System.out.print(EmojiParser.parseToUnicode(emojiBack));
-
-
+                        System.out.print(EmojiParser.parseToUnicode(":orange_heart:"));
                         switch (c.getPermanentResource().get(1)){
-                            case FUNGI: System.out.print(EmojiParser.parseToUnicode(emojiFront[0]));
+                            case FUNGI: System.out.print(EmojiParser.parseToUnicode(":mushroom:"));
                                 break;
-                            case PLANT: System.out.print(EmojiParser.parseToUnicode(emojiFront[3]));
+                            case PLANT: System.out.print(EmojiParser.parseToUnicode(":four_leaf_clover:"));
                                 break;
-                            case INSECT: System.out.print(EmojiParser.parseToUnicode(emojiFront[2]));
+                            case INSECT: System.out.print(EmojiParser.parseToUnicode(":butterfly:"));
                                 break;
-                            case ANIMAL: System.out.print(EmojiParser.parseToUnicode(emojiFront[1]));
+                            case ANIMAL: System.out.print(EmojiParser.parseToUnicode(":wolf:"));
                                 break;
                         }
                         break;
                     case 3:
                         switch (c.getPermanentResource().getFirst()){ //all of them have at least one
-                            case FUNGI: System.out.print(EmojiParser.parseToUnicode(emojiFront[0]));
+                            case FUNGI: System.out.print(EmojiParser.parseToUnicode(":mushroom:"));
                                 break;
-                            case PLANT: System.out.print(EmojiParser.parseToUnicode(emojiFront[3]));
+                            case PLANT: System.out.print(EmojiParser.parseToUnicode(":four_leaf_clover:"));
                                 break;
-                            case INSECT: System.out.print(EmojiParser.parseToUnicode(emojiFront[2]));
+                            case INSECT: System.out.print(EmojiParser.parseToUnicode(":butterfly:"));
                                 break;
-                            case ANIMAL: System.out.print(EmojiParser.parseToUnicode(emojiFront[1]));
+                            case ANIMAL: System.out.print(EmojiParser.parseToUnicode(":wolf:"));
                                 break;
                         }
                         switch (c.getPermanentResource().get(1)){
-                            case FUNGI: System.out.print(EmojiParser.parseToUnicode(emojiFront[0]));
+                            case FUNGI: System.out.print(EmojiParser.parseToUnicode(":mushroom:"));
                                 break;
-                            case PLANT: System.out.print(EmojiParser.parseToUnicode(emojiFront[3]));
+                            case PLANT: System.out.print(EmojiParser.parseToUnicode(":four_leaf_clover:"));
                                 break;
-                            case INSECT: System.out.print(EmojiParser.parseToUnicode(emojiFront[2]));
+                            case INSECT: System.out.print(EmojiParser.parseToUnicode(":butterfly:"));
                                 break;
-                            case ANIMAL: System.out.print(EmojiParser.parseToUnicode(emojiFront[1]));
+                            case ANIMAL: System.out.print(EmojiParser.parseToUnicode(":wolf:"));
                                 break;
                         }
                         switch (c.getPermanentResource().get(2)){
-                            case FUNGI: System.out.print(EmojiParser.parseToUnicode(emojiFront[0]));
+                            case FUNGI: System.out.print(EmojiParser.parseToUnicode(":mushroom:"));
                                 break;
-                            case PLANT: System.out.print(EmojiParser.parseToUnicode(emojiFront[3]));
+                            case PLANT: System.out.print(EmojiParser.parseToUnicode(":four_leaf_clover:"));
                                 break;
-                            case INSECT: System.out.print(EmojiParser.parseToUnicode(emojiFront[2]));
+                            case INSECT: System.out.print(EmojiParser.parseToUnicode(":butterfly:"));
                                 break;
-                            case ANIMAL: System.out.print(EmojiParser.parseToUnicode(emojiFront[1]));
+                            case ANIMAL: System.out.print(EmojiParser.parseToUnicode(":wolf:"));
                                 break;
                         }
                         break;
@@ -1190,8 +1128,8 @@ public class TUI extends  View {
                 }
 
 
-                for (i = 0; i < 2; i++) {
-                    System.out.print(EmojiParser.parseToUnicode(emojiBack));
+                for (int i = 0; i < 2; i++) {
+                    System.out.print(EmojiParser.parseToUnicode(":orange_heart:"));
                 }
             }
 
@@ -1867,13 +1805,11 @@ public class TUI extends  View {
      */
     @Override
     public void showGameChat(String message) {
-        System.out.println("Stampa chat->" +mayShowChat);
         if(mayShowChat){
             showLastMex(); //all stored if present
             System.out.println(message);
         }else{
             //suppongo che solo un thread entra qua.
-            System.out.println("non puoi usare chat");
             chatMessagesStorage.add(message);
         }
     }
@@ -1886,10 +1822,9 @@ public class TUI extends  View {
     }
 
     @Override
-    public void initializePions(int indexMe,ArrayList<Pion> pions) {
+    public void initializePions(int indexMe, ArrayList<Pion> pions) {
 
     }
-
 
 
     /**
@@ -1937,7 +1872,8 @@ public class TUI extends  View {
         //chat is not a problem. managed within mex
 
 
-        System.out.println("Draw a card. \n(Follow one of the schemes: 'Draw, Facedown, TypeofDeck'; 'Draw, Faceup, TypeCard, numberofCard')");
+        System.out.println("Draw a card. Follow one of the schemes:\n" +
+                "'Draw, Facedown, TypeofDeck'; 'Draw, Faceup, TypeCard, numberofCard';\n 'Chat. Message', 'Chat. Private. Name. Message' or 'RequestOtherData'\")");
         chatUnblockWait();
         try {
             readDrawCardInput();
@@ -1968,13 +1904,14 @@ public class TUI extends  View {
      * @param points The number of points to be added to the player's score.
      */
     @Override
-    public void addPoints(Player p, int points) {
-        int newPoints=p.getPoints()+points;
-        p.setPoints(newPoints);
-        System.out.print("Game over! You got: ");
+    public void addPoints(Player p, int points) { //passes final points
+        //p.addPoints(points);
+        //p.setPoints(newPoints);
 
+        //System.out.print("\nGame over!");
+        System.out.println(p.getNickName() +" final points: ");
+        System.out.print(EmojiParser.parseToUnicode(":parking: ")+points +"\n");
 
-        System.out.print(EmojiParser.parseToUnicode(":parking:")+":"+newPoints);
     }
 
 
@@ -2157,7 +2094,7 @@ public class TUI extends  View {
         showPlayerHand(hand);
         showAvailablePositions();
         System.out.println("It's your turn! Choose a card from your hand and where do you want to place it.\n " +
-                "Follow one of the schemes:'Place, numberOfTheCard, x, y'; 'Flip.'");
+                "Follow one of the schemes:'Place, numberOfTheCard, x, y'; 'Flip.'; 'RequestOtherData'");
         chatUnblockWait();
 
 
@@ -2588,21 +2525,14 @@ public class TUI extends  View {
      */
     @Override
     public void readPlayCardInput() throws RemoteException {
-        //AtomicBoolean receivedInput = new AtomicBoolean(false);
-
-
         Pattern pattern = Pattern.compile(
                 "^\\s*Place\\s*,\\s*(1|2|3)\\s*,\\s*(-?\\d+)\\s*,\\s*(-?\\d+)\\s*$" +
                         "|^\\s*Flip\\.\\s*$" +
-                        "|^\\s*Chat\\.\\s*(Private\\s*\\.\\s*(\\w+)\\s*\\.\\s*(.+)|(.+))\\s*$",
+                        "|^\\s*Chat\\.\\s*(Private\\s*\\.\\s*(\\w+)\\s*\\.\\s*(.+)|(.+))\\s*$"+
+                        "|^\\s*RequestOtherData\\s*$",
                 Pattern.CASE_INSENSITIVE
         );
-       /*ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
-
-       Runnable task1 = () -> {
-           System.out.println("Everyone is waiting! Choose a card!");
-       };*/
         if(!chatMessagesStorage.isEmpty()) {
             System.out.println("Last messages from chat: \n");
             showLastMex();
@@ -2611,13 +2541,7 @@ public class TUI extends  View {
         chatUnblockWait();
         while (true) { //make a control! changed break position
 
-
-            //executor.schedule(task1, 90, TimeUnit.SECONDS);
-
-
             String input = this.input.nextLine();
-            //receivedInput.set(true);
-
 
             Matcher matcher = pattern.matcher(input);
             if (matcher.matches()) {
@@ -2633,11 +2557,6 @@ public class TUI extends  View {
                         else{ //chooses front
                             notify(new SendingCardPlayed(frontHand.get(numberOfTheCard -1), new Integer[]{x, y}));
                         }
-
-
-
-
-                        //executor.shutdown();
                         break;
                     }else{
                         System.out.println("Position is not available. Card has to cover at least one corner. No hidden corners may be covered. ");
@@ -2645,8 +2564,6 @@ public class TUI extends  View {
 
 
                 } else if (input.trim().equalsIgnoreCase("Flip."))  { //flip
-                    //System.out.println("Flip command recognized: " + matcher.group(4));
-
 
                     cardToFlip(); //it also calls show player hand
 
@@ -2663,12 +2580,14 @@ public class TUI extends  View {
                         String message = matcher.group(7);
                         notify(new SendingChatMessage(message));
                     }
+                } else if (matcher.group(8) != null && matcher.group(8).equalsIgnoreCase("RequestOtherData")) {
+                    requestOtherData();
                 }
 
 
             } else {
                 System.out.println("Insert valid input. Follow one of the schemes: \n" +
-                        "'Place, numberOfTheCard, x, y'; 'Flip.'; 'Chat. Message' or 'Chat. Private. Name. Message'");
+                        "'Place, numberOfTheCard, x, y'; 'Flip.'; 'Chat. Message', 'Chat. Private. Name. Message' or 'RequestOtherData'");
                 //receivedInput.set(false);
             }
         }
@@ -2692,34 +2611,21 @@ public class TUI extends  View {
      */
     @Override
     public void readDrawCardInput () throws RemoteException {
-        //AtomicBoolean receivedInput = new AtomicBoolean(false);
-
-
         Pattern pattern = Pattern.compile(
                 "^\\s*(Draw)\\s*,\\s*(Facedown)\\s*,\\s*(Gold|Resource)" +
                         "|^\\s*(Draw)\\s*,\\s*(Faceup)\\s*,\\s*(Gold|Resource)\\s*,\\s*(1|2)" +
-                        "|^\\s*Chat\\.\\s*(Private\\s*\\.\\s*(\\w+)\\s*\\.\\s*(.+)|(.+))\\s*$",
+                        "|^\\s*Chat\\.\\s*(Private\\s*\\.\\s*(\\w+)\\s*\\.\\s*(.+)|(.+))\\s*$"+
+                        "|^\\s*(RequestOtherData)\\s*$",
                 Pattern.CASE_INSENSITIVE
         );
 
-
-           /*ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
-
-
-           Runnable task1 = () -> {
-               if (!receivedInput.get()) {
-                   System.out.println("Everyone is waiting! Choose a card!");
-               }
-           };*/
+        if(!chatMessagesStorage.isEmpty()) {
         System.out.println("Last messages from chat: \n");
         showLastMex();
-
-
+        }
         chatUnblockWait();
         while (true) {
             String input = this.input.nextLine();
-            //receivedInput.set(true);
-
 
             Matcher matcher = pattern.matcher(input);
             if(matcher.matches()) {
@@ -2757,7 +2663,7 @@ public class TUI extends  View {
                         String name = matcher.group(9);
                         String message = matcher.group(10);
                         notify(new SendingChatMessage(message,name ));
-                        System.out.println("Private message to " + name + ": " + message); //correct to be here
+                        System.out.println("\nPrivate message to " + name + ": " + message); //correct to be here
 
 
                     } else {                        // Chat. Public
@@ -2766,11 +2672,13 @@ public class TUI extends  View {
                     }
                     //readDrawCardInput();
 
-
+                } else if (matcher.group(12) != null && matcher.group(12).equalsIgnoreCase("RequestOtherData")) {
+                    requestOtherData();
+                    System.out.println("\nRequesting other data. \n");
                 }
             }else{
                 System.out.println("Insert valid input. Follow one of the schemes: \n" +
-                        "'Draw, Facedown, TypeofDeck'; 'Draw, Faceup, TypeCard, numberofCard'; 'Chat. Message' or 'Chat. Private. Name. Message'");
+                        "'Draw, Facedown, TypeofDeck'; 'Draw, Faceup, TypeCard, numberofCard';\n 'Chat. Message', 'Chat. Private. Name. Message' or 'RequestOtherData'");
             }
             //executor.shutdown();
         }
