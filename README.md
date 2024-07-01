@@ -12,12 +12,11 @@ Interazione attraverso linea di comando (CLI) oppure grafica (GUI).
 
 ### UML 
 
-Di seguito è riportato il diagramma UML generale generato automaticamente da Intellij    
--[UML generale](https://github.com/ishmeet786/ing-sw-2024-raibaldi-viceconti-siao-singh/blob/main/deliverables/UML/Uml%20generated.png)
+Di seguito è riportato il diagramma UML generale generato automaticamente da Intellij: [UML generale](https://github.com/ishmeet786/ing-sw-2024-raibaldi-viceconti-siao-singh/blob/main/deliverables/UML/Uml%20generated.png)
 
 ### Coverege 
 
-Al seguente link è possibile visualizzare il report della coverege dei test: [Report](https://github.com/ishmeet786/ing-sw-2024-raibaldi-viceconti-siao-singh/blob/main/deliverables/Screen_Test_Coverage/IMG_0541.png)
+Al seguente link è possibile visualizzare il report della coverege dei test: [Report](https://github.com/VeronicaViceconti/IDS-retry/blob/master/deliverables/Screen_Test_Coverage/Screenshot%202024-07-01%20alle%2019.45.19.png) 
 
 ### Librerie 
 
@@ -36,7 +35,7 @@ Al seguente link è possibile visualizzare il report della coverege dei test: [R
 -Socket.  
 -CLI.  
 -GUI.  
--Funzionalità avanzate:  
+Funzionalità avanzate:  
 -Chat: chat tra i giocatori.  
 -Multipartita: possono avvenire più partite contemporaneamente. 
 
