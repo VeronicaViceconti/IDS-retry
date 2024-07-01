@@ -9,6 +9,7 @@ import it.polimi.sw.network.Message.ClientMessage.PlayerNumberAndPionRequest;
 import it.polimi.sw.network.Message.ClientMessage.SampleClientMessage;
 import it.polimi.sw.network.Message.serverMessage.GameCreated;
 import it.polimi.sw.network.Message.serverMessage.NicknameReply;
+import it.polimi.sw.network.Message.serverMessage.SendingPionErrorReply;
 import it.polimi.sw.network.Message.serverMessage.WaitingPlayerReply;
 
 import java.rmi.RemoteException;
@@ -197,24 +198,38 @@ public class ProcessQueue implements Runnable {
             }
             case PLAYER_NUMBER_REQUEST -> {
                 int lobbyid = (message).getClientLobbyReference();
+                Boolean flag = false;
                 Pion pion = ((PlayerNumberAndPionRequest)message).getPion();
-                int numberofPlayer = ((PlayerNumberAndPionRequest)message).getNum();
-                Player player = new Player(((PlayerNumberAndPionRequest)message).getNickname(), pion);
-                player.setId(server.getLobbyReference().get(lobbyid).getPlayersList().size());
-                if(numberofPlayer == 0)
-                {
-                    //handle login, add lobby
-                    server.getLobbyReference().get(lobbyid).addPlayertoGame(player);
-                    if(!server.getLobbyReference().get(lobbyid).isItFull())
+                Pion []allPions = new Pion[]{Pion.pion_blue,Pion.pion_yellow,Pion.pion_red,Pion.pion_green};
+                ArrayList<Pion> pions = new ArrayList<>(Arrays.asList(allPions));
+                for (Player p : server.getLobbyReference().get(lobbyid).getCurrgame().getTotPlayers()) {
+                   if(p.getPion().equals(pion)){
+                       flag = true;
+                       pions.remove(p.getPion());
+                       break;
+                   } //if pion isn't in the list, it won't be removed
+                }
+                if(flag){
+                    //pion already got by another player, send error
+                    server.getLobbyReference().get(lobbyid).getCurrgame().notify(new SendingPionErrorReply(pions));
+                }else {
+                    int numberofPlayer = ((PlayerNumberAndPionRequest)message).getNum();
+                    Player player = new Player(((PlayerNumberAndPionRequest)message).getNickname(), pion);
+                    player.setId(server.getLobbyReference().get(lobbyid).getPlayersList().size());
+                    if(numberofPlayer == 0)
                     {
+                        //handle login, add lobby
+                        server.getLobbyReference().get(lobbyid).addPlayertoGame(player);
+                        if(!server.getLobbyReference().get(lobbyid).isItFull())
+                        {
+                            server.getLobbyReference().get(lobbyid).getCurrgame().notify(new WaitingPlayerReply());
+                        }
+                    }else{
+                        server.getLobbyReference().get(lobbyid).getCurrgame().setMaxPlayersNumbers(numberofPlayer);
+                        server.getLobbyReference().get(lobbyid).addPlayertoGame(player);
                         server.getLobbyReference().get(lobbyid).getCurrgame().notify(new WaitingPlayerReply());
                     }
-                }else{
-                    server.getLobbyReference().get(lobbyid).getCurrgame().setMaxPlayersNumbers(numberofPlayer);
-                    server.getLobbyReference().get(lobbyid).addPlayertoGame(player);
-                    server.getLobbyReference().get(lobbyid).getCurrgame().notify(new WaitingPlayerReply());
                 }
-
             }
             case DRAW_DECK_REQUEST, PLACE_REQUEST, PRIVATE_OBJECTIVE_REQUEST, DRAW_TABLE_REQUEST -> message.execute(server.getLobbyReference().get((message).getClientLobbyReference()));
             case PING -> {}

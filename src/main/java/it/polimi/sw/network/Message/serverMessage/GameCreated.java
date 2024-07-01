@@ -49,18 +49,7 @@ public class GameCreated extends SampleServerMessage {
     public void execute(Client client) {
         //set lobby for the client
         client.setIdlobby(idlobby);
-        Pion[] allPions = new Pion[]{Pion.pion_blue, Pion.pion_yellow, Pion.pion_red, Pion.pion_green};
-        ArrayList<Pion> pions = new ArrayList(Arrays.asList(allPions));
-        if (this.gameControllerServer.getLobbyReference().get(this.idlobby).getPlayersList().size() != 0 && this.askOrNotNumPlayers == 1) {
-            this.askOrNotNumPlayers = 0;
-            Iterator var4 = this.gameControllerServer.getLobbyReference().get(this.idlobby).getPlayersList().iterator();
-            while(var4.hasNext()) {
-                Player p = (Player)var4.next();
-                pions.remove(p.getPion());
-            }
-            this.availablePions = pions;
-        }
-        if (this.askOrNotNumPlayers == 1) {
+        if (askOrNotNumPlayers == 1) {
             client.getView().selectNumberOfplayerInMatch();
         }
         client.getView().selectPion(this.availablePions);

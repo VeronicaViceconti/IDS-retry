@@ -121,8 +121,13 @@ public enum TypeMessageServer {
      * Message type for chat replies from the server to the client.
      */
     CHAT_REPLY,
-    /*
-    a player has finished his game, but still has to wait other players to count points
+    /**
+        a player has finished his game, but still has to wait other players to count points
+     **/
+    GAME_ALMOST_DONE,
+
+    /**
+     * Message informing the client that the pion selection went wrong.
      */
-    GAME_ALMOST_DONE
+    SENDING_PION_ERROR
 }
