@@ -2,10 +2,7 @@ package it.polimi.sw.network.Socket;
 
 import it.polimi.sw.Observer.Observer;
 import it.polimi.sw.network.CommonGameLogicServer;
-import it.polimi.sw.network.Message.ClientMessage.ConnectionRequest;
-import it.polimi.sw.network.Message.ClientMessage.NicknameRequest;
-import it.polimi.sw.network.Message.ClientMessage.SampleClientMessage;
-import it.polimi.sw.network.Message.ClientMessage.TypeMessageClient;
+import it.polimi.sw.network.Message.ClientMessage.*;
 import it.polimi.sw.network.Message.ViewMessage.SampleViewMessage;
 import it.polimi.sw.network.Message.serverMessage.SampleServerMessage;
 import it.polimi.sw.network.QueueHandlerServer;
@@ -135,7 +132,10 @@ public class ClientHandlerSOCKET implements Runnable, Serializable, Observer {
             if(message.getType() == TypeMessageClient.NICKNAME_REQUEST) {
                 queueHandler.appendMessage(new NicknameRequest(((NicknameRequest) message).getName(), this));
             }else{
-                queueHandler.appendMessage(message);
+                if(message.getType() == TypeMessageClient.PRIVATE_MESSAGE_REQUEST) {
+                    queueHandler.appendMessage(new PrivateChatRequest(((PrivateChatRequest) message).getClientLobbyReference(), ((PrivateChatRequest) message).getMessage(), ((PrivateChatRequest) message).getToWhom(), ((PrivateChatRequest) message).getFromWhom(), this));
+
+                }else  queueHandler.appendMessage(message);
             }
         }
     }

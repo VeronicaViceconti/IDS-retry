@@ -1,6 +1,7 @@
 package it.polimi.sw.Observer;
 
 import it.polimi.sw.model.Player;
+import it.polimi.sw.network.Client;
 import it.polimi.sw.network.Message.ClientMessage.SampleClientMessage;
 import it.polimi.sw.network.Message.ViewMessage.SampleViewMessage;
 import it.polimi.sw.network.Message.serverMessage.SampleServerMessage;
@@ -35,5 +36,6 @@ public interface Observer <T> {
      * The specific implementation of how data is requested depends on the specific use case.
      */
     void requestData();
+
 
 }

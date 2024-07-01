@@ -343,6 +343,11 @@ public class Player extends Observable implements Serializable {
     public Pion getPion() {
         return pion;
     }
+
+    public void setPion(Pion pion) {
+        this.pion = pion;
+    }
+
     /**
      * Sets the player's available positions to the plays card.
      *

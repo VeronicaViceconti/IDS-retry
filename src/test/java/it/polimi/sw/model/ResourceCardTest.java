@@ -12,9 +12,10 @@ public class ResourceCardTest {
     @Test
     public void shouldAnswerWithTrue()
     {
+        boolean covered=false;
 
         ArrayList<Corner> corners = new ArrayList<>();
-        corners.add(new Corner(Object.INKWELL, null,1, true, false));
+        corners.add(new Corner(Object.INKWELL, null,1, true, covered));
         int points = 5;
         int id = 1;
         String colour = "red";
@@ -23,8 +24,13 @@ public class ResourceCardTest {
         boolean calculatedObjective = false;
         int side = 1;
         Resources permanentResource = Resources.FUNGI;
-
+        ResourceCard c=new ResourceCard();
+        c.setPermanentResource(Resources.INSECT);
         ResourceCard resourceCard = new ResourceCard(corners, points, id, colour, used, drawn, calculatedObjective, side, permanentResource);
+
+
+        ResourceCard resourceCard1=new ResourceCard(c);
+
 
         // Testing getter and setter methods
         assert resourceCard.getPermanentResource().contains(Resources.FUNGI) : "Permanent Resource initialization error";
@@ -32,7 +38,7 @@ public class ResourceCardTest {
         // Testing inheritance from superclass (Card)
         assert resourceCard.getPoints() == 5 : "Points initialization error";
         assert resourceCard.getId() == 1 : "ID initialization error";
-
+        assert resourceCard1.getPermanentResource().getFirst().equals(Resources.INSECT) : "no";
         // Testing if permanent resource is correctly set
         resourceCard.setPermanentResource(Resources.PLANT);
         assert resourceCard.getPermanentResource().contains(Resources.PLANT) : "Permanent Resource update error";
@@ -45,3 +51,4 @@ public class ResourceCardTest {
         System.out.println("All tests passed successfully.");
     }
 }
+

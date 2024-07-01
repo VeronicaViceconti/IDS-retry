@@ -18,9 +18,7 @@ public class PlayerTest {
     private Card c;
     private Card c2;
     private ArrayList<Card> hand;
-    private Point2D avPosition, avPosition1;
-    private int x=3;
-    private int y=5;
+    private ArrayList<Card> timeLine = new ArrayList<>();
     @BeforeEach
     void setUp() {
         p1 = new Player("Piero", Pion.pion_blue);
@@ -28,49 +26,21 @@ public class PlayerTest {
         p3 = p2;
         p4 = null;
 
-        corners.add(new Corner(Object.INKWELL, null,1, true, false));
-        corners.add(new Corner(null, null,2, false, false));
-        corners.add(new Corner(null,Resources.PLANT,3, true, false));
-        corners.add(new Corner(null, null,4, false, false));
-        c = new ResourceCard(corners, 2, 1, "green", false, false, false,1, Resources.PLANT);
-        c2= new GoldCard(corners,1,24,"red",false,false,false,1,null,"INKWELL",null);
-        hand=new ArrayList<>(Arrays.asList(c,c2));
-        avPosition=new Point2D() {
-            @Override
-            public double getX() {
-                return x;
-            }
 
-            @Override
-            public double getY() {
-                return y;
-            }
+        corners.add(new Corner(Object.INKWELL, null, 1, true, false));
+        corners.add(new Corner(null, null, 2, false, false));
+        corners.add(new Corner(null, Resources.PLANT, 3, true, false));
+        corners.add(new Corner(null, null, 4, false, false));
+        c = new ResourceCard(corners, 2, 1, "green", false, false, false, 1, Resources.PLANT);
+        c2 = new GoldCard(corners, 1, 24, "red", false, false, false, 1, null, "INKWELL", null);
+        hand = new ArrayList<>(Arrays.asList(c, c2));
 
-            @Override
-            public void setLocation(double x, double y) {
-
-            }
-
-        };
-
-        avPosition1= new Point2D() {
-            @Override
-            public double getX() {
-                return 4;
-            }
-
-            @Override
-            public double getY() {
-                return 2;
-            }
-
-            @Override
-            public void setLocation(double x, double y) {
-
-            }
-        };
         p3 = p2;
         p4 = null;
+
+
+
+
     }
 
     @Test
@@ -85,18 +55,18 @@ public class PlayerTest {
         p1.setId(1);
         p1.setHand(hand);
         p1.setHandBack(hand);
-        p1.addAvPos(avPosition);
-        p1.addAvPos(avPosition1);
+        p1.setPion(Pion.pion_red);
+        this.timeLine.add(c);
+        p1.setTimeline(timeLine);
 
 
-
-        assert p1.getAvailablePositions().getFirst()==avPosition : "add position doesn't works";
-        assert p1.getAvailablePositions().size()==2 : "add doesn't works";
-        p1.removeAvPos(avPosition);
-        assert p1.getAvailablePositions().size()==1 : "remove doesn't works";
+        assert p1.findCardInHand(c)==0 : "it's incorrect";
+        assert p1.getTimeline().getFirst().equals(c) : "no";
+        p1.addToTimeline(c2);
+        assert p1.getTimeline().get(1).equals(c2) : "no";
+        assert p1.getPion().equals(Pion.pion_red) : "pion not set properly";
         assert p1.getHandBack().getFirst().equals(c) : "handBack not set properly";
         assert p1.getHandBack().get(1).equals(c2) : "handBack not set properly";
-        assert p1.getPion().equals(Pion.pion_blue) : "pion not set properly";
         assert p1.getHand().getFirst().equals(c) : "hand not set properly";
         assert p1.getHand().get(1).equals(c2) : "hand not set properly";
         assert p1.getId()==1 : "id not set properly";
@@ -137,3 +107,4 @@ public class PlayerTest {
         assert !p3.equals(p4) : "LOL they should NOT be equals";
     }
 }
+
