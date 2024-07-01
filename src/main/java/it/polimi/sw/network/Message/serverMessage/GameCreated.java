@@ -1,10 +1,15 @@
 package it.polimi.sw.network.Message.serverMessage;
 
 
+import it.polimi.sw.controller.GameControllerServer;
 import it.polimi.sw.model.Pion;
+import it.polimi.sw.model.Player;
 import it.polimi.sw.network.Client;
+import it.polimi.sw.network.CommonGameLogicServer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * This class represents a message sent by the server to the client informing them that a new game has been created.
@@ -17,6 +22,7 @@ public class GameCreated extends SampleServerMessage {
     private int askOrNotNumPlayers;
     private ArrayList<Pion> availablePions;
     private int idlobby;
+    private CommonGameLogicServer gameControllerServer;
     /**
      * Constructor for a GameCreated message.
      *
@@ -43,9 +49,21 @@ public class GameCreated extends SampleServerMessage {
     public void execute(Client client) {
         //set lobby for the client
         client.setIdlobby(idlobby);
-        if(askOrNotNumPlayers == 1) //have to ask the number of players in the game
+        Pion[] allPions = new Pion[]{Pion.pion_blue, Pion.pion_yellow, Pion.pion_red, Pion.pion_green};
+        ArrayList<Pion> pions = new ArrayList(Arrays.asList(allPions));
+        if (this.gameControllerServer.getLobbyReference().get(this.idlobby).getPlayersList().size() != 0 && this.askOrNotNumPlayers == 1) {
+            this.askOrNotNumPlayers = 0;
+            Iterator var4 = this.gameControllerServer.getLobbyReference().get(this.idlobby).getPlayersList().iterator();
+            while(var4.hasNext()) {
+                Player p = (Player)var4.next();
+                pions.remove(p.getPion());
+            }
+            this.availablePions = pions;
+        }
+        if (this.askOrNotNumPlayers == 1) {
             client.getView().selectNumberOfplayerInMatch();
-        client.getView().selectPion(availablePions);
+        }
+        client.getView().selectPion(this.availablePions);
     }
 
 
