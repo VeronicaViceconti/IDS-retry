@@ -41,7 +41,7 @@ public abstract class View extends Observable {
         // Thread to set serverIson to false after 2 minutes
         new Thread(() -> {
             try {
-                Thread.sleep(2 * 60 * 1000); // Sleep for 2 minutes
+                Thread.sleep(10 * 60 * 1000); // Sleep for 2 minutes
                 synchronized (this) {
                     serverIson = false;
                 }
