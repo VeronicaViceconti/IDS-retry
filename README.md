@@ -16,8 +16,7 @@ Di seguito è riportato il diagramma UML generale generato automaticamente da In
 
 ### Coverege 
 
-Al seguente link è possibile visualizzare il report della coverege dei test: [Report](https://github.com/VeronicaViceconti/IDS-retry/blob/master/deliverables/Screen_Test_Coverage/Screenshot%202024-07-01%20alle%2019.45.19.png) 
-
+Al seguente link è possibile visualizzare il report della coverege dei test: [Report](https://github.com/VeronicaViceconti/IDS-retry/blob/master/deliverables/Screenshot%202024-07-02%20alle%2014.30.37.png)
 ### Librerie 
 
 |Libreria|Descrizione|
