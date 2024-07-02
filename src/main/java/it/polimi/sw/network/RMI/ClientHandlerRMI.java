@@ -160,6 +160,10 @@ public class ClientHandlerRMI extends UnicastRemoteObject implements InterfaceCl
     public void setMySecretObjective(int lobby, int id_player, Objective obj) throws RemoteException {
         queueServer.appendMessage(new SendPrivateObjective(lobby, id_player,obj));
     }
+    @Override
+    public void sendDisconnectionGameEnding(int lobby) throws RemoteException {
+        queueServer.appendMessage(new DisconnectionRequestGameEnding(lobby));
+    }
 
     /**
      * This method sends a private chat message to another player in a lobby.

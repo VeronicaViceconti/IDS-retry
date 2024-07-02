@@ -4,6 +4,8 @@ import it.polimi.sw.model.Card;
 import it.polimi.sw.model.Objective;
 import it.polimi.sw.model.Pion;
 import it.polimi.sw.model.Player;
+import it.polimi.sw.network.Message.ClientMessage.DisconnectionRequestGameEnding;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 /**
@@ -163,4 +165,6 @@ public interface InterfaceClientHandlerRMI extends Remote {
      * @throws RemoteException This exception is thrown if there is a problem communicating with the server remotely.
      */
     void resendNickname(String nickName) throws RemoteException;
+
+    public void sendDisconnectionGameEnding(int lobby) throws RemoteException;
 }

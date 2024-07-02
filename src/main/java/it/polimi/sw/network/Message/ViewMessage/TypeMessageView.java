@@ -40,6 +40,10 @@ public enum TypeMessageView {
     /**
      * Message sent by the client-side view indicating the number of players chosen by the player (likely during lobby creation).
      */
-    NUM_PLAYERS_CHOSEN
+    NUM_PLAYERS_CHOSEN,
+    /**
+     * Message sent by the client-side view indicating the disconnection request.
+     */
+    DisconnectClientGameEnding
 }
 

@@ -81,6 +81,8 @@ public enum TypeMessageClient {
     /**
      * Request server timeout
      * **/
-    SERVER_DISCONNECTED
+    SERVER_DISCONNECTED,
+
+    DisconnectionRequestGameEnding
 }
 

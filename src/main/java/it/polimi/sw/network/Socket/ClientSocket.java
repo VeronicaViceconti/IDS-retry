@@ -248,6 +248,7 @@ public class ClientSocket extends Client implements Observer, Runnable, Serializ
                 nickName = ((ResendingNickname)message).getNicknname();
                 view.setNickname(nickName);
                 resendNickname();
+            case DisconnectClientGameEnding: sendMessage(new DisconnectionRequestGameEnding(getIdlobby()));
         }
     }
 

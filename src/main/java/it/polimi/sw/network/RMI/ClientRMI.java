@@ -291,6 +291,7 @@ public class ClientRMI extends Client implements Serializable,Runnable {
                 view.setNickname(nickName);
                 resendNickname();
                 break;
+            case DisconnectClientGameEnding: clientHandler.sendDisconnectionGameEnding(getIdlobby());break;
         }
     }
 }

@@ -2027,6 +2027,7 @@ public class TUI extends  View {
             System.out.println("\n"+winnerNames + " win!");
         }
         System.out.println("\nWhat a game! Have a nice day and see you next time!");
+        this.notify(new DisconnectClientGameEnding());
     }
     /**
      * Updates the game state and informs the player about the played card and points.

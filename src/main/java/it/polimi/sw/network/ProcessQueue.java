@@ -245,6 +245,19 @@ public class ProcessQueue implements Runnable {
                     gc.getCurrgame().notify(new CheckServerDisconnectedReply());
                 }
             }
+            case DisconnectionRequestGameEnding -> {
+                int lobby = message.getClientLobbyReference();
+                GameControllerServer gameControllerServer = server.getLobbyReference().get(lobby);
+                for(Player p : gameControllerServer.getPlayersList()){
+                    if(server.getHandlerForClient_Map().containsKey(p.getNickName()) || server.getHandlerForClient_Map_RMI().containsKey(p.getNickName())){
+                        if(server.getHandlerForClient_Map_RMI().get(p.getNickName()) == null){
+                            server.getHandlerForClient_Map().remove(p.getNickName());
+                        }else{
+                            server.getHandlerForClient_Map_RMI().remove(p.getNickName());
+                        }
+                    }
+                }
+            }
         }
     }
 
