@@ -61,7 +61,7 @@ public class SecretObjReply extends SampleServerMessage {
             client.getMatch().getMe().setHand(myHand);
             client.getMatch().getMe().setHandBack(myHandBack);
             client.getMatch().getMe().setMap(manuscript);
-            //client.getView().addToTimeLine(player.getTimeline().getLast());
+
 
             client.getView().showPlayerHand(myHand);
             client.getView().savePlayerHandBack(myHandBack);
@@ -71,15 +71,9 @@ public class SecretObjReply extends SampleServerMessage {
             client.getView().secObjtoChoose(secObjOne, secObjTwo);
             client.getView().chatUnblockWait();
 
-           /* System.out.println(client.getMatch().getFacedownGold());
-            System.out.println(client.getMatch().getFacedownResource());
-            for(Card c: client.getMatch().getFaceupResource())
-                System.out.println(c.toString());
-            for(Card c: client.getMatch().getFaceupGold())
-                System.out.println(c.toString());
-            */
+
         }else{
-            if(client.getMatch().getAPlayer(player) != null) { //there is the player in the client match
+            if(client.getMatch().getAPlayer(player) != null) {
                 client.getMatch().getAPlayer(player).setMap(manuscript);
                 if(client.getView() instanceof GUI) {
                     client.getView().updatePlayerPlayCard(player, manuscript.keySet().iterator().next(), 0, 0, null, null, null, 0);

@@ -47,7 +47,7 @@ public class ClientSocket extends Client implements Observer, Runnable, Serializ
             this.input = new ObjectInputStream(socket.getInputStream());
             output.flush();
 
-            //start thread that reads from the socket stream
+
             new Thread(new SocketInputReader(input,this.queue)).start();
             System.out.println("Thread partito lato client per lettura input");
         } catch (IOException e ) {
@@ -56,10 +56,10 @@ public class ClientSocket extends Client implements Observer, Runnable, Serializ
         System.out.println("Connessione socket avvenuta con server!");
         this.view = view;
 
-        //mi connetto come osservatore della view
+
         this.view.addObserversView(this);
 
-        //send connection message on socket
+
         connectToServer();
     }
 
@@ -99,7 +99,7 @@ public class ClientSocket extends Client implements Observer, Runnable, Serializ
      */
     @Override
     public void drawCardFromDeck(int whichDeck){
-        if(whichDeck == 1) {//selezionato gold deck
+        if(whichDeck == 1) {
             sendMessage(new DrawCardRequest(getIdlobby(), "Gold", getMatch().getMe().getId()));
         }else {
             sendMessage(new DrawCardRequest(getIdlobby(), "Resource", getMatch().getMe().getId()));
@@ -118,10 +118,10 @@ public class ClientSocket extends Client implements Observer, Runnable, Serializ
     @Override
     public void drawCardFromTable(int whichDeck, int whichPose) {
         if(whichDeck == 1)
-            //System.out.println("Arrivato al client la carta da pescare dal deck gold face up carta: "+whichPose);
+
             sendMessage(new DrawCardRequest(getIdlobby(), "Gold", whichPose, getMatch().getMe().getId()));
         else
-            //System.out.println("Arrivato al client la carta da pescare dal deck resource face up carta: "+whichPose);
+
             sendMessage(new DrawCardRequest(getIdlobby(), "Resource", whichPose, getMatch().getMe().getId()));
 
     }
@@ -194,9 +194,9 @@ public class ClientSocket extends Client implements Observer, Runnable, Serializ
      */
     @Override
     public void sendNumPlayersAndPion(Pion pion, int numOfPlayers) {
-        if(numOfPlayers == 0){ //join game
+        if(numOfPlayers == 0){
             sendMessage(new PlayerNumberAndPionRequest(getIdlobby(),nickName,0,pion));
-        }else{ //create game
+        }else{
             sendMessage(new PlayerNumberAndPionRequest(getIdlobby(),nickName,numOfPlayers,pion));
         }
     }
@@ -221,14 +221,14 @@ public class ClientSocket extends Client implements Observer, Runnable, Serializ
     public void updateFromView(SampleViewMessage message) {
         switch(message.getType()){
             case SEND_OBJECTIVE_CHOSEN:
-                //modifico il model + mando al server la scelta
+
                 Objective ob = ((SendingPrivateObjective) message).getOb();
                 match.getMe().setObjective(ob);
 
                 setMySecretObjective(ob);
                 break;
             case CARD_PLAYED:
-                //il giocatore ha appena deciso di giocare una carta, invio al server la richiesta
+
 
                 placeCard(((SendingCardPlayed) message).getCard(),((SendingCardPlayed) message).getCoords());
                 break;
@@ -268,11 +268,7 @@ public class ClientSocket extends Client implements Observer, Runnable, Serializ
 
     }
 
-/*    @Override
-    public void updateChat(SampleViewMessage message) throws RemoteException {
-        SampleClientMessage messageToSend = message.transformClientMex( );
-        sendMessage(messageToSend);
-    }*/
+
 
 
     /**
@@ -306,7 +302,7 @@ public class ClientSocket extends Client implements Observer, Runnable, Serializ
 
             try {
                 Object message;
-                while ((message = in.readObject()) != null) { //read message from socket and add it to queue
+                while ((message = in.readObject()) != null) {
                     queue.appendMessage((SampleServerMessage) (message));
 
                 }

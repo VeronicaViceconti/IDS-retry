@@ -130,7 +130,7 @@ public abstract class Observable <T> implements Serializable {
         for(Observer observer: observersView){
             try {
                 if(message.getType().equals(TypeMessageView.CHAT_REQUEST)){
-                    SendingChatMessage control = (SendingChatMessage) message; //per riferimento
+                    SendingChatMessage control = (SendingChatMessage) message;
                     Client cl = (Client) observer;
                     if(!control.isPublic()){
                         for(Player p: cl.getMatch().getTotPlayers()){
@@ -158,7 +158,7 @@ public abstract class Observable <T> implements Serializable {
      */
     public void requestOtherData(){
            for(Observer observer: observersView){
-               observer.requestData(); //inside there should be control, who asked data
+               observer.requestData();
            }
     }
 

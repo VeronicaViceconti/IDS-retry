@@ -43,7 +43,7 @@ public class ClientRMI extends Client implements Serializable,Runnable {
         view.setNickname(nickName);
 
         new Thread(this).start();
-        //mi connetto come osservatore della view
+
         this.view.addObserversView(this);
 
         connectToServer();
@@ -82,16 +82,14 @@ public class ClientRMI extends Client implements Serializable,Runnable {
 
         clientHandler = (InterfaceClientHandlerRMI) registry.lookup("ClientHandlerRMI_"+nickName);
 
-        //invio queue al server
 
-        // UNesporta l'oggetto queue come oggetto remoto
         UnicastRemoteObject.unexportObject(this.queue, true);
-            // Se non è già esportato, esporta l'oggetto
+
         RemoteQueueInterface stub = (RemoteQueueInterface) UnicastRemoteObject.exportObject(this.queue, 0);
 
-        // Registrati presso il server RMI
+
         clientHandler.register(stub, this.nickName);
-        //chiamo metodo RMI passando me stesso per connettermi
+
         clientHandler.connectToServer(nickName);
     }
 
@@ -123,7 +121,7 @@ public class ClientRMI extends Client implements Serializable,Runnable {
      * @throws RemoteException This exception is thrown if there is a problem communicating with the server remotely.
      */
     public void drawCardFromDeck(int selected) throws RemoteException {
-        if(selected == 1) {//selezionato gold deck
+        if(selected == 1) {
             clientHandler.drawCardFromDeck(getIdlobby(), "Gold", getMatch().getMe().getId());
         }else {
             clientHandler.drawCardFromDeck(getIdlobby(), "Resource", getMatch().getMe().getId());
@@ -221,7 +219,7 @@ public class ClientRMI extends Client implements Serializable,Runnable {
      */
     @Override
     public void sendNumPlayersAndPion(Pion pion, int numOfPlayers) throws RemoteException {
-        if(numOfPlayers == 0) { //create game request
+        if(numOfPlayers == 0) {
             clientHandler.sendNumPlayersAndPion(getIdlobby(),nickName,pion,0);
         }else{
             clientHandler.sendNumPlayersAndPion(getIdlobby(),nickName,pion,numOfPlayers);
@@ -266,14 +264,14 @@ public class ClientRMI extends Client implements Serializable,Runnable {
     public void updateFromView(SampleViewMessage message) throws RemoteException {
         switch(message.getType()){
             case SEND_OBJECTIVE_CHOSEN:
-                //modifico il model + mando al server la scelta
+
                 Objective ob = ((SendingPrivateObjective) message).getOb();
                 match.getMe().setObjective(ob);
 
                 setMySecretObjective(ob);
                 break;
             case CARD_PLAYED:
-                //il giocatore ha appena deciso di giocare una carta, invio al server la richiesta
+
                 placeCard(((SendingCardPlayed) message).getCard(),((SendingCardPlayed) message).getCoords());
                 break;
             case CARD_TO_DRAW_FACEDOWN:

@@ -64,10 +64,10 @@ public class Player extends Observable implements Serializable {
     public Player(String nickName, Pion pion) {
         this.nickName = nickName;
         this.availablePositions = new ArrayList<Point2D>();
-        availablePositions.add(new Point2D.Double()); //constructor already initialises the point at (0, 0)
+        availablePositions.add(new Point2D.Double());
         this.points = 0;
         this.handBack = new ArrayList<Card>();
-        this.hand = new ArrayList<Card>(); //empty at the beginning
+        this.hand = new ArrayList<Card>();
         this.numOfResourceAndObject = new HashMap<>();
         this.numOfResourceAndObject.put("PLANT",0);
         this.numOfResourceAndObject.put("ANIMAL",0);
@@ -257,30 +257,7 @@ public class Player extends Observable implements Serializable {
     /**
         @param c, the card to be added to the table
      */
-/*    public void addCardToTable(Card c){
-        addToTable(c);
-        System.out.println("STAMPO CARTE HAND FRONT E BACK");
-        hand.forEach(System.out::println);
-        if(c.equals(hand.get(0)))
-            System.out.println("le due carte sono uguali");
 
-        int index = -1;
-        for (int i=0;i<hand.size();i++){
-            if(hand.get(i).equals(c))
-                index = i;
-        }
-        if(index == -1){
-            for (int i=0;i<handBack.size();i++){
-                if(handBack.get(i).equals(c))
-                    index = i;
-            }
-        }
-
-        handBack.forEach(System.out::println);
-        System.out.println("\nSto rimuovendo "+c.toString()+", che sta in posizione "+index);
-        removeBackCard(index);
-        removeCard(index);
-    }*/
     public int findCardInHand(Card c){
 
         int index = hand.indexOf(c);
@@ -298,7 +275,6 @@ public class Player extends Observable implements Serializable {
         handBack.remove(index);
     }
 
-    /*private void removeBackCard(Card card){
     /**
      *
      * @param card, the card that has just been chosen and has to be deleted from hand

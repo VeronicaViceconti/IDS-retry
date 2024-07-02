@@ -20,6 +20,6 @@ public class PingServer extends SampleServerMessage {
      */
     @Override
     public void execute(Client client) {
-        //to be done. not planed yet
+
     }
 }

@@ -61,7 +61,7 @@ public class SendInitialCard extends SampleServerMessage{
             if(client.getView() instanceof GUI)
                 client.getView().showPlayerHand(client.getMatch().getMe().getHand());
 
-            client.getView().myTurnNotification(man, handFront,handBack); //unblock inside
+            client.getView().myTurnNotification(man, handFront,handBack);
         }
     }
 }

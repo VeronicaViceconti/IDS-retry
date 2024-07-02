@@ -59,8 +59,7 @@ public class ClientHandlerRMI extends UnicastRemoteObject implements InterfaceCl
         System.out.println("Sto connettendo con server "+nickname+" con "+this.clientName);
         queueServer.appendMessage(new ConnectionRequest(nickname,this));
 
-        //System.out.println("HANDLER - riempio la queue con sendinitialcard");
-        //clients.get("Maria").appendMessage(new SendInitialCard(null,null,null));
+
     }
     /**
      * This method checks if a nickname is already in use by another client.

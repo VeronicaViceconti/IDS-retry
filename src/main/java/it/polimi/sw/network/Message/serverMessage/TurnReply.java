@@ -43,24 +43,18 @@ public class TurnReply extends SampleServerMessage {
      */
     @Override
     public void execute(Client client) throws RemoteException {
-        //messaggio inviato a tutti, tutti settano il currp
-        //se client.getMe è il currP allora faccio partire il suo turno
+
 
         client.getMatch().setCurrPlayer(currp);
         if(currp.equals(client.getMatch().getMe())){
             client.getMatch().getMe().resetAvPos(positions);
 
             client.getView().resetAvPos(positions);
-            client.getView().chatWait(); //chat stores
+            client.getView().chatWait();
 
             client.getView().myTurnNotification(client.getMatch().getMe().getMap(), client.getMatch().getMe().getHand(),client.getMatch().getMe().getHandBack());
-            //client.getView().showAvailablePositions(); should be called inside myturnNotification
-            // chat unblocks within my turn notification
-        }/*else{
-            //Yana: I would remove .notYourTurn. player is already in reader
-            System.out.println("NOT YOUR TURN");
-            //client.getView().notYourTurn();
-            //client.getView().readNotYourTurnInput(); viene creato un thread per reader alla fine di drawcard reader
-        }*/
+
+
+        }
     }
 }

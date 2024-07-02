@@ -31,7 +31,7 @@ public abstract class Client implements Observer, Runnable, Serializable {
 
     protected String nickName;
 
-    private Thread chatThread; //chat
+    private Thread chatThread;
     /**
      * Constructor for Client.
      * Takes reference to the View object and the player's nickname.
@@ -56,7 +56,7 @@ public abstract class Client implements Observer, Runnable, Serializable {
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
-        startChatThread(); //chat thread starts
+        startChatThread();
 
     }
 
@@ -260,9 +260,7 @@ public abstract class Client implements Observer, Runnable, Serializable {
         }
     }
 
-/*    public void stopRunning(){
-        keeprunning = false;
-    }*/
+
 
 
     /**
@@ -305,16 +303,13 @@ public abstract class Client implements Observer, Runnable, Serializable {
 
             while (true) {
                 try {
-                    // Check if there's a new message to the user
+
                     while (!queueChat.isEmpty()) {
                         SampleServerMessage userMessage = queueChat.getNextMessage();
-                        userMessage.execute(this); //show messages
+                        userMessage.execute(this);
                     }
 
-                    //al momento umano inserisce un messaggio in view,
-                    // quello crea un messaggio e fa client.notify mandandolo a server
-                    //sarebbe meglio portarlo qua, ma lo faccio se abbiamo piu' tempo.
-                    //dovrebbe funzionare anche cosi. da testare, quando avremo' la rete.
+
 
                     Thread.sleep(500);
                 } catch (InterruptedException | RemoteException e) {
@@ -326,11 +321,5 @@ public abstract class Client implements Observer, Runnable, Serializable {
         chatThread.start();
     }
 
-    //message from the view.
-    //i have to redirect it to the server
-/*
-    abstract public void updateChat(SampleViewMessage message) throws RemoteException;
-        //SampleClientMessage messageToSend = message.transformClientMex();
-*/
 
 }

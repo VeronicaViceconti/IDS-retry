@@ -24,21 +24,8 @@ public class GameControllerServer  {
     /**
      * It's a boolean that determines the last turn.
      */
-    private boolean endGame=false; // per avviare ultimo turno
+    private boolean endGame=false;
 
-    /**
-     * to add the part that receives back the answer. I don't want to wait the answer, players may do it in any order
-     */
-/*  done in game, initialise Game
-
-    public void distributeSecretObjective() {
-        for (Player p : currgame.getTotPlayers()) {
-            currgame.notify(new SecretObjReply(currgame.getAllObjective().get(0), currgame.getAllObjective().get(1), p));
-
-            currgame.getAllObjective().remove(0);
-            currgame.getAllObjective().remove(1);
-        }
-    }*/
 
     /**
      * Retrieves the integer identifier for the game's lobby or room.
@@ -74,8 +61,6 @@ public class GameControllerServer  {
 
     /****************************Initialisation. PreGame phase ***************************************/
 
-/*    public GameControllerServer(int numberOfPlayers, CommonGameLogicServer server, String creator, Pion pion) {
-    }
     /**
      * Creates a new GameControllerServer instance for a new game.
      *
@@ -141,11 +126,7 @@ public class GameControllerServer  {
 
     }
 
-/*
-    public void setSecretObjective() {
-        currgame.notify();
-    } //message can do it by it's own. no need of notify
-*/
+
 
     /****************************** GAME LOOP **********************************************************/
     /**
@@ -161,23 +142,23 @@ public class GameControllerServer  {
      * @param y    requested coordinates
      */
     public void placeCard(Player p, Card card, int x, int y) {
-        //controllo parametri esistenti
+
         if (p == null || card == null) {
             System.out.println("Test. GCS.Player is not found in the player list. p is null");
         }else{
             boolean thereIsPlayer = currgame.getTotPlayers().stream().anyMatch(player -> player.getNickName().equals(p.getNickName()));
-            if (!thereIsPlayer) { //player is not in the list of all games
+            if (!thereIsPlayer) {
                 System.out.println("Test. GCS.Player is not found in the list of players");
 
                 return;
             }
             if(card instanceof InitialCard) {
                 int index = p.findCardInHand(card);
-                if(index == -1) {  //da testare
+                if(index == -1) {
                     currgame.notify(new ErrorReply(ErrorType.CARD_NOT_IN_HAND, p));
                     return;
                 }
-                //update map
+
                 p.addCardToMap(card, x, y);
                 p.addToTimeline(card);
 
@@ -185,7 +166,7 @@ public class GameControllerServer  {
                 for(Card c: p.getTimeline())
                     System.out.println("Cartaa -> "+c.toString());
 
-                //remove from hand
+
                 p.getHand().remove(p.getHand().get(index));
                 p.getHandBack().remove(p.getHandBack().get(index));
 
@@ -208,31 +189,28 @@ public class GameControllerServer  {
 
                 ArrayList<Objective> ob12 = currgame.pickupSecretObjective();
 
-                currgame.notify(new SecretObjReply(ob12.get(0), ob12.get(1), p, p.getHand(),p.getHandBack(),p.getMap())); //manda
+                currgame.notify(new SecretObjReply(ob12.get(0), ob12.get(1), p, p.getHand(),p.getHandBack(),p.getMap()));
 
-                //if it covers at least one card. if there are no adjacent cards, then if statement is true and the permission id denied.
+
             }else if (!currgame.getPlayerCurrentTurn().equals(p)){
                 currgame.notify(new NotYourTurnReply(p));
-            /*
 
-            check initial card to be placed to send messagge secrectobjreply
-            * */
             } else if (!(currgame.getGameState() == GameState.PLACECARD)) {
                 currgame.notify(new ErrorReply(ErrorType.NOT_THE_RIGHT_MOMENT_TO_DRAW_CARD, p));
             } else {
-                //by this line we are sure that it is the right moment to place a card. we have to control if the placement is correct
+
                 boolean canPlay = mayPlayThisCard(p, card, x, y);
-                if (canPlay) {   //now we have to place the card, remove it from the hand,
-                    // add points, resources, objects, change the state of the game
+                if (canPlay) {
+
                     int index = p.findCardInHand(card);
-                    if(index == -1) {  //da testare
+                    if(index == -1) {
                         currgame.notify(new ErrorReply(ErrorType.CARD_NOT_IN_HAND, p));
                         return;
                     }
-                    //update map
+
                     p.addCardToMap(card, x, y);
                     p.addToTimeline(card);
-                    //remove from hand
+
                     p.getHand().remove(p.getHand().get(index));
                     p.getHandBack().remove(p.getHandBack().get(index));
 
@@ -241,13 +219,13 @@ public class GameControllerServer  {
                     card.setUsed(true);
                     p.setPoints(p.getPoints() + calculatePointsForCard(card, p));
                     addResourcesOrObjects(card, p);
-                    updateCoveredCard(card, p, x, y); //updates the corner "covered" and removes resource or object.
+                    updateCoveredCard(card, p, x, y);
 
 
                     if(endGame) {
                         currgame.notify(new UpdatePlayersReply(p, p.getPoints(), card, x, y, p.getNumOfResourceAndObject(), p.getHand(), p.getHandBack(), false));
                         System.out.println("1 server ha mandato UpdatePlayer");
-                        currgame.notify(new GameAlmostFinishedReply(currgame.currPlayer)); //doesn't have to draw, might cause issues
+                        currgame.notify(new GameAlmostFinishedReply(currgame.currPlayer));
 
                         currgame.setGameState(NOT_MY_TURN);
                         nextTurn();
@@ -257,8 +235,7 @@ public class GameControllerServer  {
                         currgame.notify(new UpdatePlayersReply(p, p.getPoints(), card, x, y, p.getNumOfResourceAndObject(), p.getHand(), p.getHandBack(), true));
                         System.out.println("2 server ha mandato UpdatePlayer");
 
-                        //currgame.setGameState(NOT_MY_TURN); //nobody can do anything
-                        //nextTurn(); // includes notify turn
+
                     }
                 }
             }
@@ -284,23 +261,21 @@ public class GameControllerServer  {
 
     private boolean mayPlayThisCard(Player p, Card card, int x, int y) {
 
-        // if you have this card
+
         if (!p.getHand().contains(card) && !p.getHandBack().contains(card)) {
             currgame.notify(new ErrorReply(ErrorType.CARD_NOT_IN_HAND, p));
             return false;
         }
 
-        //if the card was used before
+
         else if (card.getUsed()) {
             currgame.notify(new ErrorReply(ErrorType.USED_CARD, p));
             return false;
         }
         else if(!p.getAvailablePositions().contains(new Point2D.Double(x,y))){
-            return false; //already precalculated and contain only adeguate positions
+            return false;
         }
-/*        control cards that might be covered. control that all the corners under desired position are visible and not covered.
-         if there is a card with not visible or covered corner underneath, then player may not put the card above
-         */
+
         else if (!cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, x - 1, y - 1), 1) ||
                 !cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, x - 1, y + 1), 3) ||
                 !cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, x + 1, y - 1), 0) ||
@@ -310,11 +285,11 @@ public class GameControllerServer  {
             return false;
         }
 
-        // if you have enough resources for this GoldCard.
+
         else if (card.getNecessaryResource() != null ){
             HashMap<Resources, Integer> condition = new HashMap<>();
 
-            //transforming the condition into a hash map to simplify the control
+
             for (Resources res : (card.getNecessaryResource())) {
                 if (condition.containsKey(res)) {
                     condition.put(res, condition.get(res) + 1);
@@ -322,7 +297,7 @@ public class GameControllerServer  {
                     condition.put(res, 1);
                 }
             }
-            //if player has less resources than asked, then the permission is denied.
+
             for (Map.Entry<Resources,Integer> entry: condition.entrySet()) {
                 if (p.getNumOfResourceAndObject().get(entry.getKey().toString()) < entry.getValue()) {
                     currgame.notify(new ErrorReply(ErrorType.NOT_ENOUGH_RESOURCES, p));
@@ -332,40 +307,8 @@ public class GameControllerServer  {
         }
         return true;
     }
-    /**
-     * true if present a card in a corner position
-     * @param p player
-     * @param x x
-     * @param y y
-     * @return boolean
-     */
-/*
-    private boolean checkCrossedPositions(Player p, int x, int y){
-        boolean flag = true;
-        flag = (positionOccupied(p, x - 1, y - 1) || positionOccupied(p, x - 1, y + 1)
-                || positionOccupied(p, x + 1, y - 1) || positionOccupied(p, x + 1, y + 1));
 
-        return flag;
-    }
 
-    */
-/**
- * true if there is an adjacent card
- * @param p player
- * @param x x
- * @param y y
- * @return boolean
- */
-/*
-
-    private boolean checkPlusPositions(Player p, int x, int y){
-        boolean flag = true;
-        flag = (positionOccupied(p, x, y - 1) || positionOccupied(p, x, y + 1)
-                || positionOccupied(p, x + 1, y) || positionOccupied(p, x + 1, y));
-        return flag;
-    }
-
-*/
 
     /**
      * returns a card in the position (x,y). if the card is not present, then return null
@@ -388,9 +331,9 @@ public class GameControllerServer  {
     private void updateAvailablePositions(Player p, int x, int y){
 
         ArrayList<Point2D> newAvailable = new ArrayList<>();
-        //candidates to be available spots
+
         ArrayList<Point2D> pointsToCheck = new ArrayList<>();
-        //save the Cross positions that are free, no duplicates in the list
+
         if (!p.getAvailablePositions().contains(new Point2D.Double(x + 1, y - 1)) && !positionOccupied(p, x+1, y-1)) {
             pointsToCheck.add(new Point2D.Double(x + 1, y + 1));
         }
@@ -405,13 +348,13 @@ public class GameControllerServer  {
         }
 
         ArrayList<Point2D> toRemoveFromOld = new ArrayList<>();
-        //remove cross positions if their cross position contains a Hidden corner
+
         pointsToCheck.removeIf(point -> !(cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int) point.getX() - 1, (int) point.getY() - 1), 1) &&
                 cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int) point.getX() - 1, (int) point.getY() + 1), 3) &&
                 cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int) point.getX() + 1, (int) point.getY() - 1), 0) &&
                 cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int) point.getX() + 1, (int) point.getY() + 1), 2)));
 
-        //looking for the points in available positions, that should be removed due to the placed card.
+
             for(Point2D oldPoints: p.getAvailablePositions()){
                 if (!(cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int)oldPoints.getX() - 1, (int)oldPoints.getY() - 1), 1) &&
                         cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int)oldPoints.getX() - 1, (int)oldPoints.getY() + 1), 3) &&
@@ -419,7 +362,7 @@ public class GameControllerServer  {
                         cornerOfCardIndexIsVisibleNotCovered(p, cardInPosition(p, (int)oldPoints.getX() + 1, (int)oldPoints.getY() + 1), 2))){
 
                     toRemoveFromOld.add(oldPoints);
-                    //p.remove(oldPoints);
+
                 }
             }
 
@@ -427,11 +370,11 @@ public class GameControllerServer  {
                 p.remove(remove);
             }
 
-            for (Point2D poi: pointsToCheck){ // add the new good ones
+            for (Point2D poi: pointsToCheck){
                 p.addAvPos(poi);
             }
 
-        p.removeAvPos(new Point2D.Double(x,y)); // remove itself
+        p.removeAvPos(new Point2D.Double(x,y));
     }
 
     /**
@@ -463,8 +406,8 @@ public class GameControllerServer  {
     private boolean cornerOfCardIndexIsVisibleNotCovered(Player p, Card card, Integer ind) {
         if (card == null) {
             return true;
-        } // the card does not exist, no need to control
-        //if the card in the corner doesn't exist(null) return true, otherwise return false
+        }
+
         return card.getCorner().get(ind).getVisible() && (!card.getCorner().get(ind).getCovered());
     }
 
@@ -533,7 +476,7 @@ public class GameControllerServer  {
                 }
             }
 
-            if (card.getSide() == 2) { // if it is the back of a card, then it has permanent resources
+            if (card.getSide() == 2) {
                 List<Resources> resList = card.getPermanentResource();
                 if (resList != null) {
                     for (Resources res : resList) {
@@ -663,7 +606,7 @@ public class GameControllerServer  {
                             currgame.getFaceupGold()==null? null: currgame.getFaceupGold(),
                             currgame.getFaceupResource()==null? null: currgame.getFaceupResource()));
                     currgame.setGameState(NOT_MY_TURN);
-                    nextTurn(); // includes notify
+                    nextTurn();
                 }
             } else if (whichDeck.equals("Gold")) {
                 if (currgame.getFacedownGold().isEmpty()) {
@@ -681,7 +624,7 @@ public class GameControllerServer  {
                             currgame.getFaceupResource()==null? null: currgame.getFaceupResource()));
 
                     currgame.setGameState(NOT_MY_TURN);
-                    nextTurn(); //includes notify
+                    nextTurn();
                 }
             }
         }
@@ -702,7 +645,7 @@ public class GameControllerServer  {
         boolean thereIsPlayer= currgame.getTotPlayers().stream().anyMatch(player -> Objects.equals(player.getNickName(), pWantsToDraw.getNickName()));
 
         if (!thereIsPlayer) {
-          //  currgame.notify(new ErrorReply(ErrorType.IGNORE_MESSAGE, pWantsToDraw)); just ignore it
+
             System.out.println("Ghost says 'booooooo'");
             return;
         }
@@ -747,8 +690,8 @@ public class GameControllerServer  {
                             currgame.getFaceupGold()==null? null: currgame.getFaceupGold(),
                             currgame.getFaceupResource()==null? null: currgame.getFaceupResource()));
 
-                    currgame.setGameState(NOT_MY_TURN); //nobody can do anything
-                    nextTurn(); // includes notify turn
+                    currgame.setGameState(NOT_MY_TURN);
+                    nextTurn();
                 }
 
             } else if (whichType.equals("Gold")) {
@@ -771,7 +714,7 @@ public class GameControllerServer  {
                             currgame.getFaceupGold()==null? null: currgame.getFaceupGold(),
                             currgame.getFaceupResource()==null? null: currgame.getFaceupResource()));
 
-                    currgame.setGameState(NOT_MY_TURN); //nobody can do anything
+                    currgame.setGameState(NOT_MY_TURN);
                     nextTurn();
                 }
             }
@@ -787,7 +730,7 @@ public class GameControllerServer  {
         Card addCard;
 
         if (type.equals("Resource")) {
-            if(currgame.getFacedownResource() != null && !currgame.getFacedownResource().isEmpty()){ // size > 0){
+            if(currgame.getFacedownResource() != null && !currgame.getFacedownResource().isEmpty()){
                 addCard = currgame.getFacedownResource().getFirst();
                 currgame.getFacedownResource().removeFirst();
                 currgame.getFaceupResource().add(index, currgame.flipCard(addCard));
@@ -818,10 +761,10 @@ public class GameControllerServer  {
      * @return the total number of objectives reached by the player
      * @throws NullPointerException if the player object is null
      */
-    private int updateFinalPointsObj(Player player) { //returns the num of objectives reached
+    private int updateFinalPointsObj(Player player) {
         int numObjectivesComplete = 0;
 
-        for (Objective comObj : currgame.getCommonObjective()) { // for each of 2 objectives
+        for (Objective comObj : currgame.getCommonObjective()) {
             numObjectivesComplete += calculatePointsObj(player, comObj);
             System.out.println("test cgs. update final "+numObjectivesComplete + player.getPoints());
 
@@ -843,9 +786,9 @@ public class GameControllerServer  {
      * @return the number of objectives reached for the given objective
      */
 
-    private int calculatePointsObj(Player player, Objective comObj){ //returns the num of objectives reached per objective
+    private int calculatePointsObj(Player player, Objective comObj){
         int numObjectives = 0;
-        switch (comObj.getCondition().getTypeOfObjective()) { // let's see the type of the objective
+        switch (comObj.getCondition().getTypeOfObjective()) {
             case ResourceFilling:
                 String requiredKeys = comObj.getCondition().getResourcesRequiredToObtainPoints().getFirst().toString();
 
@@ -853,13 +796,13 @@ public class GameControllerServer  {
 
                 numObjectives += count / 3;
 
-                // devided by 3 because the objective asks triplets of resources
+
 
                 player.addPoints(numObjectives * comObj.getPoints());
                 break;
             case ObjectFilling:
                 if (comObj.getCondition().getQuantityRequiredToObtainPoints().equals(1)) {
-                    // requires to find the object with the minimum amount (might be zero) and multiply it by the points
+
 
                     numObjectives += player.getNumOfResourceAndObject().entrySet().stream()
                             .filter(entry -> entry.getKey().equals("QUILL") || entry.getKey().equals("INKWELL") || entry.getKey().equals("MANUSCRIPT"))
@@ -867,7 +810,7 @@ public class GameControllerServer  {
                             .min().orElse(0);
 
                     player.addPoints(comObj.getPoints() * numObjectives);
-                } else { // triplets of objects
+                } else {
 
                     String requiredKeys2 = comObj.getCondition().getObjectsRequiredToObtainPoints().getFirst().toString();
 
@@ -879,27 +822,26 @@ public class GameControllerServer  {
                 }
                 break;
 
-            case ThreeSameColourPlacing://find all the cards of the given colour in the hash map and mark them as used
-                for (Card c : player.getMap().keySet()) { //first, I sign all the cards as not yet used for this objective, since the rules say so
+            case ThreeSameColourPlacing:
+                for (Card c : player.getMap().keySet()) {
                     c.setCalculatedObjective(false);
                 }
 
-                for (Card maybeCard : player.getMap().keySet()) { // I want to find all the cards that might be considered for the objective
-                    //enter in "if", if the card's colour corresponds to the searched one, and it was not yet used for evaluation
-                    Card tempCard = player.getTimeline().getFirst(); //is always present. even if the player has only one card in the hand, this control does not create issues
+                for (Card maybeCard : player.getMap().keySet()) {
+                    Card tempCard = player.getTimeline().getFirst();
 
                     if ((maybeCard != null) &&!(maybeCard instanceof InitialCard)
                             && maybeCard.getcolour().equals(comObj.getCondition().getColour1())
                             && !maybeCard.isCalculatedObjective()) {
-                        switch (comObj.getCondition().getFirstOrientationCornerCheck()) {// see the description of each orientation in Conditions
-                            case (1): //north-west to south-east
-                                if (maybeCard.getcolour().equals(comObj.getCondition().getColour1())) { //worse to check
-                                    Card northWestCard = maybeCard; // I will start analyzing combination from this one
+                        switch (comObj.getCondition().getFirstOrientationCornerCheck()) {
+                            case (1):
+                                if (maybeCard.getcolour().equals(comObj.getCondition().getColour1())) {
+                                    Card northWestCard = maybeCard;
                                     int counter = 0;
 
                                     Integer[] coordinates = player.getMap().get(northWestCard);
                                     System.out.println(" nW card"+ northWestCard.toString());
-                                    //at this point I'd like to find the North-West card in the chain that has the searched colour
+
                                         while (positionOccupied(player, coordinates[0] -1,coordinates[1]+1 )) {
                                             tempCard = cardInPosition(player, (player.getMap().get(northWestCard)[0]) - 1, (player.getMap().get(northWestCard)[1]) + 1);
                                         if ((tempCard != null) && !(tempCard instanceof InitialCard) && tempCard.getcolour().equals(comObj.getCondition().getColour1())) {
@@ -927,13 +869,13 @@ public class GameControllerServer  {
 
                                 break;
 
-                            case (2): //south-west to north-east
-                                if (maybeCard.getcolour().equals(comObj.getCondition().getColour1())) { //worse to check
-                                    Card southEastCard = maybeCard; // I will start analyzing combination from this one
+                            case (2):
+                                if (maybeCard.getcolour().equals(comObj.getCondition().getColour1())) {
+                                    Card southEastCard = maybeCard;
                                     int counter = 0;
 
                                         Integer[] coordinates = player.getMap().get(southEastCard);
-                                        //at this point I'd like to find the North-West card in the chain that has the searched colour
+
                                         while (positionOccupied(player, coordinates[0] -1,coordinates[1] -1 )) {
                                             tempCard = cardInPosition(player, (player.getMap().get(southEastCard)[0]) - 1, (player.getMap().get(southEastCard)[1]) - 1);
                                             if ((tempCard != null) && !(tempCard instanceof InitialCard) && tempCard.getcolour().equals(comObj.getCondition().getColour1())) {
@@ -955,7 +897,7 @@ public class GameControllerServer  {
 
                                     numObjectives = counter / 3;
 
-                                    //add points and sigh that these cards were used for calculating this objective
+
                                     player.addPoints(numObjectives * comObj.getPoints());
                                 }
                                 break;
@@ -965,17 +907,16 @@ public class GameControllerServer  {
                 break;
             case TwoSameColourOneDiffersPlacing:
                 for (Card c : player.getMap().keySet()) {
-                    //first, I sign all the cards as not yet used for this objective, since the rules say so
+
                     c.setCalculatedObjective(false);
                 }
 
                 for (Card maybeCard : player.getMap().keySet()) {
-                    // I want to find all the cards that might be considered for the objective
-                    //enter in "if", if the card's colour corresponds to the searched one, and it was not yet used for evaluation
+
                     if (!(maybeCard == null) && !(maybeCard instanceof InitialCard) && maybeCard.getcolour().equals(comObj.getCondition().getColour2()) //different colour
                             && !maybeCard.isCalculatedObjective()) {
                         Integer[] coordinates = player.getMap().get(maybeCard);
-                        switch (comObj.getCondition().getFirstOrientationCornerCheck()) { // see the description of each orientation in Conditions
+                        switch (comObj.getCondition().getFirstOrientationCornerCheck()) {
                             case (1):
                                     if(ifTwoColoursArePresent(player, coordinates[0]-1,coordinates[1]+1, "red")){
                                     maybeCard.setCalculatedObjective(true);
@@ -1019,8 +960,8 @@ public class GameControllerServer  {
      * I pass the coordinates where to look for the cards. returns true if in x,y and x,y-2 cards are present
      */
     private boolean ifTwoColoursArePresent(Player player, int x, int y, String colour){
-        if(positionOccupied(player,x,y)){ //if it exists
-            Card topOfCouple = cardInPosition(player, x, y); //then take it
+        if(positionOccupied(player,x,y)){
+            Card topOfCouple = cardInPosition(player, x, y);
         if (topOfCouple != null && topOfCouple.getcolour().equals(colour)) {
             Card bottomOfCouple = cardInPosition(player, x, y - 2);
             if (bottomOfCouple != null && topOfCouple.getcolour().equals(colour)) {
@@ -1125,13 +1066,13 @@ public class GameControllerServer  {
             if(currgame.getCurrPlayer().equals(currgame.getTotPlayers().getLast())) {
                 if(!endGame){
                     checkLast();
-                    currgame.setPlayerCurrentTurn(currgame.getTotPlayers().getFirst()); //notify is inside
-                    //currgame.setGameState(PLACECARD);
+                    currgame.setPlayerCurrentTurn(currgame.getTotPlayers().getFirst());
+
                 }else{
                     getWinner();
                 }
             }else{
-                currgame.setPlayerCurrentTurn(currgame.getTotPlayers().get(currgame.currPlayer.getId()+1)); //notify is inside
+                currgame.setPlayerCurrentTurn(currgame.getTotPlayers().get(currgame.currPlayer.getId()+1));
             }
     }
 
@@ -1146,7 +1087,7 @@ public class GameControllerServer  {
      *         that the game can accommodate, otherwise {@code false}.
      */
     public boolean isItFull(){
-        //if zero, main player still hasn't send the number of players
+
         if(this.currgame.getMaxPlayersNumber() == 0)
             return true;
         return currgame.getTotPlayers().size() == this.currgame.getMaxPlayersNumber();

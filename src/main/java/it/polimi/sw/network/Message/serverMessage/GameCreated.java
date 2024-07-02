@@ -48,7 +48,7 @@ public class GameCreated extends SampleServerMessage {
     public void execute(Client client) {
         //set lobby for the client
         client.setIdlobby(idlobby);
-        if(askOrNotNumPlayers == 1) //have to ask the number of players in the game
+        if(askOrNotNumPlayers == 1)
             client.getView().selectNumberOfplayerInMatch();
         client.getView().selectPion(availablePions);
     }

@@ -37,6 +37,6 @@ public class SendPrivateObjective extends SampleClientMessage{
     @Override
     public void execute(GameControllerServer gcs) {
         gcs.currgame.getTotPlayers().get(getId_player()).setObjective(ob);
-        gcs.addSecretObjective(); //if everyone has chosen, then this method starts the game loop
+        gcs.addSecretObjective();
     }
 }

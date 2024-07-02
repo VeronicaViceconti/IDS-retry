@@ -16,7 +16,7 @@ import java.util.List;
  * This message is used to synchronize the game state among all clients by reflecting changes made by a player during their turn.
  */
 public class UpdatePlayersReply extends SampleServerMessage {
-    //private String updateDetail; // a comment if needed
+
     private final Player player;
     private final int points;
     private final Card playedCard;
@@ -68,7 +68,7 @@ public class UpdatePlayersReply extends SampleServerMessage {
      */
     @Override
     public void execute(Client client) throws RemoteException {
-        //se sono il giocatore corrente, modifico le mie varie cose
+
         if(client.getMatch().getMe().equals(player)){
 
             client.getMatch().getMe().setPoints(points);
@@ -78,7 +78,7 @@ public class UpdatePlayersReply extends SampleServerMessage {
             client.getMatch().getMe().addCardToMap(playedCard, x, y);
             client.getView().addToTimeLine(playedCard);
 
-            client.getView().chatWait(); //chat stores
+            client.getView().chatWait();
             client.getView().updatePlayerPlayCard(player,playedCard, x, y, numOfResourceAndObject,phand,handBack ,points);
             client.getView().showCommonTable(client.getMatch().getFacedownGold(),
                                                 client.getMatch().getFacedownResource(),
@@ -86,14 +86,11 @@ public class UpdatePlayersReply extends SampleServerMessage {
                                                 client.getMatch().getFaceupResource());
             client.getView().showPlayerHand(client.getMatch().getMe().getHand());
 
-  /*          System.out.println("Timeline during updating card->");
-            for(Card c: player.getTimeline())
-                System.out.println("Cartaa -> "+c.toString());
-*/
+
             if(lastTurn) {
-                client.getView().drawCard(); // here chat unlocks
+                client.getView().drawCard();
             }
-        }else{ //se non è il mio turno, aggiungo il nuovo manoscritto anche nel mio model, se mai volessi vederlo
+        }else{
             for(Player p: client.getMatch().getTotPlayers()){
                 if(p.equals(player)){
                     p.addCardToMap(playedCard,x,y);

@@ -30,8 +30,8 @@ public class Game extends Observable {
 
     /** Sides of the cards*/
     private HashMap<Card, Card> sidesGoldCard; // key is the faceup and value is the facedown
-    private HashMap<Card, Card> sidesResCard; // key is the faceup and value is the facedown
-    private HashMap<Card, Card> sidesInitCard; // key is the faceup and value is the facedown
+    private HashMap<Card, Card> sidesResCard;
+    private HashMap<Card, Card> sidesInitCard;
     /**
      * objectives. allObjectives need to be initialised in the beginning of each game.
      */
@@ -125,11 +125,6 @@ public class Game extends Observable {
     }
 
 
-/*
-    public int getPointsCurrPlayer() {
-        return currPlayer.getPoints();
-    }
-*/
     /**
      * Retrieves the game unique identifier.
      *
@@ -210,7 +205,7 @@ public class Game extends Observable {
      */
 
     public Game(int id, HashMap<Card,Card> resource,
-                HashMap<Card,Card> gold, HashMap<Card,Card> initial, ArrayList<Objective> allObjective){ //usiamo questo
+                HashMap<Card,Card> gold, HashMap<Card,Card> initial, ArrayList<Objective> allObjective){
         this.facedownResource = new ArrayList<>();
         this.facedownInitial = new ArrayList<>();
         this.facedownGold = new ArrayList<>();
@@ -243,10 +238,10 @@ public class Game extends Observable {
         initialiseDecks(facedownGold,sidesGoldCard);
         shuffleCards(facedownGold);
         shuffleCards(facedownInitial);
-        shuffleCards(facedownResource); //fino qua ok
+        shuffleCards(facedownResource);
         shuffleObjective(allObjective);
         pickupCommonObjectives();
-        //setting the two elements of the two deck visible to everyone!
+
         for (int i=0;i<=1;i++) {
             faceupGold.add(flipCard(facedownGold.getFirst()));
             facedownGold.removeFirst();
@@ -260,8 +255,8 @@ public class Game extends Observable {
             pions.add(p.getPion());
         }
         notify(new BoardDataReply(facedownGold.getFirst(), facedownResource.getFirst(), faceupGold, faceupResource,commonObjective, playersList,currPlayer,pions));
-        this.currPlayer = playersList.getFirst();//fino qua ok
-        distributeInitialCards(); //notify inside
+        this.currPlayer = playersList.getFirst();
+        distributeInitialCards();
     }
     /**
      * Initializes a deck of cards from a HashMap correlation. (likely private method)
@@ -271,13 +266,11 @@ public class Game extends Observable {
      */
     private void initialiseDecks(ArrayList<Card> deck,HashMap<Card,Card> deckCorrelation){
 
-        //each retro saved into facedown arraylist
+
         deck.addAll(deckCorrelation.values());
     }
 
-/*    public void setPlayersList(ArrayList<Player> playersList) {
-        this.playersList = playersList;
-    }*/
+
     /**
      * Selects two random common objectives from the list of all objectives.
      *
@@ -313,7 +306,7 @@ public class Game extends Observable {
      *
      */
     private void randomFirstPlayer() {
-        // Create Random object
+
         Random random = new Random();
         this.currPlayer = playersList.get( random.nextInt(totPlayers) );
     }
@@ -338,13 +331,13 @@ public class Game extends Observable {
      * After distributing the cards, the distributed cards are removed from the facedownInitial list.
      */
     private void distributeInitialCards() {
-//fino qua ok
+
         for (int i=0;i<6;i++) {
             faceupInitial.add(flipCard(facedownInitial.get(i)));
         }
-        for (Player p : playersList) {//fino qua ok
-            p.addCard(faceupInitial.get(0));//ok
-            p.addCardBack(facedownInitial.get(0)); //ordine fdI and fuI is the same. id+6
+        for (Player p : playersList) {
+            p.addCard(faceupInitial.get(0));
+            p.addCardBack(facedownInitial.get(0));
             notify(new SendInitialCard(p.getHand().get(0),p.getHandBack().get(0), p,p.getId()));
 
             facedownInitial.remove(flipCard(faceupInitial.get(0)));
@@ -397,15 +390,15 @@ public class Game extends Observable {
      * @return the card flipped
      */
     public Card flipCard(Card card) {
-        //tolgo package
+
         String s = card.getClass().getName().substring(19);
 
         switch (s) {
             case "InitialCard":
-                if (card.getSide() == 1) { // face up, I want face down
+                if (card.getSide() == 1) { // face up
                     return sidesInitCard.containsKey(card) ? sidesInitCard.get(card) : null;
                 }
-                else { // face down, I want face up
+                else { // face down
                     if(sidesInitCard.containsValue(card)){
                         //finding the faceUp from the keys
                         for (Card cardWanted : sidesInitCard.keySet()) {
@@ -417,9 +410,9 @@ public class Game extends Observable {
                 }
                 break;
             case "GoldCard":
-                if (card.getSide() == 1) { // face up
+                if (card.getSide() == 1) {
                     return sidesGoldCard.containsKey(card) ? sidesGoldCard.get(card) : null;
-                } else { // face down
+                } else {
                     if(sidesGoldCard.containsValue(card)){
                         for (Card cardWanted : sidesGoldCard.keySet()) {
                             if (card.equals(sidesGoldCard.get(cardWanted))) {
@@ -430,9 +423,9 @@ public class Game extends Observable {
                 }
                 break;
             case "ResourceCard":
-                if (card.getSide() == 1) { // face up
+                if (card.getSide() == 1) {
                     return sidesResCard.containsKey(card) ? sidesResCard.get(card) : null;
-                } else { // face down
+                } else {
                     if(sidesResCard.containsValue(card)){
                         for (Card cardWanted : sidesResCard.keySet()) {
                             if (card.equals(sidesResCard.get(cardWanted))) {
@@ -472,7 +465,7 @@ public class Game extends Observable {
      */
 
     public void setPlayerCurrentTurn(Player playerX) {
-        //controller passa un giocatore playerX dopo il controllo che quello sia connesso
+
         this.currPlayer = playerX;
         notify(new TurnReply(playerX, playerX.getAvailablePositions()));
         setGameState(PLACECARD);

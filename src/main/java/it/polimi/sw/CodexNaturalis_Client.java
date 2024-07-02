@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  * handling user input for nickname selection, and potentially creating client objects based on the chosen connection type (sockets or RMI).
  */
 public class CodexNaturalis_Client {
-    /*static final String SERVER_ADDRESS = "localhost";*/
+
     static final int PORT_NUMBER = 17001;
 
 
@@ -81,10 +81,10 @@ public class CodexNaturalis_Client {
         Client client;
 
         if (connection == 1) {
-            client = new ClientSocket(serverIpaddress, PORT_NUMBER, view,nickname); //singleton si crea da solo
+            client = new ClientSocket(serverIpaddress, PORT_NUMBER, view,nickname);
             new Thread(client).start();
         }else{
-            new ClientRMI(view, nickname); //THREAD FATTO PARTIRE NEL COSTRUTTORE
+            new ClientRMI(view, nickname);
         }
 
     }

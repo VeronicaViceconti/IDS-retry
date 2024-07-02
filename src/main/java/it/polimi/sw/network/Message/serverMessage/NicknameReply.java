@@ -28,7 +28,7 @@ public class NicknameReply extends SampleServerMessage {
      */
     @Override
     public void execute(Client client) {
-        //quindi nickname se non è valido, viene rifatta la domanda
+
         client.getView().isNicknameAvailable(isavailableNickname);
     }
 }

@@ -31,7 +31,7 @@ public class NotYourTurnReply extends SampleServerMessage {
 
     @Override
     public void execute(Client client) {
-        //if message arrives to the misbehaved player, then show the pop up
+
             if(misbehavingPlayer.equals(client.getMatch().getMe())){
                 client.getView().notYourTurn();
             }

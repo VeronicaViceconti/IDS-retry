@@ -49,9 +49,9 @@ public class ProcessQueue implements Runnable {
                 }
             } else {
                 try {
-                    Thread.sleep(700); // to avoid busy-waiting
+                    Thread.sleep(700);
                 } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt(); // Preserve the interrupt status
+                    Thread.currentThread().interrupt();
                 }
             }
         }
@@ -72,13 +72,13 @@ public class ProcessQueue implements Runnable {
      * @param message the message received from the client
      */
     private void processMessage(SampleClientMessage message) throws RemoteException {
-        // Check message content
+
         switch(message.getType()){
             case CONNECTION_REQUEST -> {
                 if(((ConnectionRequest)message).getClientHandlerRMI() == null){ //socket
                     if(server.getHandlerForClient_Map().containsKey(((ConnectionRequest)message).getNickname()) ||
                             server.getHandlerForClient_Map_RMI().containsKey(((ConnectionRequest)message).getNickname())){
-                            //if we want to do disconnection, here is where to implement it
+
                         try {
                             ((ConnectionRequest)message).getClientHandlerSOCKET().update(new NicknameReply(false));
                             System.out.println("NICKNAME ALREADY EXISTS SOCKET");
@@ -90,10 +90,10 @@ public class ProcessQueue implements Runnable {
                         server.addSocketHandler(((ConnectionRequest)message).getNickname(),((ConnectionRequest)message).getClientHandlerSOCKET());
                         System.out.println("Totale handler socket attivi: "+server.getHandlerForClient_Map().size());
                     }
-                }else { //rmi
+                }else {
                     if(server.getHandlerForClient_Map_RMI().containsKey(((ConnectionRequest)message).getNickname()) ||
                             server.getHandlerForClient_Map().containsKey(((ConnectionRequest)message).getNickname())){
-                        //if we want to do disconnection, here is where to implement it
+
                         try {
                             ((ConnectionRequest)message).getClientHandlerRMI().update(new NicknameReply(false));
                             System.out.println("NICKNAME ALREADY EXISTS RMI");
@@ -111,16 +111,16 @@ public class ProcessQueue implements Runnable {
                 for (GameControllerServer lobby : server.getLobbyReference()) {
                     System.out.println("prima di !lobby.isfull " +lobby.toString());
                     if(!lobby.isItFull()){
-                        //notify to client to get the pion selection
+
                         for (Player p : lobby.getPlayersList()) {
-                            //if(pions.get().equals(p.getPion()))
-                            pions.remove(p.getPion()); //if pion isn't in the list, it won't be removed
+
+                            pions.remove(p.getPion());
                         }
-                        //add observer handler to currgame
-                        if(((ConnectionRequest)message).getClientHandlerRMI() == null) {//socket
+
+                        if(((ConnectionRequest)message).getClientHandlerRMI() == null) {
                             lobby.currgame.addObservers(((ConnectionRequest) message).getClientHandlerSOCKET());
                             ((ConnectionRequest) message).getClientHandlerSOCKET().sendMessageToClient(new GameCreated(pions,0,lobby.lobbyreference));
-                        }else { //rmi
+                        }else {
                             lobby.currgame.addObservers(((ConnectionRequest) message).getClientHandlerRMI());
                             try {
                                 ((ConnectionRequest) message).getClientHandlerRMI().update(new GameCreated(pions,0,lobby.lobbyreference));
@@ -130,11 +130,11 @@ public class ProcessQueue implements Runnable {
                         }
                             return;
                     }
-                }//no game was avaliable, ask client pion + maxnumber of player in the game
+                }
                 GameControllerServer gameControllerServer = new GameControllerServer(server.getLobbyReference().size(), server);
                 gameControllerServer.currgame.setMaxPlayersNumbers(0);
-                //add observer handler to currgame
-                if(((ConnectionRequest)message).getClientHandlerRMI() == null) { //socket
+
+                if(((ConnectionRequest)message).getClientHandlerRMI() == null) {
                     gameControllerServer.currgame.addObservers(((ConnectionRequest) message).getClientHandlerSOCKET());
                 }else {
                     gameControllerServer.currgame.addObservers(((ConnectionRequest) message).getClientHandlerRMI());
@@ -146,7 +146,7 @@ public class ProcessQueue implements Runnable {
             case NICKNAME_REQUEST -> {
                 String name = ((NicknameRequest)message).getName();
                 if((server.getHandlerForClient_Map().containsKey(name) || server.getHandlerForClient_Map_RMI().containsKey(name))){
-                    //name exists
+
                     try {
                         if(((NicknameRequest)message).getClientHandlerRMI() == null){
                             ((NicknameRequest)message).getClientHandlerSOCKET().update(new NicknameReply(false));
@@ -158,17 +158,17 @@ public class ProcessQueue implements Runnable {
                     } catch (RemoteException e) {
                         throw new RuntimeException(e);
                     }
-                }else{ //nickname is new
+                }else{
                     Pion []allPions = new Pion[]{Pion.pion_blue,Pion.pion_yellow,Pion.pion_red,Pion.pion_green};
                     ArrayList<Pion> pions = new ArrayList<>(Arrays.asList(allPions));
                     for (GameControllerServer lobby : server.getLobbyReference()) {
                         if(!lobby.isItFull()){
-                            //notify to client to get the pion selection
+
                             for (Player p : lobby.getPlayersList()) {
-                                pions.remove(p.getPion()); //if pion isn't in the list, it won't be removed
+                                pions.remove(p.getPion());
                             }
-                            //add observer handler to currgame
-                            if(((NicknameRequest)message).getClientHandlerRMI() == null) {//socket
+
+                            if(((NicknameRequest)message).getClientHandlerRMI() == null) {
                                 lobby.currgame.addObservers(((NicknameRequest) message).getClientHandlerSOCKET());
                                 try {
                                     ((NicknameRequest) message).getClientHandlerSOCKET().update(new GameCreated(pions,0,lobby.lobbyreference));
@@ -185,11 +185,11 @@ public class ProcessQueue implements Runnable {
                             }
                             return;
                         }
-                    }//no game was avaliable, ask client pion + maxnumber of player in the game
+                    }
                     GameControllerServer gameControllerServer = new GameControllerServer(server.getLobbyReference().size(), server);
                     gameControllerServer.currgame.setMaxPlayersNumbers(0);
-                    //add observer handler to currgame
-                    if(((NicknameRequest)message).getClientHandlerRMI() == null) //socket
+
+                    if(((NicknameRequest)message).getClientHandlerRMI() == null)
                         gameControllerServer.currgame.addObservers(((NicknameRequest)message).getClientHandlerSOCKET());
                     else
                         gameControllerServer.currgame.addObservers(((NicknameRequest)message).getClientHandlerRMI());
@@ -211,7 +211,7 @@ public class ProcessQueue implements Runnable {
                     pions.remove(p.getPion());
                 }
                 if(flag){
-                    //pion already got by another player, send error
+
                     if(server.getHandlerForClient_Map_RMI().get(((PlayerNumberAndPionRequest)message).getNickname()) == null){
                         server.getHandlerForClient_Map().get(((PlayerNumberAndPionRequest)message).getNickname()).update(new SendingPionErrorReply(pions));
                     }else{
@@ -223,7 +223,7 @@ public class ProcessQueue implements Runnable {
                     player.setId(server.getLobbyReference().get(lobbyid).getPlayersList().size());
                     if(numberofPlayer == 0)
                     {
-                        //handle login, add lobby
+
                         server.getLobbyReference().get(lobbyid).addPlayertoGame(player);
                         if(!server.getLobbyReference().get(lobbyid).isItFull())
                         {

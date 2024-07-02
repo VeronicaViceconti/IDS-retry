@@ -74,8 +74,7 @@ public class ClientHandlerSOCKET implements Runnable, Serializable, Observer {
                 output = new ObjectOutputStream(client.getOutputStream());
                 input = new ObjectInputStream(client.getInputStream());
 
-            //SIAMO GIA' CONNESSI CON CLIENT, CI METTIAMO IN ASCOLTO ALL'INFINITO
-                // leggo e scrivo nella connessione finche' non ricevo "quit"
+
                 while (!Thread.currentThread().isInterrupted()) {
                     Object line = input.readObject();
                     receiveMessage(line);
@@ -85,7 +84,7 @@ public class ClientHandlerSOCKET implements Runnable, Serializable, Observer {
         }catch (Exception e) {
             System.err.println("Error receiving a message" + e.getMessage());
         }
-        // chiudo gli stream e il socket
+
         output.close();
         client.close();
 
@@ -111,7 +110,7 @@ public class ClientHandlerSOCKET implements Runnable, Serializable, Observer {
             online = false;
             Thread.currentThread().interrupt();
 
-            //notify server
+
         }
     }
     /**

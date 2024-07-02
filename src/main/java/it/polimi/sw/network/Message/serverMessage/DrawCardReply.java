@@ -92,23 +92,21 @@ public class DrawCardReply extends SampleServerMessage {
         System.out.println("FACEDOWN RESOURCE DOPO "+faceDownResource.toString());
         System.out.println("FACEDOWN GOLD DOPO "+faceDownGold.toString());
         if (destination.equals(client.getMatch().getMe())) {
-            //se non è null, allora non sto inviando la carta iniziale,
-            //aggiorno tavolo comune e hand del giocatore
 
-            client.getView().chatWait(); // chat starts storing and not printing
+            client.getView().chatWait();
 
             client.getMatch().getMe().getHand().add(wantedCard);
             client.getMatch().getMe().getHandBack().add(wantedCardBack);
             client.getView().savePlayerHandBack(client.getMatch().getMe().getHandBack());
-            client.getView().showPlayerHand(client.getMatch().getMe().getHand()); //salva anche frontCards
+            client.getView().showPlayerHand(client.getMatch().getMe().getHand());
 
-            client.getView().chatUnblockWait(); //chat restarts printing
+            client.getView().chatUnblockWait();
         } else {
             client.getView().notYourTurn();
         }
-        //sia che non sono io il giocatore sia che sono io, devo togliere dalla view la carta pescata.
 
-        if(faceDownGold != null){ //se null non faccio niente, siamo all'inizio, è stato inviato BOARDDATAREPLY
+
+        if(faceDownGold != null){
             client.getView().showCommonTable(faceDownGold,faceDownResource,faceUpGold,faceupResource);
         }
     }

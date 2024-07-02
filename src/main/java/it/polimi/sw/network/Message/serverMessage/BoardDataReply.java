@@ -18,7 +18,7 @@ import java.util.ArrayList;
  *  * List of common objectives
  *  * List of all players in the game
  */
-//need to be controlled. common area updates
+
 public class BoardDataReply extends SampleServerMessage {
     private final Card facedownGold;
     private final Card facedownRes;
@@ -95,12 +95,12 @@ public class BoardDataReply extends SampleServerMessage {
 
         if(commonObj != null){
 
-            client.getView().showGameStart(); //welcome
+            client.getView().showGameStart();
             client.getView().initGame();
             client.getMatch().setCommonObjective(commonObj);
             client.getView().setBoardData(facedownGold, facedownRes, faceupGold,faceupRes,commonObj);
 
-            //pass all the player's name
+
             ArrayList<String> names = new ArrayList<>();
             for (Player p: allPlayers) {
                 names.add(p.getNickName());
@@ -109,7 +109,7 @@ public class BoardDataReply extends SampleServerMessage {
             client.getView().initializePions(allPlayers.indexOf(client.getMatch().getMe()),pions);
             client.getView().createTabbedManuscripts(names);
         }else {
-            //if it's me, it's time to re-show the manuscript
+
             if (client.getMatch().getMe().equals(p) || client.getView() instanceof GUI)
                 client.getView().showCommonTable(facedownGold, facedownRes, faceupGold, faceupRes);
         }
