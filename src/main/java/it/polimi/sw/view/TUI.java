@@ -78,7 +78,6 @@ public class TUI extends  View {
     public void addToTimeLine(Card timeline) {
         this.timeline.add(timeline);
     }
-
     public ArrayList<Card> getTimeline() {
         return timeline;
     }
@@ -124,7 +123,6 @@ public class TUI extends  View {
 
 
         for(Card c: hand){
-            //System.out.println("\nCARTA HAND AL CLIENT: "+c.toString()+"\n");
             topSingleCard(c, true, true);
             System.out.print("   ");
         }
@@ -172,19 +170,18 @@ public class TUI extends  View {
                 .max(Comparator.comparingInt(entry -> entry.getValue()[1]))
                 .map(entry -> entry.getValue()[1])
                 .orElse(-80);
-        //System.out.println("A");
+
         int mostBottom = map.entrySet()
                 .stream()
                 .min(Comparator.comparingInt(entry -> entry.getValue()[1]))
                 .map(entry -> entry.getValue()[1])
                 .orElse(80);
-        //System.out.println("B");
+
         int mostLeft = map.entrySet()
                 .stream()
                 .min(Comparator.comparingInt(entry -> entry.getValue()[0]))
                 .map(entry -> entry.getValue()[0])
                 .orElse(-80);
-        //System.out.println("C");
         //ad the first line topSingle of the top line
         System.out.print("   "); // to adjust according to i
         firstLine(mostUp, mostLeft, map);
@@ -204,9 +201,6 @@ public class TUI extends  View {
             }else if((i<80 && i>9) || (i<0 && i>-80) ){ //i of 2 digits
                 System.out.print(i);
                 System.out.print(" "); // to adjust according to coordinates line
-
-
-                //System.out.print(" "); // to adjust according to coordinates line
 
 
                 middleCalculus(i, mostLeft,map);
@@ -282,11 +276,7 @@ public class TUI extends  View {
 
 
             if(currXUp - prev > 0) { //it is not the most left card of the game
-                //printSpaceOneCard(5*(currXUp - prev-1)+(currXUp - prev-2));
-                //printSpaceOneCard(6*(currXUp - prev));
-                //printSpaceOneCard(5);
                 printSpaceOneCard(6*(currXUp-prev-2));
-
 
 
 
@@ -345,8 +335,7 @@ public class TUI extends  View {
 
 
             if(currX-prevX > 1) { //it is not the most left card of the game
-                //printSpaceOneCard(6*(currX - mostLeft));
-                //printSpaceOneCard(5);
+
                 printSpaceOneCard(6*(currX-prevX-2));
 
 
@@ -356,7 +345,6 @@ public class TUI extends  View {
             }
 
 
-            //currX = map.get(searchedCard)[0];
             middleSingleCard(searchedCard);
             printSpaceOneCard(5);
 
@@ -364,16 +352,7 @@ public class TUI extends  View {
             prevX = currX;
             searchedCard = nextCardToPrint(map, alt, currX);
         }
-/*           if(currX-prevX > 1) { //it is not the most left card of the game
-               //printSpaceOneCard(6*(currX - mostLeft));
-               printSpaceOneCard(5);
-               printSpaceOneCard(6*(currX-prevX-2));
 
-
-               for(i = currX -prevX; i>0; i--){
-                   System.out.print(" ");
-               }
-           }*/
         System.out.println();
     }
 
@@ -469,13 +448,6 @@ public class TUI extends  View {
                 currXUp = map.get(searchedUpperCard)[0];
 
                 prev = currXUp;
-/*
-                searchedUpperCard = nextCardToPrint(map, alt, currXUp);
-                if(currXDown!= null) {
-                    searchedLowerCard = nextCardToPrint(map, alt - 1, currXDown);
-                }
-                currXUp = (searchedUpperCard != null) ? map.get(searchedUpperCard)[0] : null;
-*/
 
 
             } else { //from the row under
@@ -512,16 +484,6 @@ public class TUI extends  View {
                 currXDown = map.get(searchedLowerCard)[0]; //will be null in the last row and might be null in the middle
 
                 prev = currXDown;
-/*
-                if(currXUp != null) {
-                    searchedUpperCard = nextCardToPrint(map, alt, currXUp);
-                }else{
-                    currXDown = 100;//test se funziona
-                }
-                searchedLowerCard = nextCardToPrint(map, alt - 1, currXDown);
-                currXDown = (searchedLowerCard != null) ? map.get(searchedLowerCard)[0] : null;
-
-*/
 
             }
 
@@ -537,15 +499,6 @@ public class TUI extends  View {
                 nextCard = map.get(searchedUpperCard)[0] < map.get(searchedLowerCard)[0];
             }
 
-/*            if(currXDown != null && currXUp!= null){
-                next = Math.min(currXUp, currXDown);
-                minDist = next - prev;
-            }else if (currXDown != null) {
-                minDist = currXDown - prev;
-            }
-            else if (currXUp != null) {
-                minDist = currXUp - prev;
-            }*/
 
             if(nextCard){
                 minDist = map.get(searchedUpperCard)[0] - prev;
@@ -619,9 +572,6 @@ public class TUI extends  View {
     private void topSingleCard(Card c, boolean L, boolean R){
         int i;
         String[] emojiColour= new String[5];
-        emojiColour[0]=":broken_heart:";
-        emojiColour[1]=":orange_heart:";
-        emojiColour[2]=":blue_heart:";
         emojiColour[3]=":purple_heart:";
         emojiColour[4]=":green_heart:";
         String emojiCornerBack=":white_large_square:";
@@ -665,11 +615,11 @@ public class TUI extends  View {
                         System.out.print(EmojiParser.parseToUnicode(emojiCornerBack));
                     }else{
                         switch (c.getcolour()){
-                            case "red": System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));
+                            case "red": System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                                 break;
                             case "green": System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));
                                 break;
-                            case "blue": System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
+                            case "blue": System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                                 break;
                             case "purple": System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
                         }
@@ -681,11 +631,11 @@ public class TUI extends  View {
 
             }
             switch (c.getcolour()){
-                case "red": for(i=0;i<2;i++){System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));}
+                case "red": for(i=0;i<2;i++){System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));}
                     break;
                 case "green": for(i=0;i<2;i++){System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));}
                     break;
-                case "blue": for(i=0;i<2;i++){System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));}
+                case "blue": for(i=0;i<2;i++){System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));}
                     break;
                 case "purple": for(i=0;i<2;i++) {
                     System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
@@ -700,11 +650,11 @@ public class TUI extends  View {
                 //System.out.print(" ");
             }else{
                 switch (c.getcolour()){
-                    case "red": System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));
+                    case "red": System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                         break;
                     case "green": System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));
                         break;
-                    case "blue": System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
+                    case "blue": System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                         break;
                     case "purple": System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
                         break;
@@ -713,11 +663,11 @@ public class TUI extends  View {
 
 
             switch (c.getcolour()){
-                case "red": for(i=0;i<2;i++){/*if(i==0){System.out.print("");}*/ System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));}
+                case "red": for(i=0;i<2;i++){/*if(i==0){System.out.print("");}*/ System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));}
                     break;
                 case "green": for(i=0;i<2;i++){/*if(i==0){System.out.print("");}*/System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));}
                     break;
-                case "blue": for(i=0;i<2;i++){/*if(i==0){System.out.print("");}*/System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));}
+                case "blue": for(i=0;i<2;i++){/*if(i==0){System.out.print("");}*/System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));}
                     break;
                 case "purple": for(i=0;i<2;i++){
                     /*if(i==0){System.out.print("");}*/System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));}
@@ -753,11 +703,11 @@ public class TUI extends  View {
                         System.out.print(EmojiParser.parseToUnicode(emojiCornerBack));
                     }else{
                         switch (c.getcolour()){
-                            case "red": System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));
+                            case "red": System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                                 break;
                             case "green": System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));
                                 break;
-                            case "blue": System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
+                            case "blue": System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                                 break;
                             case "purple": System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
                         }
@@ -787,13 +737,13 @@ public class TUI extends  View {
                 } else {
                     switch (c.getcolour()) {
                         case "red":
-                            System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));
+                            System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                             break;
                         case "green":
                             System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));
                             break;
                         case "blue":
-                            System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
+                            System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                             break;
                         case "purple":
                             System.out.print(EmojiParser.parseToUnicode(emojiColour[3])); break;
@@ -802,14 +752,14 @@ public class TUI extends  View {
             }
             switch (c.getcolour()) {
                 case "red":
-                    System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));
+                    System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                     break;
                 case "green":
                     System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));
                     // System.out.print("");
                     break;
                 case "blue":
-                    System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
+                    System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                     //System.out.print("");
                     break;
                 case "purple":
@@ -837,13 +787,13 @@ public class TUI extends  View {
             }else{
                 switch (c.getcolour()) {
                     case "red":
-                        System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));
+                        System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                         break;
                     case "green":
                         System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));
                         break;
                     case "blue":
-                        System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
+                        System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                         break;
                     case "purple":
                         System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
@@ -865,13 +815,13 @@ public class TUI extends  View {
             }else{
                 switch (c.getcolour()) {
                     case "red":
-                        System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));
+                        System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                         break;
                     case "green":
                         System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));
                         break;
                     case "blue":
-                        System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
+                        System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                         break;
                     case "purple":
                         System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
@@ -880,11 +830,11 @@ public class TUI extends  View {
 
 
             switch (c.getcolour()){
-                case "red": for(i=0;i<2;i++){System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));}
+                case "red": for(i=0;i<2;i++){System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));}
                     break;
                 case "green": for(i=0;i<2;i++){System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));}
                     break;
-                case "blue": for(i=0;i<2;i++){System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));}
+                case "blue": for(i=0;i<2;i++){System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));}
                     break;
                 case "purple": for(i=0;i<2;i++){System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));}
             }
@@ -903,9 +853,9 @@ public class TUI extends  View {
                     System.out.print(EmojiParser.parseToUnicode(emojiCornerBack));
                 } else {
                     switch (c.getcolour()) {
-                        case "red": System.out.print(EmojiParser.parseToUnicode(emojiColour[0])); break;
+                        case "red": System.out.print(EmojiParser.parseToUnicode(":broken_heart:")); break;
                         case "green": System.out.print(EmojiParser.parseToUnicode(emojiColour[4])); break;
-                        case "blue": System.out.print(EmojiParser.parseToUnicode(emojiColour[2])); break;
+                        case "blue": System.out.print(EmojiParser.parseToUnicode(":blue_heart:")); break;
                         case "purple": System.out.print(EmojiParser.parseToUnicode(emojiColour[3])); break;
                     }
                 }
@@ -935,7 +885,7 @@ public class TUI extends  View {
             }
 
                 for(i=0;i<5;i++){
-                    System.out.print(EmojiParser.parseToUnicode(emojiColour[1]));
+                    System.out.print(EmojiParser.parseToUnicode(":orange_heart:"));
                 }
 
 
@@ -1153,9 +1103,6 @@ public class TUI extends  View {
         int i;
 
         String[] emojiColour= new String[5];
-        emojiColour[0]=":broken_heart:";
-        emojiColour[1]=":orange_heart:";
-        emojiColour[2]=":blue_heart:";
         emojiColour[3]=":purple_heart:";
         emojiColour[4]=":green_heart:";
         String emojiCornerBack=":white_large_square:";
@@ -1208,13 +1155,13 @@ public class TUI extends  View {
                     } else {
                         switch (c.getcolour()) {
                             case "red":
-                                System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));
+                                System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                                 break;
                             case "green":
                                 System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));
                                 break;
                             case "blue":
-                                System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
+                                System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                                 break;
                             case "purple":
                                 System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
@@ -1229,13 +1176,13 @@ public class TUI extends  View {
             }
             switch (c.getcolour()) {
                 case "red":
-                    for(i=0;i<5;i++){System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));}
+                    for(i=0;i<5;i++){System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));}
                     break;
                 case "green":
                     for(i=0;i<5;i++){System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));}
                     break;
                 case "blue":
-                    for(i=0;i<5;i++){System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));}
+                    for(i=0;i<5;i++){System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));}
                     break;
                 case "purple":
                     for(i=0;i<5;i++){System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));}
@@ -1269,11 +1216,11 @@ public class TUI extends  View {
                         System.out.print(EmojiParser.parseToUnicode(emojiCornerBack));
                     }else{
                         switch (c.getcolour()){
-                            case "red": System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));
+                            case "red": System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                                 break;
                             case "green": System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));
                                 break;
-                            case "blue": System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
+                            case "blue": System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                                 break;
                             case "purple": System.out.print(EmojiParser.parseToUnicode(emojiColour[3])); break;
                         }
@@ -1305,13 +1252,13 @@ public class TUI extends  View {
                 } else {
                     switch (c.getcolour()) {
                         case "red":
-                            System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));
+                            System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                             break;
                         case "green":
                             System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));
                             break;
                         case "blue":
-                            System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
+                            System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                             break;
                         case "purple":
                             System.out.print(EmojiParser.parseToUnicode(emojiColour[3])); break;
@@ -1376,11 +1323,11 @@ public class TUI extends  View {
 
 
                     switch (c.getcolour()){
-                        case "red": System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));
+                        case "red": System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                             break;
                         case "green": System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));
                             break;
-                        case "blue": System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
+                        case "blue": System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                             break;
                         case "purple": System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
                             break;
@@ -1435,11 +1382,11 @@ public class TUI extends  View {
 
 
                     switch (c.getcolour()){
-                        case "red": System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));
+                        case "red": System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                             break;
                         case "green": System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));
                             break;
-                        case "blue": System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
+                        case "blue": System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                             break;
                         case "purple": System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
                             break;
@@ -1479,11 +1426,11 @@ public class TUI extends  View {
                             break;
                     }
                     switch (c.getcolour()){
-                        case "red": System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));
+                        case "red": System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                             break;
                         case "green": System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));
                             break;
-                        case "blue": System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
+                        case "blue": System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                             break;
                         case "purple": System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
                             break;
@@ -1494,11 +1441,11 @@ public class TUI extends  View {
             }else if(c.getSide()==2) {
                 for(i=0;i<5;i++){
                     switch (c.getcolour()){
-                        case "red": System.out.print(EmojiParser.parseToUnicode(emojiColour[0]));
+                        case "red": System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                             break;
                         case "green": System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));
                             break;
-                        case "blue": System.out.print(EmojiParser.parseToUnicode(emojiColour[2]));
+                        case "blue": System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
                             break;
                         case "purple": System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
                             break;
@@ -1518,9 +1465,9 @@ public class TUI extends  View {
                     System.out.print(EmojiParser.parseToUnicode(emojiCornerBack));
                 } else {
                     switch (c.getcolour()) {
-                        case "red": System.out.print(EmojiParser.parseToUnicode(emojiColour[0])); break;
+                        case "red": System.out.print(EmojiParser.parseToUnicode(":broken_heart:")); break;
                         case "green": System.out.print(EmojiParser.parseToUnicode(emojiColour[4])); break;
-                        case "blue": System.out.print(EmojiParser.parseToUnicode(emojiColour[2])); break;
+                        case "blue": System.out.print(EmojiParser.parseToUnicode(":blue_heart:")); break;
                         case "purple": System.out.print(EmojiParser.parseToUnicode(emojiColour[3])); break;
                     }
                 }
@@ -1543,7 +1490,7 @@ public class TUI extends  View {
                             break;
 
                         case 3:
-                            System.out.print(EmojiParser.parseToUnicode(emojiColour[1]));
+                            System.out.print(EmojiParser.parseToUnicode(":orange_heart:"));
                             break;
                     }
                 }else{
@@ -1564,7 +1511,7 @@ public class TUI extends  View {
 
 
             for(i=0;i<5;i++){
-                System.out.print(EmojiParser.parseToUnicode(emojiColour[1]));
+                System.out.print(EmojiParser.parseToUnicode(":orange_heart:"));
             }
 
 
@@ -1582,7 +1529,7 @@ public class TUI extends  View {
                             System.out.print(EmojiParser.parseToUnicode(emojiCornerBack));
                             break;
                         case 3:
-                            System.out.print(EmojiParser.parseToUnicode(emojiColour[1]));
+                            System.out.print(EmojiParser.parseToUnicode(":orange_heart:"));
                             break;
                     }
                 }else{
@@ -1606,7 +1553,6 @@ public class TUI extends  View {
     }
 
     /**
-     * done
 
 
      * to add if empty
@@ -1809,7 +1755,6 @@ public class TUI extends  View {
             showLastMex(); //all stored if present
             System.out.println(message);
         }else{
-            //suppongo che solo un thread entra qua.
             chatMessagesStorage.add(message);
         }
     }
@@ -1823,7 +1768,7 @@ public class TUI extends  View {
 
     @Override
     public void initializePions(int indexMe, ArrayList<Pion> pions) {
-
+//for gui
     }
 
 
@@ -1832,7 +1777,7 @@ public class TUI extends  View {
      */
     @Override
     public void showGameStart() {
-        System.out.println("\n \n \n \n \nWelcome to CODEX NATURALIS!");
+        System.out.println(RESET+"\n \n \n \n \nWelcome to CODEX NATURALIS!");
         System.out.println("Master the art of four elements, gather resources and create the strongest manuscript!");
         System.out.println("Here are the basic rules:");
         System.out.println();
@@ -1856,9 +1801,9 @@ public class TUI extends  View {
     public void showPlayerState(Player p) {
         System.out.println("Nickname: "+p.getNickName()+", Points: "+p.getPoints());
 
-
+/*
         System.out.println("Number of Resource and Object:");
-        printResourceOrObject(p,p.getNumOfResourceAndObject());
+        printResourceOrObject(p,p.getNumOfResourceAndObject());*/
     }
 
 
@@ -1905,10 +1850,7 @@ public class TUI extends  View {
      */
     @Override
     public void addPoints(Player p, int points) { //passes final points
-        //p.addPoints(points);
-        //p.setPoints(newPoints);
 
-        //System.out.print("\nGame over!");
         System.out.println(p.getNickName() +" final points: ");
         System.out.print(EmojiParser.parseToUnicode(":parking: ")+points +"\n");
 
@@ -1945,26 +1887,6 @@ public class TUI extends  View {
      * @throws RemoteException (presumably for remote communication errors)
      */
     private void cardToFlip() throws RemoteException {
-/*        Card tmpold = frontHand.get(card - 1);
-
-
-       for (int i = 0; i < backHand.size(); i++) {
-           if (backHand.get(i).getId() == tmpold.getId() &&
-                   backHand.get(i).getClass().equals(tmpold.getClass())) {
-               Card tmpnew = backHand.get(i);
-
-
-               frontHand.add(tmpnew);
-               backHand.add(tmpold);
-
-
-               backHand.remove(i);
-               frontHand.remove(card - 1);
-
-
-               break;
-           }
-       }*/
 
 
         if(flippedChosen){//user wants to see front
@@ -1976,13 +1898,6 @@ public class TUI extends  View {
             flippedChosen = true;
             showPlayerHand(backHand);
         }
-
-
-/*        if(oldSide.equals("1")) { //la carta da girare è lato front, mando il retro
-           this.addFlippedCard(backHand);
-       }else {
-           this.addFlippedCard(frontHand);
-       }*/
 
 
     }
@@ -2045,7 +1960,6 @@ public class TUI extends  View {
             }
             try {
                 enter = Integer.parseInt(input.nextLine());
-                System.out.println("Riga->"+enter);
             } catch (NumberFormatException e) {
                 System.out.println("Input non valido. Per favore, inserisci 1 o 2!");
             }
@@ -2082,8 +1996,7 @@ public class TUI extends  View {
 
 
         if(hand != null && handBack != null){
-/*            this.frontHand = new ArrayList<>(hand);
-           this.backHand = new ArrayList<>(handBack);*/
+
             frontHand = hand;
             backHand = handBack;
         }
@@ -2110,15 +2023,16 @@ public class TUI extends  View {
     @Override
     public void announceWinner(List<Player> winner) {
         if (winner.size() == 1) {
-            System.out.println(winner.getFirst().getNickName() + " wins!");
+            System.out.println("\n"+winner.getFirst().getNickName() + " wins!");
 
 
         } else if (winner.size() > 1) {
             String winnerNames = winner.stream()
                     .map(Player::getNickName)
                     .collect(Collectors.joining(", "));
-            System.out.println(winnerNames + " win!");
+            System.out.println("\n"+winnerNames + " win!");
         }
+        System.out.println("\nWhat a game! Have a nice day and see you next time!");
     }
     /**
      * Updates the game state and informs the player about the played card and points.
@@ -2140,8 +2054,6 @@ public class TUI extends  View {
             this.backHand = new ArrayList<>(handBack);
         }
 
-
-        System.out.println("dentro UpdatePlayerPlayCard"+frontHand.toString()+"\n"+backHand.toString());
         System.out.println("Updated manuscript: ");
         showPlayerTable(p.getMap());
 
@@ -2214,12 +2126,6 @@ public class TUI extends  View {
                     throw new RuntimeException(e);
                 }
                 break;
-/*            case INCORRECT_PARAMETRES:
-               System.out.println("Error: INCORRECT_PARAMETRES. Turn off the game and go to study!");
-               break;*/
-/*            case NOT_YOUR_TURN:
-               System.out.println("It is not your turn! Wait! \n");
-               break;*/
             case PLAYER_HAS_3_CARDS:
                 System.out.println("You already have so many cards! Don't be so greedy!\n");
                 break;
@@ -2276,14 +2182,13 @@ public class TUI extends  View {
         if(o.getCondition().getTypeOfObjective().equals(ObjectiveTypes.ObjectFilling) || o.getCondition().getTypeOfObjective().equals(ObjectiveTypes.ResourceFilling)){
             System.out.print("");
             switch(o.getPoints()){
-                case 2: //System.out.print(EmojiParser.parseToUnicode(":two:")); System.out.print("");
+                case 2:
                     System.out.print(" 2");
                     break;
-                case 3:  //System.out.print(EmojiParser.parseToUnicode(":three:")); System.out.print("");
+                case 3:
                     System.out.print(" 3");
                     break;
             }
-            //System.out.print(" ");
             for(i=0;i<4;i++){
                 System.out.print(EmojiParser.parseToUnicode(":white_large_square:"));
             }
@@ -2297,7 +2202,7 @@ public class TUI extends  View {
                     System.out.print(" 3");
                     break;
             }
-            //System.out.print(" ");
+
             if(o.getCondition().getFirstOrientationCornerCheck()==1){
                 switch (o.getCondition().getColour1()){
                     case "red": System.out.print(EmojiParser.parseToUnicode(":broken_heart:")); break;
@@ -2332,10 +2237,9 @@ public class TUI extends  View {
                     System.out.print(" 3");
                     break;
             }
-            //System.out.print(" ");
 
 
-            switch(o.getCondition().getId()){ //piu brutto di originale, pero' funziona. bottom line e' piu bello
+            switch(o.getCondition().getId()){
                 case (5):
                     System.out.print(EmojiParser.parseToUnicode(":broken_heart:"));
                     for(i=0;i<3;i++) {
@@ -2468,7 +2372,7 @@ public class TUI extends  View {
                 System.out.print(EmojiParser.parseToUnicode(":white_large_square:"));
             }
         }else{
-            switch(o.getCondition().getId()){ //piu brutto di originale, pero' funziona. bottom line e' piu bello
+            switch(o.getCondition().getId()){
                 case (5):
                     for(i=0;i<2;i++) {
                         System.out.print(EmojiParser.parseToUnicode(":white_large_square:"));
@@ -2539,7 +2443,7 @@ public class TUI extends  View {
         }
 
         chatUnblockWait();
-        while (true) { //make a control! changed break position
+        while (true) {
 
             String input = this.input.nextLine();
 
@@ -2559,7 +2463,7 @@ public class TUI extends  View {
                         }
                         break;
                     }else{
-                        System.out.println("Position is not available. Card has to cover at least one corner. No hidden corners may be covered. ");
+                        System.out.println("Position is not available. Card has to cover at least one corner. No hidden corners may be covered. \n");
                     }
 
 
@@ -2588,10 +2492,8 @@ public class TUI extends  View {
             } else {
                 System.out.println("Insert valid input. Follow one of the schemes: \n" +
                         "'Place, numberOfTheCard, x, y'; 'Flip.'; 'Chat. Message', 'Chat. Private. Name. Message' or 'RequestOtherData'");
-                //receivedInput.set(false);
             }
         }
-        //executor.shutdown();
     }
 
 
@@ -2670,7 +2572,6 @@ public class TUI extends  View {
                         String message = matcher.group(11);
                         notify(new SendingChatMessage(message));
                     }
-                    //readDrawCardInput();
 
                 } else if (matcher.group(12) != null && matcher.group(12).equalsIgnoreCase("RequestOtherData")) {
                     requestOtherData();
@@ -2680,7 +2581,6 @@ public class TUI extends  View {
                 System.out.println("Insert valid input. Follow one of the schemes: \n" +
                         "'Draw, Facedown, TypeofDeck'; 'Draw, Faceup, TypeCard, numberofCard';\n 'Chat. Message', 'Chat. Private. Name. Message' or 'RequestOtherData'");
             }
-            //executor.shutdown();
         }
 
     }
