@@ -69,7 +69,7 @@ public class PlateauScorePanel extends JPanel {
         gbc.anchor = GridBagConstraints.CENTER;
 
         String[] nomi = new String[]{"ANIMAL","FUNGI","PLANT","INSECT","QUILL","MANUSCRIPT","INKWELL"};
-        //gestione inserimento immagini dei vari oggetti e risorse
+
         String path = "src"+File.separator+"main"+File.separator+"resources"+ File.separator+"graphicalResources"+File.separator+"ResourcesAndObjects"+File.separator+"";
         for(int i=1;i<=7;i++){
             ImageIcon ic = new ImageIcon(path+String.format("%02d",i) +".PNG");
@@ -101,9 +101,9 @@ public class PlateauScorePanel extends JPanel {
      * @param numOfResourceAndObject key is the name of resource or object and the value is its quantity
      */
     public void updateObjectsAndResources(HashMap<String, Integer> numOfResourceAndObject){
-        //prendo tutte le risorse
+
         for (Map.Entry<String, Integer> entry:numOfResourceAndObject.entrySet()) {
-            //per ogni risorsa, prendo i vecchi punti presenti nel JLabel e li sostituisco coi nuovi
+
             Integer points = entry.getValue();
             resAndObjMap.get(entry.getKey()).setText( points.toString() );
         }

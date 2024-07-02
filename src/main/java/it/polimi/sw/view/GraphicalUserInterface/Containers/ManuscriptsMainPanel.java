@@ -23,7 +23,7 @@ public class ManuscriptsMainPanel extends JPanel {
     public void createTabbedManuscripts(ArrayList<String> names) {
 
         SwingUtilities.invokeLater(() -> {
-            //for each player, create its tab manuscript
+
             for (String name: names) {
                 Manuscript manuscript = new Manuscript(name);
                 JScrollPane scrollPane = new JScrollPane(manuscript);

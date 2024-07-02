@@ -40,7 +40,7 @@ public class HandObjectivesAndCommonTable extends JPanel {
         ct = new CommonTablePanel(fdG,fdR,fuG,fuR,commonObj);
         ct.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY,2),"COMMON TABLE", TitledBorder.CENTER,TitledBorder.TOP));
 
-        //nella prima riga della colonna ci metto il tavolo comune
+
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;

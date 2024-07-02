@@ -32,7 +32,7 @@ public class CommonTableANDPrivateTable extends JPanel {
     public CommonTableANDPrivateTable(Card fdG,Card fdR, ArrayList<Card> fuG, ArrayList<Card> fuR,ArrayList<Objective> commonObj) {
 
         setLayout(new BorderLayout());
-        //oggetto che contiene tutta la parte sx della finestra fissa
+
         myHandAndObjectivesAndCommonTable = new HandObjectivesAndCommonTable(fdG,fdR,fuG,fuR,commonObj);
         manuscript = new ManuscriptsMainPanel();
 

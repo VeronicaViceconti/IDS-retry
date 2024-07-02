@@ -31,7 +31,7 @@ public class TUI extends  View {
 
     private ArrayList<Card> backHand;
     private ArrayList<Card> frontHand;
-    private boolean flippedChosen = false; // if true, then place the card from back. if false, then from front
+    private boolean flippedChosen = false;
 
     private final ArrayList<String> chatMessagesStorage;
     /**
@@ -45,7 +45,7 @@ public class TUI extends  View {
 
 
     String BLUE = "\033[0;34m";
-    String RESET = "\033[0m"; // Reset to default color
+    String RESET = "\033[0m";
     String RED = "\u001B[31m";
 
 
@@ -68,7 +68,7 @@ public class TUI extends  View {
 
 
         availablePositions = new ArrayList<>();
-        availablePositions.add(new Point2D.Double()); // 0,0
+        availablePositions.add(new Point2D.Double());
         timeline = new ArrayList<>();
 
         allObjectives = new ArrayList<>();
@@ -119,7 +119,7 @@ public class TUI extends  View {
      */
     @Override
     public void showPlayerHand(ArrayList<Card> hand) {
-        System.out.println("\nCards in hand:\n"); //used for hands of all players
+        System.out.println("\nCards in hand:\n");
 
 
         for(Card c: hand){
@@ -143,7 +143,7 @@ public class TUI extends  View {
         System.out.print("\n");
 
 
-        //printSpaceOneCard(1);
+
         for(int i = 1; i <= hand.size(); i++){
             printSpaceOneCard(4);
             System.out.print(i);
@@ -182,37 +182,37 @@ public class TUI extends  View {
                 .min(Comparator.comparingInt(entry -> entry.getValue()[0]))
                 .map(entry -> entry.getValue()[0])
                 .orElse(-80);
-        //ad the first line topSingle of the top line
-        System.out.print("   "); // to adjust according to i
+
+        System.out.print("   ");
         firstLine(mostUp, mostLeft, map);
 
 
         for (int i = mostUp; i >= mostBottom; i--) {
 
 
-            if(i>=0 && i<10){ // i 1 digit
+            if(i>=0 && i<10){
                 System.out.print(i);
-                System.out.print("  "); // to adjust according to coordinates line
+                System.out.print("  ");
                 middleCalculus(i, mostLeft,map);
 
 
-                System.out.print("   "); // to adjust according to coordinates line
-                lowTopCalculus(i, mostLeft, map); // bottom line intersects the top line of the next row
-            }else if((i<80 && i>9) || (i<0 && i>-80) ){ //i of 2 digits
+                System.out.print("   ");
+                lowTopCalculus(i, mostLeft, map);
+            }else if((i<80 && i>9) || (i<0 && i>-80) ){
                 System.out.print(i);
-                System.out.print(" "); // to adjust according to coordinates line
+                System.out.print(" ");
 
 
                 middleCalculus(i, mostLeft,map);
-                System.out.print("   "); // to adjust according to coordinates line
-                lowTopCalculus(i, mostLeft, map); // bottom line intersects the top line of the next row
+                System.out.print("   ");
+                lowTopCalculus(i, mostLeft, map);
             }else { //3 digits
                 System.out.print(i);
                 middleCalculus(i, mostLeft, map);
 
 
-                System.out.print("   "); // to adjust according to coordinates line
-                lowTopCalculus(i, mostLeft, map); // bottom line intersects the top line of the next row
+                System.out.print("   ");
+                lowTopCalculus(i, mostLeft, map);
             }
         }
 
@@ -227,7 +227,7 @@ public class TUI extends  View {
         printSpaceOneCard(4);
 
 
-        //coordinate line x
+
         for(int i = mostLeft; i <=mostRight; i++){
             System.out.print(i);
             printSpaceOneCard(7);
@@ -271,11 +271,11 @@ public class TUI extends  View {
         printSpaceOneCard(6 * (currXUp - mostLeft));
 
 
-        while (searchedUpperCard != null){ // make enough space between cards
+        while (searchedUpperCard != null){
             currXUp = map.get(searchedUpperCard)[0];
 
 
-            if(currXUp - prev > 0) { //it is not the most left card of the game
+            if(currXUp - prev > 0) {
                 printSpaceOneCard(6*(currXUp-prev-2));
 
 
@@ -286,7 +286,7 @@ public class TUI extends  View {
             }
 
 
-            //we arrived to the card we have to print
+
             topSingleCard(searchedUpperCard, !(searchedUpperCard.getCorner().get(0).getCovered()),
                     !(searchedUpperCard.getCorner().get(1).getCovered() ));
             printSpaceOneCard(5);
@@ -330,11 +330,11 @@ public class TUI extends  View {
         printSpaceOneCard(6 * (currX - mostLeft));
 
 
-        while (searchedCard != null){ // make enough space between cards
+        while (searchedCard != null){
             currX = map.get(searchedCard)[0];
 
 
-            if(currX-prevX > 1) { //it is not the most left card of the game
+            if(currX-prevX > 1) {
 
                 printSpaceOneCard(6*(currX-prevX-2));
 
@@ -366,7 +366,7 @@ public class TUI extends  View {
     private void lowTopCalculus(int alt, int mostLeft, HashMap<Card, Integer[]> map) {
         Card searchedUpperCard;
         Card searchedLowerCard;
-        boolean nextCard = true; //true up, false down
+        boolean nextCard = true;
 
 
         Integer prev = mostLeft;
@@ -386,19 +386,19 @@ public class TUI extends  View {
         }else{
         nextCard = map.get(searchedUpperCard)[0] < map.get(searchedLowerCard)[0];}
 
-        int minDist; //dist till next card
+        int minDist;
 
         if(nextCard) {
-            currXUp = map.get(searchedUpperCard)[0]; //cannot be null in the beginning
+            currXUp = map.get(searchedUpperCard)[0];
             minDist = currXUp - mostLeft;
-            currXDown = (searchedLowerCard != null) ? map.get(searchedLowerCard)[0] : null; //will be null in the last row and might be null in the middle
+            currXDown = (searchedLowerCard != null) ? map.get(searchedLowerCard)[0] : null;
         }else{
             currXDown = map.get(searchedLowerCard)[0];
             minDist = currXDown-mostLeft;
             currXUp = (searchedUpperCard != null) ? map.get(searchedUpperCard)[0] : null;
         }
 
-        printSpaceOneCard(6 * (minDist)); //non ricordo perche
+        printSpaceOneCard(6 * (minDist));
 
 
         for(int h = minDist; h>minDist/2; h--){
@@ -406,18 +406,18 @@ public class TUI extends  View {
         }
 
 
-        //they cannot be both null, since in each row there is at least one card
-        while (searchedUpperCard != null || searchedLowerCard != null) { // make enough space between cards
-            //if both null, then it would not enter in while loop
+
+        while (searchedUpperCard != null || searchedLowerCard != null) {
+
 
             boolean L = true;
             boolean R = true;
-            //we arrived to the card we have to print
-            if (nextCard) { //next one is from the row above
+
+            if (nextCard) {
 
                 Integer[] coordinates = map.get(searchedUpperCard);
                 boolean leftPresent = positionOccupied(map,coordinates[0]-1,coordinates[1]-1);
-                boolean rightPresent = positionOccupied(map, coordinates[0]+1,coordinates[1]-1); // occupied = present = to control
+                boolean rightPresent = positionOccupied(map, coordinates[0]+1,coordinates[1]-1);
                 Card controlledCard = null;
 
 
@@ -439,7 +439,7 @@ public class TUI extends  View {
                             break;
                         }
                     }
-                    if(findIndexOf(searchedUpperCard) < findIndexOf(controlledCard)){ //if the printed one was added later
+                    if(findIndexOf(searchedUpperCard) < findIndexOf(controlledCard)){
                         R = false;
                     }
                 }
@@ -450,11 +450,11 @@ public class TUI extends  View {
                 prev = currXUp;
 
 
-            } else { //from the row under
+            } else {
 
                 Integer[] coordinates = map.get(searchedLowerCard);
                 boolean leftPresentD = positionOccupied(map,coordinates[0]-1,coordinates[1]+1);
-                boolean rightPresentD = positionOccupied(map, coordinates[0]+1,coordinates[1]+1); // occupied = present = to control
+                boolean rightPresentD = positionOccupied(map, coordinates[0]+1,coordinates[1]+1);
                 Card controlledCardD = null;
 
                 if(leftPresentD){
@@ -475,13 +475,13 @@ public class TUI extends  View {
                             break;
                         }
                     }
-                    if(findIndexOf(searchedLowerCard) < findIndexOf(controlledCardD)){ //if the printed one was added later
+                    if(findIndexOf(searchedLowerCard) < findIndexOf(controlledCardD)){
                         R = false;
                     }
                 }
 
                 topSingleCard(searchedLowerCard, L, R);
-                currXDown = map.get(searchedLowerCard)[0]; //will be null in the last row and might be null in the middle
+                currXDown = map.get(searchedLowerCard)[0];
 
                 prev = currXDown;
 
@@ -490,9 +490,9 @@ public class TUI extends  View {
             searchedUpperCard = nextCardToPrint(map, alt, prev);
             searchedLowerCard = nextCardToPrint(map, alt - 1, prev);
 
-            //to understand which one is the next one
+
             if(searchedUpperCard == null){
-                nextCard = false; //next one is lower one
+                nextCard = false;
             }else if(searchedLowerCard == null){
                 nextCard = true;
             }else {
@@ -504,11 +504,11 @@ public class TUI extends  View {
                 minDist = map.get(searchedUpperCard)[0] - prev;
             }else if (searchedLowerCard != null) {
                 minDist = map.get(searchedLowerCard)[0] - prev;
-            }else{ //mp mpre cards
+            }else{
                 minDist = 0;
             }
 
-            if(minDist > 1) { //it is not the most left card of the game
+            if(minDist > 1) {
                 printSpaceOneCard(5);
                 printSpaceOneCard(6*(minDist-2));
                 for(int k = minDist; k>minDist/2; k--){
@@ -542,7 +542,7 @@ public class TUI extends  View {
         }
 
 
-        //if returns null, then the line is over, I need to go to the new line
+
         return wantedCard;
     }
 
@@ -552,9 +552,9 @@ public class TUI extends  View {
      *
      * @param numBlocks The number of space blocks to print.
      */
-    private void printSpaceOneCard(int numBlocks){ //full card is 7 blocks. smtms we need only 5 or 6
+    private void printSpaceOneCard(int numBlocks){
         for(int i = 0; i<numBlocks; i++){
-            System.out.print("  "); //to confirm
+            System.out.print("  ");
         }
     }
     /**
@@ -756,15 +756,15 @@ public class TUI extends  View {
                     break;
                 case "green":
                     System.out.print(EmojiParser.parseToUnicode(emojiColour[4]));
-                    // System.out.print("");
+
                     break;
                 case "blue":
                     System.out.print(EmojiParser.parseToUnicode(":blue_heart:"));
-                    //System.out.print("");
+
                     break;
                 case "purple":
                     System.out.print(EmojiParser.parseToUnicode(emojiColour[3]));
-                    //System.out.print("");
+
                     break;
             }
 
@@ -988,11 +988,11 @@ public class TUI extends  View {
 
         } else if (c instanceof InitialCard) {
 
-            if (c.getSide() == 1) { //front
+            if (c.getSide() == 1) {
                 for (int i = 0; i < 7; i++) {
                     System.out.print(EmojiParser.parseToUnicode(":orange_heart:"));
                 }
-            } else { //back
+            } else {
                 for (int i = 0; i < 2; i++) {
                     System.out.print(EmojiParser.parseToUnicode(":orange_heart:"));
                 }
@@ -1005,7 +1005,7 @@ public class TUI extends  View {
                 switch(c.getPermanentResource().size()){
                     case 1:
                         System.out.print(EmojiParser.parseToUnicode(":orange_heart:"));
-                        switch (c.getPermanentResource().getFirst()){ //all of them have at least one
+                        switch (c.getPermanentResource().getFirst()){
                             case FUNGI: System.out.print(EmojiParser.parseToUnicode(":mushroom:"));
                                 break;
                             case PLANT: System.out.print(EmojiParser.parseToUnicode(":four_leaf_clover:"));
@@ -1018,7 +1018,7 @@ public class TUI extends  View {
                         System.out.print(EmojiParser.parseToUnicode(":orange_heart:"));
                         break;
                     case 2:
-                        switch (c.getPermanentResource().getFirst()){ //all of them have at least one
+                        switch (c.getPermanentResource().getFirst()){
                             case FUNGI: System.out.print(EmojiParser.parseToUnicode(":mushroom:"));
                                 break;
                             case PLANT: System.out.print(EmojiParser.parseToUnicode(":four_leaf_clover:"));
@@ -1041,7 +1041,7 @@ public class TUI extends  View {
                         }
                         break;
                     case 3:
-                        switch (c.getPermanentResource().getFirst()){ //all of them have at least one
+                        switch (c.getPermanentResource().getFirst()){
                             case FUNGI: System.out.print(EmojiParser.parseToUnicode(":mushroom:"));
                                 break;
                             case PLANT: System.out.print(EmojiParser.parseToUnicode(":four_leaf_clover:"));
@@ -1111,9 +1111,9 @@ public class TUI extends  View {
         emojiCornerFront[1]=":wolf:";
         emojiCornerFront[2]=":butterfly:";
         emojiCornerFront[3]=":four_leaf_clover:";
-        emojiCornerFront[4]=":scroll:"; //manuscript
-        emojiCornerFront[5]=":lower_left_fountain_pen:";//piuma
-        emojiCornerFront[6]=":test_tube:";//provetta
+        emojiCornerFront[4]=":scroll:";
+        emojiCornerFront[5]=":lower_left_fountain_pen:";
+        emojiCornerFront[6]=":test_tube:";
 
 
 
@@ -1476,13 +1476,13 @@ public class TUI extends  View {
 
         }else if(c instanceof InitialCard){
             if(L){
-                if(c.getSide()==2){ //back
+                if(c.getSide()==2){
                     switch(c.getPermanentResource().size()){
                         case 1:
                             if(c.getCorner().get(2).getResource() == null){
                                 System.out.print(EmojiParser.parseToUnicode(emojiCornerBack));
                             }else{
-                                System.out.print(EmojiParser.parseToUnicode(emojiCornerFront[2])); //insect
+                                System.out.print(EmojiParser.parseToUnicode(emojiCornerFront[2]));
                             }
                             break;
                         case 2:
@@ -1522,7 +1522,7 @@ public class TUI extends  View {
                             if(c.getCorner().get(2).getResource() == null){
                                 System.out.print(EmojiParser.parseToUnicode(emojiCornerBack));
                             }else{
-                                System.out.print(EmojiParser.parseToUnicode(emojiCornerFront[0])); //fungi
+                                System.out.print(EmojiParser.parseToUnicode(emojiCornerFront[0]));
                             }
                             break;
                         case 2:
@@ -1615,7 +1615,7 @@ public class TUI extends  View {
         System.out.println();
 
 
-        //resource cards
+
         if(faceDownResource != null){
             topSingleCard(faceDownResource, true, true);
             printSpaceOneCard(2);
@@ -1714,14 +1714,14 @@ public class TUI extends  View {
 
 
             if (count % 10 == 0) {
-                System.out.println(); // max 10 positions per line for readability
+                System.out.println();
             } else {
                 System.out.print("; ");
             }
         }
 
 
-        if (count % 10 != 0) { //new line at the end
+        if (count % 10 != 0) {
             System.out.println();
         }
     }
@@ -1752,7 +1752,7 @@ public class TUI extends  View {
     @Override
     public void showGameChat(String message) {
         if(mayShowChat){
-            showLastMex(); //all stored if present
+            showLastMex();
             System.out.println(message);
         }else{
             chatMessagesStorage.add(message);
@@ -1761,14 +1761,14 @@ public class TUI extends  View {
 
 
     @Override
-    public void initGame() {//for GUI.
+    public void initGame() {
 
 
     }
 
     @Override
     public void initializePions(int indexMe, ArrayList<Pion> pions) {
-//for gui
+
     }
 
 
@@ -1801,9 +1801,7 @@ public class TUI extends  View {
     public void showPlayerState(Player p) {
         System.out.println("Nickname: "+p.getNickName()+", Points: "+p.getPoints());
 
-/*
-        System.out.println("Number of Resource and Object:");
-        printResourceOrObject(p,p.getNumOfResourceAndObject());*/
+
     }
 
 
@@ -1812,10 +1810,6 @@ public class TUI extends  View {
      */
     @Override
     public void drawCard() {
-        //table is already shown by message
-        //same for hand
-        //chat is not a problem. managed within mex
-
 
         System.out.println("Draw a card. Follow one of the schemes:\n" +
                 "'Draw, Facedown, TypeofDeck'; 'Draw, Faceup, TypeCard, numberofCard';\n 'Chat. Message', 'Chat. Private. Name. Message' or 'RequestOtherData'\")");
@@ -1849,7 +1843,7 @@ public class TUI extends  View {
      * @param points The number of points to be added to the player's score.
      */
     @Override
-    public void addPoints(Player p, int points) { //passes final points
+    public void addPoints(Player p, int points) {
 
         System.out.println(p.getNickName() +" final points: ");
         System.out.print(EmojiParser.parseToUnicode(":parking: ")+points +"\n");
@@ -1877,7 +1871,7 @@ public class TUI extends  View {
 
     @Override
     public void cardToFlip(String side) {
-//not used in tui
+
     }
     /**
      * This method likely flips a card in the player's hand from back to front or vice versa.
@@ -1889,7 +1883,7 @@ public class TUI extends  View {
     private void cardToFlip() throws RemoteException {
 
 
-        if(flippedChosen){//user wants to see front
+        if(flippedChosen){
             flippedChosen = false;
             showPlayerHand(frontHand);
 
@@ -2454,8 +2448,8 @@ public class TUI extends  View {
                     int x = Integer.parseInt(matcher.group(2));
                     int y = Integer.parseInt(matcher.group(3));
                     Point2D point = new Point2D.Double(x, y);
-                    if(availablePositions.contains(point)){ //position is available
-                        if(flippedChosen){ //user chooses back
+                    if(availablePositions.contains(point)){
+                        if(flippedChosen){
                             notify(new SendingCardPlayed(backHand.get(numberOfTheCard -1), new Integer[]{x, y}));
                         }
                         else{ //chooses front
@@ -2467,20 +2461,20 @@ public class TUI extends  View {
                     }
 
 
-                } else if (input.trim().equalsIgnoreCase("Flip."))  { //flip
+                } else if (input.trim().equalsIgnoreCase("Flip."))  {
 
-                    cardToFlip(); //it also calls show player hand
+                    cardToFlip();
 
 
-                } else if (matcher.group(4) != null) { //to add the difference between common and private chat. if private, then call sendPrivateChat, if common,then directly notify
-                    if (matcher.group(5) != null) {// Chat.Private.
+                } else if (matcher.group(4) != null) {
+                    if (matcher.group(5) != null) {
                         String name = matcher.group(5);
                         String message = matcher.group(6);
                         notify(new SendingChatMessage(message,name ));
-                        System.out.println("Private message to "+ name + ": " + message); //correct to be here
+                        System.out.println("Private message to "+ name + ": " + message);
 
 
-                    } else {                       // Chat. Public
+                    } else {
                         String message = matcher.group(7);
                         notify(new SendingChatMessage(message));
                     }
@@ -2561,14 +2555,14 @@ public class TUI extends  View {
 
 
                 } else if (matcher.group(8) != null) {
-                    if (matcher.group(9) != null) { // Chat.Private.
+                    if (matcher.group(9) != null) {
                         String name = matcher.group(9);
                         String message = matcher.group(10);
                         notify(new SendingChatMessage(message,name ));
-                        System.out.println("\nPrivate message to " + name + ": " + message); //correct to be here
+                        System.out.println("\nPrivate message to " + name + ": " + message);
 
 
-                    } else {                        // Chat. Public
+                    } else {
                         String message = matcher.group(11);
                         notify(new SendingChatMessage(message));
                     }

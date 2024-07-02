@@ -140,7 +140,7 @@ public class ChatPanel extends JPanel{
         }
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(namesArray);
 
-        // Imposta il modello nel JComboBox
+
         menuSendTo.setModel(model);
     }
 

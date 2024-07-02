@@ -22,7 +22,7 @@ public class ScoreBoardPanel extends JPanel {
      */
     private HashMap<Pion, Integer> playerPositions;
 
-    //BLUE -> basso dx, GREEN -> basso sx, YELLOW ->  alto sx , RED -> alto dx
+
     /**
      * The images of the pions
      */
@@ -46,8 +46,8 @@ public class ScoreBoardPanel extends JPanel {
      * @param pions The ArrayList of Pion objects representing the game pieces.
      */
     public ScoreBoardPanel(ArrayList<Pion> pions) {
-        // Carico l'immagine del tabellone
-        setPreferredSize(new Dimension(width,height)); //dimensioni del tabellone
+
+        setPreferredSize(new Dimension(width,height));
         ImageIcon handImage = new ImageIcon("src"+ File.separator+"main"+File.separator+"resources"+ File.separator+"graphicalResources"+ File.separator+"pointBoard"+ File.separator+"PLATEAU-SCORE-IMP.PNG");
         Image img = handImage.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
         handImage.setImage(img);
@@ -58,11 +58,11 @@ public class ScoreBoardPanel extends JPanel {
         setLayout(null);
         add(boardImage);
 
-        // Inizializzo la mappa delle coordinate relative
+
         relativePositionMap = new HashMap<>();
         initializeRelativePositionMap();
 
-        // Inizializzo le posizioni dei giocatori
+
         playerPositions = new HashMap<>();
         this.pions = new ArrayList<>();
 
@@ -79,10 +79,10 @@ public class ScoreBoardPanel extends JPanel {
      */
     public void initializePions(int index,ArrayList<Pion> pionList){
         int i=0,dimension=20;
-        //posizione iniziale
+
         Point relativePoint = relativePositionMap.get(0);
         for (Pion pion:pionList) {
-            //carico immagine pion e la aggiungo all'array
+
             if(i == index) //me
                 dimension = 25;
             else
@@ -94,15 +94,15 @@ public class ScoreBoardPanel extends JPanel {
             pions.add(new JLabel(handImages));
 
             if (relativePoint != null) {
-                //coordinate di dove inserire il pion nel tabellone
+
                 int baseX = relativePoint.x + offset.get(pion).x;
                 int baseY = relativePoint.y + offset.get(pion).y;
-                // Crea e aggiungi un JLabel per il pion del giocatore
+
                 JLabel playerToken = pions.getLast();
                 playerToken.setName(pion.toString());
-                playerToken.setSize(dimension,dimension); // Imposta la dimensione del pion
-                playerToken.setLocation(baseX, baseY); // Imposta la posizione del pion
-                boardImage.add(playerToken); // Aggiunge il pion al JLabel boardImage
+                playerToken.setSize(dimension,dimension);
+                playerToken.setLocation(baseX, baseY);
+                boardImage.add(playerToken);
             }
         }
         repaint();
@@ -113,7 +113,7 @@ public class ScoreBoardPanel extends JPanel {
      * Initialize the coordinates of each point in the board game to set the pions when needed
      */
     private void initializeRelativePositionMap() {
-        // Aggiungi le coordinate relative per ogni posizione sul tabellone
+
 
         relativePositionMap.put(0, new Point(100, 728));
         relativePositionMap.put(1, new Point(180, 728));
@@ -153,8 +153,8 @@ public class ScoreBoardPanel extends JPanel {
      * @param position the points of the player
      */
     public void updatePlayerPosition(Pion pion, int position) {
-        if(position > 29) {//devo tornare all'inizio del tabellone
-            position = ( position - 29 ) - 1; //conta anche lo zero!
+        if(position > 29) {
+            position = ( position - 29 ) - 1;
         }
         playerPositions.put(pion, position);
         addPlayerToken(pion,position);
@@ -170,15 +170,15 @@ public class ScoreBoardPanel extends JPanel {
         if (relativePoint != null) {
             int baseX = relativePoint.x + offset.get(pion).x;
             int baseY = relativePoint.y + offset.get(pion).y;
-            // Crea e aggiungi un JLabel per il pion del giocatore
+
             JLabel playerToken;
             for(int i=0;i<pions.size();i++){
                 System.out.println(pion.toString());
                 if(pions.get(i).getName().equalsIgnoreCase(pion.toString())){
                     playerToken = pions.get(i);
-                    playerToken.setSize(20, 20); // Imposta la dimensione del pion
-                    playerToken.setLocation(baseX, baseY); // Imposta la posizione del pion
-                    boardImage.add(playerToken); // Aggiunge il pion al JLabel boardImage
+                    playerToken.setSize(20, 20);
+                    playerToken.setLocation(baseX, baseY);
+                    boardImage.add(playerToken);
                 }
             }
 

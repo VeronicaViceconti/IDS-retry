@@ -57,24 +57,24 @@ public class ImageSelectionDialog extends JDialog {
         chooseDimension(false);
 
         gbc = new GridBagConstraints();
-        gbc.insets = new Insets(20, 40, 20, 40); // margini intorno ai componenti
+        gbc.insets = new Insets(20, 40, 20, 40);
 
-        // Pannello per le immagini
+
         JPanel imagePanel = new JPanel();
         imagePanel.setLayout(new GridBagLayout());
         String path = "src"+ File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"objectiveCardFront"+File.separator+"";
 
-        // Prima immagine
+
         ImageIcon image1 = new ImageIcon(path+String.format("%03d", one.getCondition().getId()) +".png");
         Image scaledImage1 = image1.getImage().getScaledInstance(widthImage, heightImage, Image.SCALE_SMOOTH);
         JLabel imageLabel1 = new JLabel(new ImageIcon(scaledImage1));
 
-        // Seconda immagine
+
         ImageIcon image2 = new ImageIcon(path+String.format("%03d", two.getCondition().getId()) +".png");
         Image scaledImage2 = image2.getImage().getScaledInstance(widthImage, heightImage, Image.SCALE_SMOOTH);
         JLabel imageLabel2 = new JLabel(new ImageIcon(scaledImage2));
 
-        //inserimento immagini nella sottogriglia
+
         gbc.gridx = 0;
         gbc.gridy = 0;
         imagePanel.add(imageLabel1, gbc);
@@ -83,23 +83,23 @@ public class ImageSelectionDialog extends JDialog {
         gbc.gridy = 0;
         imagePanel.add(imageLabel2,gbc);
 
-        //inserimento della griglia delle immagini, all'interno della griglia esterna che contiene gli altri elementi
+
         gbc.gridx = 0;
         gbc.gridy = 0;
 
-        add(imagePanel, gbc); // Aggiungi il pannello delle immagini
+        add(imagePanel, gbc);
 
-        // Campo di input per la scelta
+
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new BorderLayout());
 
-        // Bottone di conferma
+
         JButton confirmButton = new JButton("Send");
 
         ArrayList<Objective> objs = new ArrayList<>();
         objs.add(one);
         objs.add(two);
-        // JPANEL settato per richiedere la carta della mano
+
         setJPanel(inputPanel,confirmButton,2,objs,null,"Write one or two to select the objective you want: ",null,"Not valid input. Insert 1 or 2.");
 
     }
@@ -120,9 +120,9 @@ public class ImageSelectionDialog extends JDialog {
         this.MF = mainFrame;
 
         gbc = new GridBagConstraints();
-        gbc.insets = new Insets(20, 20, 20, 20); // margini intorno ai componenti
+        gbc.insets = new Insets(20, 20, 20, 20);
 
-        // Pannello per le immagini
+
         JPanel imagePanel = new JPanel();
         imagePanel.setLayout(new GridBagLayout());
 
@@ -132,22 +132,22 @@ public class ImageSelectionDialog extends JDialog {
             imagePanel.add(hand.get(i),gbc);
         }
 
-        //inserimento della griglia delle immagini, all'interno della griglia esterna che contiene gli altri elementi
+
         gbc.gridx = 0;
         gbc.gridy = 0;
 
-        add(imagePanel, gbc); // Aggiungi il pannello delle immagini
+        add(imagePanel, gbc);
 
-        // Campo di input per la scelta
+
         JPanel inputPanel = new JPanel();
 
-        // Bottone di conferma
+
         JButton confirmButton = new JButton("Play!");
 
         if(type.equalsIgnoreCase("Coordinates")) {
             setJPanel(inputPanel, confirmButton, hand.size(), null,hand, "Write the card [x,y] coordinates of where to put it: ",avPos, "Not valid input.Retry!");
         }else
-            // JPANEL settato per richiedere la carta della mano
+
             setJPanel(inputPanel,confirmButton,hand.size(),null,hand,"Write a number from 1 to "+hand.size()+" to select the card you want to play: ",null,"Not valid input. Insert a number from 1 to "+hand.size()+".");
 
     }
@@ -162,7 +162,7 @@ public class ImageSelectionDialog extends JDialog {
         if(!close)
             setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
-        //pezzo di codice per inserire la nuova finestra al centro dello schermo
+
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (screenSize.width - getWidth()) / 2;
         int y = (screenSize.height - getHeight()) / 2;
@@ -213,7 +213,7 @@ public class ImageSelectionDialog extends JDialog {
         inputPanel.setLayout(new BorderLayout());
         JTextField choiceField = new JTextField();
 
-        //label per fare capire all'utente cosa deve inserire
+
         JLabel chooseObj = new JLabel();
         if(action.equalsIgnoreCase("Write the card [x,y] coordinates of where to put it: ")){ //append all the available coordinates
             StringBuilder actionWithAvPos = new StringBuilder("<html><body><p>All available coordinates:<br>");
@@ -237,12 +237,12 @@ public class ImageSelectionDialog extends JDialog {
             confirmButton.addActionListener(e -> {
                 String choice = choiceField.getText().trim();
                 if (isValidCoordinate(choice) && isInAvPos(choice,avPos)) {
-                    // Gestione scelta dell'utente
+
                     String[] coordinatesString = choice.split(",");
                     coord[0] = Integer.parseInt(coordinatesString[0].trim());
                     coord[1] = Integer.parseInt(coordinatesString[1].trim());
                     JOptionPane.showMessageDialog(MF, "You have chosen: x->" + coord[0] +", y->"+coord[1]);
-                    dispose(); // Chiudi la finestra secondaria
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(MF, error);
                 }
@@ -252,18 +252,18 @@ public class ImageSelectionDialog extends JDialog {
                 try{
                     int choice = Integer.parseInt(choiceField.getText().trim());
                     if (choice >= 1 && choice <= cards) {
-                        // Gestione scelta dell'utente
+
                         chosen = choice;
                         if(hand != null) {
                             side = hand.get(chosen - 1).getName();
 
                             Icon icon = hand.get(chosen - 1).getIcon();
 
-                            // new JLabel with same ImageIcon
+
                             cardChosen = new JLabel(icon);
                             System.out.println("Card chosen! "+cardChosen.getIcon());
 
-                            // Opzionalmente, copia altre proprietà del JLabel originale
+
                             cardChosen.setText(hand.get(chosen - 1).getText());
                             cardChosen.setHorizontalAlignment(hand.get(chosen - 1).getHorizontalAlignment());
                             cardChosen.setVerticalAlignment(hand.get(chosen - 1).getVerticalAlignment());
@@ -271,7 +271,7 @@ public class ImageSelectionDialog extends JDialog {
 
                         }
                         JOptionPane.showMessageDialog(MF, "You have chosen: " + choice);
-                        dispose(); // Chiudi la finestra secondaria
+                        dispose();
                     } else {
                         JOptionPane.showMessageDialog(MF, error);
                     }
@@ -283,17 +283,16 @@ public class ImageSelectionDialog extends JDialog {
         }
 
 
-        //gestione posizionamento degli elementi nella griglia
 
-        gbc.insets = new Insets(20, 20, 20, 20); // margini intorno ai componenti
+        gbc.insets = new Insets(20, 20, 20, 20);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        add(inputPanel, gbc); // Aggiungi il pannello di input
+        add(inputPanel, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 2;
-        add(confirmButton, gbc); // Aggiungi il bottone di conferma
+        add(confirmButton, gbc);
 
         SwingUtilities.invokeLater(() -> {
             Window frame = (Window) SwingUtilities.getWindowAncestor(inputPanel);
@@ -322,7 +321,7 @@ public class ImageSelectionDialog extends JDialog {
      * @return true or false
      */
     private boolean isValidCoordinate(String input) {
-        // Regex per il formato x,y dove x e y sono numeri interi
+
         String regex =  "^-?\\d+,-?\\d+$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);

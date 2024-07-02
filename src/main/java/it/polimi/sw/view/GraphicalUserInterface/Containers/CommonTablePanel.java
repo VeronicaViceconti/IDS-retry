@@ -82,18 +82,18 @@ public class CommonTablePanel extends JPanel {
         gbc.insets = new Insets(15, 0, 5, 40);
         gbc.gridy = 1;
         gbc.gridx = 0;
-        //gbc.gridwidth = 3;
+
         gbc.anchor = GridBagConstraints.LINE_START;
         add(cardDescription,gbc);
 
-        //gestione immagine FACE DOWN GOLD
 
-        //creazione immagine
+
+
         ImageIcon fdGImage = new ImageIcon(path + String.format("%03d", fdG.getId()) +".png");
         Image img = fdGImage.getImage().getScaledInstance(widthImage,heightImage,Image.SCALE_SMOOTH);
         fdGImage.setImage(img);
 
-        //creo label con l'immagine appena creata e la aggiungo nel gridBagLayout di output
+
         fdGLabel = new JLabel(fdGImage);
         fdGLabel.setPreferredSize(new Dimension(120,100));
         gbc.insets = new Insets(0, 10, 10, 40);
@@ -103,7 +103,7 @@ public class CommonTablePanel extends JPanel {
         add(fdGLabel,gbc);
 
 
-        //gestione immagini FACE UP GOLD
+
         path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"GoldCardFront"+File.separator+"";
         gbc.insets = new Insets(0, 10, 10, 10);
         fuGLabel = new ArrayList<>();
@@ -116,16 +116,16 @@ public class CommonTablePanel extends JPanel {
             fuGLabel.add(label);
         }
 
-        //ho l'array delle carte up del deck gold, le metto nel grid pane
+
         for(int i=0;i<fuGLabel.size();i++){
 
             gbc.gridy = 2;
             gbc.gridx = i+1;
-            //gbc.weighty = ;
+
             add(fuGLabel.get(i),gbc);
         }
 
-        //gestione immagine FACE DOWN RESOURCE
+
         path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"ResourceCardBack"+File.separator+"";
         ImageIcon fdRImage = new ImageIcon(path + String.format("%03d", fdR.getId()) +".png");
         img = fdRImage.getImage().getScaledInstance(widthImage,heightImage,Image.SCALE_SMOOTH);
@@ -138,7 +138,7 @@ public class CommonTablePanel extends JPanel {
         gbc.gridx = 0;
         add(fdRLabel,gbc);
 
-        //gestione immagini FACE UP RESOURCE
+
         fuRLabel = new ArrayList<>();
         gbc.insets = new Insets(10, 10, 10, 10);
         path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"ResourceCardFront"+File.separator+"";
@@ -151,7 +151,7 @@ public class CommonTablePanel extends JPanel {
             label.setPreferredSize(new Dimension(120,100));
             fuRLabel.add(label);
         }
-        //ho l'array delle carte up del deck resource, le metto nel grid pane
+
         for(int i=0;i<fuRLabel.size();i++){
             gbc.gridy = 3;
             gbc.gridx = i+1;
@@ -172,11 +172,11 @@ public class CommonTablePanel extends JPanel {
         JLabel objDescription = new JLabel("Common objectives: ");
         String path = "src"+File.separator+"main"+File.separator+"resources"+ File.separator+"graphicalResources"+File.separator+"objectiveCardFront"+File.separator+"";
 
-        //gestione immagine OBIETTIVI comuni
+
 
 
         Image img;
-        //creo label con l'immagine appena creata e la aggiungo nel gridBagLayout di output
+
         for (Objective c:commonObj) {
             ImageIcon commonObjImage = new ImageIcon(path + String.format("%03d", c.getCondition().getId())+".png");
             img = commonObjImage.getImage().getScaledInstance(widthImage,heightImage,Image.SCALE_SMOOTH);
@@ -210,31 +210,31 @@ public class CommonTablePanel extends JPanel {
 
         gbc.anchor = GridBagConstraints.CENTER;
 
-        if(whichDeck == 1){ //rimuovi da gold
+        if(whichDeck == 1){
             gbc.insets = new Insets(0, 10, 10, 10);
             for (JLabel label : this.fuGLabel) {
-                // Rimuovi tutti i componenti
+
                 remove(label);
             }
-            //rimuovo dalle carte visualizzabili
+
             fuGLabel.remove(position);
 
-            // Aggiungi nuovamente le carte rimanenti nell'ordine corretto
+
             for(int i=0;i<fuGLabel.size();i++){
                 gbc.gridy = 2;
                 gbc.gridx = i+1;
                 add(fuGLabel.get(i), gbc);
             }
-        }else{ //rimuovi da resource
+        }else{
             gbc.insets = new Insets(10, 10, 10, 10);
             for (JLabel label : this.fuRLabel) {
-                // Rimuovi tutti i componenti
+
                 remove(label);
             }
-            //rimuovo dalle carte visualizzabili
+
             fuRLabel.remove(position);
 
-            // Aggiungi nuovamente le carte rimanenti nell'ordine corretto
+
             for(int i=0;i<fuRLabel.size();i++){
                 gbc.gridy = 3;
                 gbc.gridx = i+1;
@@ -254,7 +254,7 @@ public class CommonTablePanel extends JPanel {
      * @param faceupResource face up resources
      */
     public void updateCommonTable(Card faceDownGold, Card faceDownResource, ArrayList<Card> faceupGold, ArrayList<Card> faceupResource){
-        // Rimuovi tutti i componenti del tavolo comune
+
         for (JLabel label : fuGLabel) {
             remove(label);
         }
@@ -268,7 +268,7 @@ public class CommonTablePanel extends JPanel {
         remove(fdRLabel);
         fdGLabel = null;
         fdRLabel = null;
-        //aggiungo le carte nella mano
+
         addCommonTable(faceDownGold,faceDownResource,faceupGold,faceupResource);
     }
 }

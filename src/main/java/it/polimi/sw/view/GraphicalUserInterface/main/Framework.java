@@ -45,7 +45,7 @@ public class Framework extends JFrame {
         this.names = new ArrayList<>();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Dimension screenSize = toolkit.getScreenSize(); //used to take the PC dimensions
+        Dimension screenSize = toolkit.getScreenSize();
         screenSize.height = (int) (screenSize.height - screenSize.height*0.1);
         screenSize.width = (int)(screenSize.width-screenSize.width*0.1);
         setSize( screenSize.width , screenSize.height );
@@ -55,7 +55,7 @@ public class Framework extends JFrame {
         setAlwaysOnTop(false);
 
         ArrayList<Pion> pion = new ArrayList<>();
-        //adding elements of first, DEVO SISTEMARE SE PASSARE IL PION OPPURE NOH
+
         ps = new PlateauAndChat(screenSize,pion,gui);
 
         tp = new JTabbedPane(JTabbedPane.TOP);
@@ -95,7 +95,7 @@ public class Framework extends JFrame {
      */
     public void addPrivateObjective(Objective obj,GUI gui){
         tp.setSelectedIndex(0);
-        //richiamo la classe che gestisce la parte di obiettivo e carte private e passo l'obiettivo privato
+
         ctpt.getMyHandAndObjectivesAndCommonTable().getHo().addPrivObj(obj,this);
     }
 
@@ -226,15 +226,12 @@ public class Framework extends JFrame {
         od.setVisible(true);
 
         if(od.selectedOption == 1){
-            //ha selezionato che vuole pescare dal facedown,non devo aggiornare la gui ora ma solo
-            //quando il server manda la risposta, perchè ora non so qual è la prossima carta nel facedown!
+
             OptionDialog od2 = new OptionDialog(this,"Gold deck","Resource deck","Select the deck from which draw a card!");
             od2.setVisible(true);
             infoCard.add(od2.selectedOption);
             return infoCard;
-        }else{//ha selezionato che vuole pescare dai faceup, gli chiedo da quale dei 2 + quale delle due carte
-            //e poi tolgo dalla vista la carta selezionata ma non dalla mano, così se il server torna errore
-            //basta che ristampo quello che ho già, se torna tutto ok allora riaggiorno la view con la nuova carta
+        }else{
             OptionDialog od3 = new OptionDialog(this,"Pick from gold cards","Pick from resource cards","Now, select from where to pick the card!");
             od3.setVisible(true);
             infoCard.add(od3.selectedOption);
@@ -346,7 +343,7 @@ public class Framework extends JFrame {
          */
 
         public YourTurnDialog(JFrame mainFrame,String notification,int width,int height) {
-            super(mainFrame, "Notification", true); // Imposta il dialog come modale
+            super(mainFrame, "Notification", true);
             setSize(width,height);
             setLayout(new GridBagLayout());
             if(notification.startsWith("The winner")) {
@@ -355,18 +352,18 @@ public class Framework extends JFrame {
             }else
                 setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-            // Posiziona la finestra al centro dello schermo
+
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
             int x = (screenSize.width - getWidth()) / 2;
             int y = (screenSize.height - getHeight()) / 2;
             setLocation(x, y);
 
-            // Configurazione del layout
+
             GridBagConstraints gbc = new GridBagConstraints();
-            gbc.insets = new Insets(10, 10, 10, 10); // margini intorno ai componenti
+            gbc.insets = new Insets(10, 10, 10, 10);
 
 
-            // Etichetta del messaggio
+
             JLabel messageLabel = new JLabel();
             messageLabel.setPreferredSize(new Dimension(width,height));
             messageLabel.setText("<html><body style='width: " + (width - 0.25*width) + "px;'>" + notification + "</body></html>");
@@ -377,27 +374,27 @@ public class Framework extends JFrame {
             gbc.gridwidth = 2;
             add(messageLabel, gbc);
 
-            // Bottone per chiudere il dialog
+
             JButton okButton = new JButton("OK");
-            okButton.addActionListener(e -> dispose()); // Chiudi il dialog quando il bottone è cliccato
+            okButton.addActionListener(e -> dispose());
             gbc.gridx = 0;
             gbc.gridy = 1;
             gbc.gridwidth = 2;
             add(okButton, gbc);
 
 
-            int timeoutInSeconds = 10; // Esempio: chiude dopo 10 secondi
+            int timeoutInSeconds = 10;
             timer = new Timer(timeoutInSeconds * 1000, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    dispose(); // Chiude la finestra quando scade il timer
+                    dispose();
                     if(notification.startsWith("The winner"))
                         System.exit(0);
                     if(timer != null)
                         timer.stop();
                 }
             });
-            timer.setRepeats(false); // Non ripetere il timer dopo che è scaduto una volta
+            timer.setRepeats(false);
             timer.start();
 
         }
@@ -423,7 +420,7 @@ public class Framework extends JFrame {
         /**
          * The selected option
          */
-        private int selectedOption = -1; // -1 indicates no option selected
+        private int selectedOption = -1;
 
         /**
          * Constructor for the OptionDialog.
@@ -435,18 +432,18 @@ public class Framework extends JFrame {
          */
 
         public OptionDialog(JFrame mainFrame,String opt1, String opt2,String action) {
-            super(mainFrame, "Select the deck", true); // Imposta il dialog come modale
+            super(mainFrame, "Select the deck", true);
             setSize(300, 200);
             setLayout(new GridBagLayout());
             setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
-            // Posiziona la finestra al centro dello schermo
+
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
             int x = (screenSize.width - getWidth()) / 2;
             int y = (screenSize.height - getHeight()) / 2;
             setLocation(x, y);
 
-            // Configurazione del layout
+
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.insets = new Insets(10, 10, 10, 10);
             gbc.fill = GridBagConstraints.BOTH;
@@ -459,7 +456,7 @@ public class Framework extends JFrame {
             gbc.gridwidth = 2;
             add(descriptionLabel, gbc);
 
-            // Radio buttons
+
             option1 = new JRadioButton(opt1);
             option2 = new JRadioButton(opt2);
             ButtonGroup group = new ButtonGroup();
@@ -474,7 +471,7 @@ public class Framework extends JFrame {
             gbc.gridy = 2;
             add(option2, gbc);
 
-            // Bottone OK
+
             okButton = new JButton("SELECT");
             okButton.addActionListener(e -> {
                 if (option1.isSelected()) {

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Manuscript extends JPanel {
 
-    //private ArrayList<JLabel> cardsPlayed;
+
     private String nickname;
     private ArrayList<Integer> centerXY;
     private JPanel innerPanel;
@@ -23,11 +23,11 @@ public class Manuscript extends JPanel {
         centerXY.add(1500 / 2);
         centerXY.add(1500 / 2);
 
-        // Create an inner panel with null layout for manual positioning
+
         innerPanel = new JPanel(null);
         innerPanel.setPreferredSize(new Dimension(1500, 1500));
 
-        // Add the inner panel to a JScrollPane
+
         JScrollPane scrollPane = new JScrollPane(innerPanel);
         add(scrollPane, BorderLayout.CENTER);
 
@@ -52,7 +52,7 @@ public class Manuscript extends JPanel {
             path += "Back/";
 
 
-        //inserisco le immagini
+
         ImageIcon handImage = new ImageIcon(path + String.format("%03d", card.getId()) + ".png");
         Image img = handImage.getImage().getScaledInstance(120,100, Image.SCALE_SMOOTH);
         handImage.setImage(img);
@@ -63,22 +63,22 @@ public class Manuscript extends JPanel {
 
         cardLabel.setBounds(0, 0, 120, 100);
 
-        cardLabel.setLayout(null); // Use null layout for manual positioning
+        cardLabel.setLayout(null);
         cardLabel.setOpaque(true);
         cardLabel.setBackground(Color.LIGHT_GRAY);
         cardLabel.setPreferredSize(new Dimension(100, 150));
 
-        // Create the label with coordinates
+
         JLabel coordinatesLabel = new JLabel("(" + x + ", " + y + ")");
         coordinatesLabel.setOpaque(true);
         coordinatesLabel.setBackground(Color.white);
         coordinatesLabel.setBounds(28, 15, 43, 18); // Position the label at the top of the card
 
-        // Add the coordinates label to the card
+
         cardLabel.add(coordinatesLabel);
 
 
-        // Wrapping card in a JPanel with null layout to place it correctly
+
         JPanel wrapper = new JPanel(null);
         wrapper.setOpaque(false);
         wrapper.setBounds(posX,posY, 120, 100);

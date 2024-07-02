@@ -38,10 +38,10 @@ public abstract class View extends Observable {
         startServerCheckThreads();
     }
     private void startServerCheckThreads() {
-        // Thread to set serverIson to false after 2 minutes
+
         new Thread(() -> {
             try {
-                Thread.sleep(10 * 60 * 1000); // Sleep for 2 minutes
+                Thread.sleep(10 * 60 * 1000);
                 synchronized (this) {
                     serverIson = false;
                 }
@@ -51,7 +51,7 @@ public abstract class View extends Observable {
             }
         }).start();
 
-        // Thread to check serverIson value and exit if false
+
         new Thread(() -> {
             while (true) {
                 synchronized (this) {
@@ -60,7 +60,7 @@ public abstract class View extends Observable {
                     }
                 }
                 try {
-                    Thread.sleep(1000 * 60); // Check every minute
+                    Thread.sleep(1000 * 60);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -119,8 +119,7 @@ public abstract class View extends Observable {
     abstract public void showPrivateObjective(Objective obj);
 
 
-    //data una lista di messaggi, li visualizza
-    //non so se dobbiamo mettere un attributo in TUI che è la lista di GameMessage oppure lo passiamo come param e bona
+
 
     /**
      * given a message, if flag is true, then print it, otherwise add to the list
@@ -152,7 +151,7 @@ public abstract class View extends Observable {
     abstract public void showPlayerState(Player p);
 
 
-    //pescaggio generale, al suo interno verrà chiesto in quale mazzo e/o quale carta
+
 
     /**
      * Used to allow the user to select a card to draw from one deck
@@ -212,10 +211,9 @@ public abstract class View extends Observable {
     /**
      * Used to show to the user that rn is not his turn!
      */
-    abstract public void notYourTurn(); // i doubt that we should use the message, since the view may see the currplayer in local model
+    abstract public void notYourTurn();
 
-    //in GUI lo devo usare perchè è il bottone che in modo asincrono viene cliccato e viene chiamato questo metodo
-    //nella tui penso verrà usato selectCardToFlip()
+
     /**
      *This method is invocated internally by the HandAndObjectivesPanel class after player clicked the flip card button
      *
@@ -257,7 +255,7 @@ public abstract class View extends Observable {
      *
      * @param type An `ErrorType` enum value representing the specific error that occurred.
      */
-    abstract public void dealWithError(ErrorType type); //switch with all error types
+    abstract public void dealWithError(ErrorType type);
 
     /**
      * Method used to save the back of the cards for the flip button
@@ -269,22 +267,22 @@ public abstract class View extends Observable {
      * This abstract method defines how the client should handle user input for playing a card.
      * @throws RemoteException This exception is thrown if there's an issue communicating with the server during input handling.
      */
-    abstract public void readPlayCardInput () throws RemoteException; // excepts only play card and chat
+    abstract public void readPlayCardInput () throws RemoteException;
     /**
      * This abstract method defines how the client should handle user input for drawing a card.
      * @throws RemoteException This exception is thrown if there's an issue communicating with the server during input handling.
      */
-    abstract public void readDrawCardInput () throws RemoteException; //excepts only draw card and chat
+    abstract public void readDrawCardInput () throws RemoteException;
     /**
      * This abstract method likely pauses or disables chat functionality while the user is performing an action in the Text User Interface (TUI).
      * It's used to prevent overwhelming the user with information during actions like selecting a pion or playing a card.
      */
-    abstract public void chatWait(); // while in active fase in tui, stop prnting
+    abstract public void chatWait();
     /**
      * This abstract method likely resumes or enables chat functionality after an action is completed in the Text User Interface (TUI).
      * It allows the user to chat again after a temporary pause during actions.
      */
-    abstract public void chatUnblockWait(); // chat restarts printing and not storing
+    abstract public void chatUnblockWait();
     /**
      * This method updates the list of available positions (likely for placing game pieces) with the provided `newAvPos` ArrayList.
      * The specific use of these positions will depend on the game logic.
@@ -301,7 +299,7 @@ public abstract class View extends Observable {
      * @param availablePions The ArrayList of available pions to display and select from.
      */
     public void selectPion(ArrayList<Pion> availablePions) {
-        //che facciamo, lo gestiamo a prescindere come console con scanner? ahahah
+
         int selection = 0;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -319,7 +317,7 @@ public abstract class View extends Observable {
             }
         } while (selection < 1 || selection > availablePions.size());
 
-        //notify di numOfplayers e pion
+
         if(numOfPlayers == 0){
             notify(new SendingNumPlayersAndPion(0,availablePions.get(selection-1)));
         }else{
@@ -347,7 +345,7 @@ public abstract class View extends Observable {
     }
 
 
-    abstract public void createTabbedManuscripts(ArrayList<String> names) ; //used in gui to set up the tab panes
+    abstract public void createTabbedManuscripts(ArrayList<String> names) ;
     abstract public void gameAlmostFinished();
     /**
      * Marks the server as alive by setting the {@code serverIson} boolean to {@code true}.

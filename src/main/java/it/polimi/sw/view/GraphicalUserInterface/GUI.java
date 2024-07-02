@@ -74,7 +74,7 @@ public class GUI extends View {
             notify(new SendingCardToDraw(infoCard.get(0), infoCard.get(1)));
         }
 
-        //wait 4 seconds and then tell the user what he can do
+
         timer = new Timer(4 * 1000, e -> {
             frame.notYourTurn();
             if(timer != null)
@@ -91,7 +91,7 @@ public class GUI extends View {
     @Override
     public void cardToFlip(String oldSide) throws RemoteException {
 
-        if(oldSide.equals("1")) { //current card is front side, have to paint the back
+        if(oldSide.equals("1")) {
             this.addFlippedCard(backHand);
         }else {
             this.addFlippedCard(frontHand);
@@ -199,11 +199,11 @@ public class GUI extends View {
             coord[0] = 0;
             coord[1] = 0;
         }
-        //remove card
-        frame.removeCardFromHand(whichCardAndSide[0]-1); //whichCardAndSide[0] --> card number 1,2 or 3
 
-        //notify client
-        if(whichCardAndSide[1] == 1) //se siamo nel front, passo la carta corrispondente del front
+        frame.removeCardFromHand(whichCardAndSide[0]-1);
+
+
+        if(whichCardAndSide[1] == 1)
             notify(new SendingCardPlayed(frontHand.get(whichCardAndSide[0]-1),coord));
         else
             notify(new SendingCardPlayed(backHand.get(whichCardAndSide[0]-1),coord));
@@ -237,7 +237,7 @@ public class GUI extends View {
         System.out.println("Update manuscript");
         this.frame.updateManuscript(p.getNickName(),c,x,y);
 
-        //updates points and resources
+
 
         this.frame.updatePoints(p.getPion(),points);
     }
@@ -272,14 +272,14 @@ public class GUI extends View {
      * @param hand, the player's hand to be shown
      */
     @Override
-    public void showPlayerHand(ArrayList<Card> hand) { //metodo chiamato per fare vedere il front hand
-        if(hand.getFirst().getSide() == 1) //metodo chiamato dal messaggio in arrivo dal server, aggiorno front
+    public void showPlayerHand(ArrayList<Card> hand) {
+        if(hand.getFirst().getSide() == 1)
             frontHand = new ArrayList<>(hand);
         if(frame.alreadyCreatedHand()){
             frame.updateHand(hand);
         }else{
             frame.addHand(hand);
-            if(hand.size() == 1) { //sto mostrando la carta iniziale, devo fare chiamare la parte di playCard
+            if(hand.size() == 1) {
                 frame.addFlipButton(this);
             }
         }
@@ -287,7 +287,7 @@ public class GUI extends View {
 
     @Override
     public void showPlayerTable(HashMap<Card, Integer[]> map) {
-            //da fare, viene usato quando il giocatore richiede di vedere il manoscritto degli altri
+
         for (Map.Entry<Card, Integer[] > card :map.entrySet()) {
             frame.updateManuscript(nickname,map.keySet().iterator().next(),card.getValue()[0],card.getValue()[1]);
         }
@@ -332,12 +332,12 @@ public class GUI extends View {
 
     @Override
     public void showGameStart() {
-        //done during framework constructor
+
     }
 
     @Override
     public void showPlayerState(Player p) {
-        //mostra punti e risorse degli altri in tui, in gui i punti hanno già update sempre e risorse non le vedranno lol
+
     }
 
     /**
@@ -385,7 +385,7 @@ public class GUI extends View {
 
     }
 
-    //not used in gui
+
     @Override
     public void showCommonObjectives(ArrayList<Objective> obj) {
 
@@ -393,7 +393,7 @@ public class GUI extends View {
 
     @Override
     public void showAvailablePositions() {
-        //not used in gui
+
     }
 
     /**

@@ -43,7 +43,7 @@ public class HandAndObjectivesPanel extends JPanel {
         hand = new ArrayList<>();
         gbc = new GridBagConstraints();
         setVisible(true);
-        //a sx metto obiettivo privato e in centro metto la mano del giocatore
+
     }
 
     /**
@@ -61,14 +61,12 @@ public class HandAndObjectivesPanel extends JPanel {
 
         String path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"objectiveCardFront"+File.separator+"";
 
-        //gestione immagine OBIETTIVO PRIVATO
 
-        //creazione immagine
         ImageIcon objImage = new ImageIcon(path + String.format("%03d", obj.getCondition().getId()) +".png");
         Image img = objImage.getImage().getScaledInstance(widthImage,heightImage,Image.SCALE_SMOOTH);
         objImage.setImage(img);
 
-        //creo label con l'immagine appena creata e la aggiungo nel gridBagLayout di output
+
         privObj = new JLabel(objImage);
         gbc.insets = new Insets(30, 0, 20, 0);
         gbc.anchor = GridBagConstraints.CENTER;
@@ -97,10 +95,10 @@ public class HandAndObjectivesPanel extends JPanel {
 
         String path;
 
-        //gestione immagini
+
         Image img;
         String side;
-        if(handd.size() == 1) { //inizio del gioco
+        if(handd.size() == 1) {
             if (handd.getFirst().getClass().getName().substring(19).equalsIgnoreCase("InitialCard")) {
                 if(handd.getFirst().getSide() == 1){
                     path = "src"+File.separator+"main"+File.separator+"resources"+File.separator+"graphicalResources"+File.separator+"InitialCardFront"+File.separator+"";
@@ -117,9 +115,9 @@ public class HandAndObjectivesPanel extends JPanel {
                 hand.add(jl);
             }
 
-        }else { //qualsiasi hand dopo il primo giro con la initialCard
+        }else {
             for (Card c : handd) {
-                //assegno il giusto path
+
                 path = "src/main/resources/graphicalResources/"+c.getClass().getName().substring(19);
                 if(c.getSide() == 1) {
                     path += "Front/";
@@ -128,7 +126,7 @@ public class HandAndObjectivesPanel extends JPanel {
                     path += "Back/";
                     side = "2";
                 }
-                //inserisco le immagini
+
                 ImageIcon handImage = new ImageIcon(path + String.format("%03d", c.getId()) + ".png");
                 img = handImage.getImage().getScaledInstance(widthImage, heightImage, Image.SCALE_SMOOTH);
                 handImage.setImage(img);
@@ -139,23 +137,21 @@ public class HandAndObjectivesPanel extends JPanel {
         }
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.anchor = GridBagConstraints.CENTER;
-        //ho l'array delle carte, le metto nel grid pane
+
         for(int i=0;i<hand.size();i++){
             gbc.gridy = 1;
             gbc.gridx = i;
             add(hand.get(i),gbc);
         }
 
-        //riaggiorno la view di questo elemento altrimenti non viene visto nulla
+
         revalidate();
         repaint();
 
         setVisible(true);
     }
 
-    //quando si apre la finestra di inserimento input, devo visualizzare le immagini, ma devo farne una copia
-    //da quelle presenti nella mano del giocatore perchè in GUI ogni elemento ha un solo contenitore
-    //non può essere in 2 diversi
+
 
     /**
      * Used to clone the hand in order to have 2 equals hand in the gui
@@ -164,14 +160,14 @@ public class HandAndObjectivesPanel extends JPanel {
     public ArrayList<JLabel> cloneJLabelArray() {
         ArrayList<JLabel> clonedLabels = new ArrayList<>();
         for (JLabel originalLabel : hand) {
-            // Ottieni l'ImageIcon dal JLabel originale
+
             Icon icon = originalLabel.getIcon();
 
-            // Crea un nuovo JLabel con la stessa ImageIcon
+
             JLabel clonedLabel = new JLabel(icon);
             clonedLabel.setName(originalLabel.getName());
 
-            // Opzionalmente, copia altre proprietà del JLabel originale
+
             clonedLabel.setText(originalLabel.getText());
             clonedLabel.setHorizontalAlignment(originalLabel.getHorizontalAlignment());
             clonedLabel.setVerticalAlignment(originalLabel.getVerticalAlignment());
@@ -198,17 +194,17 @@ public class HandAndObjectivesPanel extends JPanel {
     public void removeCardFromHand(int index) {
 
         for (JLabel label : hand) {
-            // Rimuovi tutti i componenti della hand dal pannello
+
             remove(label);
         }
 
-        //rimuovo dalle carte visualizzabili
+
         hand.remove(index);
 
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.anchor = GridBagConstraints.CENTER;
 
-        // Aggiungi nuovamente le carte rimanenti nell'ordine corretto
+
         for(int i=0;i<hand.size();i++){
             gbc.gridy = 1;
             gbc.gridx = i;
@@ -219,7 +215,7 @@ public class HandAndObjectivesPanel extends JPanel {
         repaint();
     }
 
-    //elimino le carte già esistenti e le reinserisco
+
 
     /**
      * Update the hand of the player
@@ -228,17 +224,16 @@ public class HandAndObjectivesPanel extends JPanel {
     public void updateHand(ArrayList<Card> cards){
         if(!hand.isEmpty()){
             for (JLabel label : hand) {
-                // Rimuovi tutti i componenti della hand dal pannello
+
                 remove(label);
             }
             hand.clear();
         }
-        //aggiungo le carte nella mano
+
         addHand(cards);
     }
 
-    //metodo chiamato quando è appena iniziato il turno del giocatore, deve comparire un bottone I'M READY
-    //che se cliccato indica lo stop della flip card e l'inizio della selectCardToPut
+
 
     /**
      *
@@ -257,7 +252,7 @@ public class HandAndObjectivesPanel extends JPanel {
             } catch (RemoteException ex) {
                 throw new RuntimeException(ex);
             }
-            //elimino dalla visualizzazione
+
             Container parent = confirmButton.getParent();
             if (parent != null) {
                 parent.remove(confirmButton);
@@ -266,7 +261,7 @@ public class HandAndObjectivesPanel extends JPanel {
             }
         });
 
-        gbc.insets = new Insets(10, 20, 15, 0); // margini intorno ai componenti
+        gbc.insets = new Insets(10, 20, 15, 0);
 
         gbc.gridx = 1;
         gbc.gridy = 3;
@@ -282,7 +277,7 @@ public class HandAndObjectivesPanel extends JPanel {
      * @param gui refers to the gui in order to invocate a specific method when 'Flip a card' button is clicked
      */
     public void addFlipButton(JFrame mainframe, GUI gui) {
-        //bottone per flippare una carta
+
         JButton confirmButton = new JButton("Flip cards");
         confirmButton.setMargin(new Insets(10,10,10,10));
         confirmButton.setBackground(Color.decode("#d6c45e"));
